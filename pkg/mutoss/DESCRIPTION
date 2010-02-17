@@ -1,0 +1,25 @@
+Package: mutoss
+Type: Package
+Title: GUI and wrappers for multiple testing procedures
+Version: 0.1-0
+Date: 2010-01-26
+Author: MuToss Coding Team (Berlin 2010)
+Maintainer: Thorsten Dickhaus <dickhaus@cs.tu-berlin.de>
+Description: The Mutoss package and accompanying mutossGUI package are
+    designed to ease the application and comparison of multiple
+    hypothesis testing procedures. The GUI is called with the mutossGUI
+    function. Once invoked, the analysis starts by inserting either
+    p-values or raw data and specifying the type of analysis and error
+    control type wanted. The results can be visualized in the GUI or
+    exported as R objects for further analysis- possibly with the
+    accompanying compareMutoss functions.
+Depends: R (>= 2.8.0), multcomp (>= 1.1-0), methods
+Suggests: fdrtool, multtest (>= 2.2.0)
+License: GPL
+LazyLoad: yes
+Collate: 'Augmentation.R' 'CompareObjects.R' 'fisher.R' 'gao.R'
+    'helperfunctions.R' 'Hommel.R' 'localfdr.R' 'moreSUDprocedures.R'
+    'multcomp.R' 'multtest.R' 'mutossApply.R' 'MuTossObject.R'
+    'mutoss.plotCI.R' 'MutossSimObject.R' 'nparcomp1.R' 'onLoad.R'
+    'pi0Est.R' 'Rank_Truncated.R' 'REGWQ.R' 'SNK.R' 'SUDProcedures.R'
+    'SUD.R' 'testFunctionsForTheGUI.R' 'Tukey.R' 'wrapperFunctions.R'
