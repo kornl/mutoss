@@ -132,12 +132,20 @@ compareMutoss<-function(...){
 	
 	pi.nulls<- as.numeric(lapply(objects, function(x) x@pi0))#extracting pi0 estimates
 	
-	hyp.names<- sapply(objects, function(x) x@hypNames )# getting hypothesis names
-	mu.test.name(hyp.names)
-	hyp.names<- hyp.names[,1]
-	
-	pvalues<- sapply(objects, function(x) x@pValues )# getting adjusted pvals	
+	pvalues<- sapply(objects, function(x) x@pValues )# getting adjusted pvals
 	mu.test.same.data(pvalues)
+	m<- nrow(pvalues)
+	
+	raw.hyp.names<- lapply(objects, function(x) x@hypNames )# getting hypothesis names
+	if(all(sapply(raw.hyp.names, function(x) identical(x, character(0))))){
+		hyp.names<- paste('hyp', 1:m, sep='') 
+	}	
+	else if(all(sapply(raw.hyp.names, function(x) length(x)==m))) {
+		mu.test.name(raw.hyp.names)
+		hyp.names<- raw.hyp.names[,1]
+	}
+	
+	##TODO: [JR] Deal with mising hyp names only in a subset of objects
 	
 	# Preparing Raw Pvalues
 	raw.pvals<- pvalues[,1]
