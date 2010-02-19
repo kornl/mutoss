@@ -6,7 +6,31 @@
     "UmbrellaWilliams"), control=NULL, conflevel=0.95,
     alternative=c("two.sided", "less", "greater"), rounds=3,
     correlation=FALSE, asy.method=c("logit", "probit", "normal",
-    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)}
+    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)nparcomp(formula, data, type=c("UserDefined", "Tukey", "Dunnett", "Sequen",
+    "Williams", "Changepoint", "AVE", "McDermott", "Marcus",
+    "UmbrellaWilliams"), control=NULL, conflevel=0.95,
+    alternative=c("two.sided", "less", "greater"), rounds=3,
+    correlation=FALSE, asy.method=c("logit", "probit", "normal",
+    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)
+nparcomp(formula, data, type=c("UserDefined", "Tukey", "Dunnett", "Sequen",
+    "Williams", "Changepoint", "AVE", "McDermott", "Marcus",
+    "UmbrellaWilliams"), control=NULL, conflevel=0.95,
+    alternative=c("two.sided", "less", "greater"), rounds=3,
+    correlation=FALSE, asy.method=c("logit", "probit", "normal",
+    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)
+nparcomp(formula, data, type=c("UserDefined", "Tukey", "Dunnett", "Sequen",
+    "Williams", "Changepoint", "AVE", "McDermott", "Marcus",
+    "UmbrellaWilliams"), control=NULL, conflevel=0.95,
+    alternative=c("two.sided", "less", "greater"), rounds=3,
+    correlation=FALSE, asy.method=c("logit", "probit", "normal",
+    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)
+nparcomp(formula, data, type=c("UserDefined", "Tukey", "Dunnett", "Sequen",
+    "Williams", "Changepoint", "AVE", "McDermott", "Marcus",
+    "UmbrellaWilliams"), control=NULL, conflevel=0.95,
+    alternative=c("two.sided", "less", "greater"), rounds=3,
+    correlation=FALSE, asy.method=c("logit", "probit", "normal",
+    "mult.t"), plot.simci=FALSE, info=TRUE, contrastMatrix=NULL)
+}
 \description{Simultaneous confidence intervals for relative contrast effects
 The procedure controls the FWER in the strong sense.}
 \details{With this function, it is possible to compute nonparametric simultaneous confidence
@@ -15,7 +39,43 @@ adjusted p-values. The simultaneous confidence intervals can be computed using
 multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
 of the degree of freedom or using multivariate range preserving transformations with Logit or
 Probit as transformation function. There is no assumption on the underlying distribution function, only
-that the data have to be at least ordinal numbers}
+that the data have to be at least ordinal numbers\code{nparcomp}: With this function, it is possible to compute nonparametric simultaneous confidence
+intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
+adjusted p-values. The simultaneous confidence intervals can be computed using
+multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
+of the degree of freedom or using multivariate range preserving transformations with Logit or
+Probit as transformation function. There is no assumption on the underlying distribution function, only
+that the data have to be at least ordinal numbers
+
+
+\code{nparcomp}: With this function, it is possible to compute nonparametric simultaneous confidence
+intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
+adjusted p-values. The simultaneous confidence intervals can be computed using
+multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
+of the degree of freedom or using multivariate range preserving transformations with Logit or
+Probit as transformation function. There is no assumption on the underlying distribution function, only
+that the data have to be at least ordinal numbers
+
+
+\code{nparcomp}: With this function, it is possible to compute nonparametric simultaneous confidence
+intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
+adjusted p-values. The simultaneous confidence intervals can be computed using
+multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
+of the degree of freedom or using multivariate range preserving transformations with Logit or
+Probit as transformation function. There is no assumption on the underlying distribution function, only
+that the data have to be at least ordinal numbers
+
+
+\code{nparcomp}: With this function, it is possible to compute nonparametric simultaneous confidence
+intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
+adjusted p-values. The simultaneous confidence intervals can be computed using
+multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
+of the degree of freedom or using multivariate range preserving transformations with Logit or
+Probit as transformation function. There is no assumption on the underlying distribution function, only
+that the data have to be at least ordinal numbers
+
+
+}
 \value{A list containing:  
 \item{adjPValues}{A numeric vector containing the adjusted pValues}
 
@@ -23,7 +83,47 @@ that the data have to be at least ordinal numbers}
 
 \item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
 
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}}
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}\code{nparcomp}: A list containing:  
+\item{adjPValues}{A numeric vector containing the adjusted pValues}
+
+\item{rejected}{A logical vector indicating which hypotheses are rejected}
+
+\item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
+
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
+
+
+\code{nparcomp}: A list containing:  
+\item{adjPValues}{A numeric vector containing the adjusted pValues}
+
+\item{rejected}{A logical vector indicating which hypotheses are rejected}
+
+\item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
+
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
+
+
+\code{nparcomp}: A list containing:  
+\item{adjPValues}{A numeric vector containing the adjusted pValues}
+
+\item{rejected}{A logical vector indicating which hypotheses are rejected}
+
+\item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
+
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
+
+
+\code{nparcomp}: A list containing:  
+\item{adjPValues}{A numeric vector containing the adjusted pValues}
+
+\item{rejected}{A logical vector indicating which hypotheses are rejected}
+
+\item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
+
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
+
+
+}
 \author{FrankKonietschke}
 \arguments{\item{formula}{A two-sided 'formula' specifying a numeric response variable and
 a factor with more than two levels. If the factor contains less than 3 levels, an
@@ -64,4 +164,68 @@ type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
 # Dunnett dose 3 is baseline
 nparcomp(x ~grp, data=dataframe, asy.method = "probit",
 type = "Dunnett", control = "3",alternative = "two.sided",
+plot.simci = TRUE, info = TRUE)x = rnorm(50)
+grp = c(rep(1:5,10))
+dataframe <- data.frame(x,grp)
+# Williams Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Williams", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",control=1,
+type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett dose 3 is baseline
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Dunnett", control = "3",alternative = "two.sided",
+plot.simci = TRUE, info = TRUE)x = rnorm(50)
+grp = c(rep(1:5,10))
+dataframe <- data.frame(x,grp)
+# Williams Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Williams", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",control=1,
+type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett dose 3 is baseline
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Dunnett", control = "3",alternative = "two.sided",
+plot.simci = TRUE, info = TRUE)x = rnorm(50)
+grp = c(rep(1:5,10))
+dataframe <- data.frame(x,grp)
+# Williams Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Williams", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",control=1,
+type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett dose 3 is baseline
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Dunnett", control = "3",alternative = "two.sided",
+plot.simci = TRUE, info = TRUE)x = rnorm(50)
+grp = c(rep(1:5,10))
+dataframe <- data.frame(x,grp)
+# Williams Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Williams", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett Contrast
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",control=1,
+type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
+
+# Dunnett dose 3 is baseline
+nparcomp(x ~grp, data=dataframe, asy.method = "probit",
+type = "Dunnett", control = "3",alternative = "two.sided",
 plot.simci = TRUE, info = TRUE)}
+\alias{nparcomp}
+
+\alias{nparcomp}
+
+\alias{nparcomp}
+
+\alias{nparcomp}
+
