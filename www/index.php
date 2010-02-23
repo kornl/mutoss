@@ -33,19 +33,24 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!-- get project title  -->
 <!-- own website starts here, the following may be changed as you like -->
 
-<?php if ($handle=fopen('http://'.$domain.'/export/projtitl.php?group_name='.$group_name,'r')){
+<p>Mutoss (multiple hypothesis testing open source system) aims at providing a unified, extensible interface covering a large spectrum of multiple hypothesis testing procedures in R.
+It features a graphical user interface and a simulation tool.</p> 
+
+<!-- <?php if ($handle=fopen('http://'.$domain.'/export/projtitl.php?group_name='.$group_name,'r')){
 $contents = '';
 while (!feof($handle)) {
 	$contents .= fread($handle, 8192);
 }
 fclose($handle);
-echo $contents; } ?>
+echo $contents; } ?> -->
 
 <!-- end of project description -->
 
-<p> No content added. </p>
+<p>The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>.</p>
 
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+<h3>Features:</h3>
+<h4>Unified interface</h4>
+<h4>Repository</h4>
 
 </body>
 </html>
