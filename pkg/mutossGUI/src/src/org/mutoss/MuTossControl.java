@@ -90,6 +90,7 @@ public class MuTossControl implements ActionListener {
 			// TODO Move these lines up into the Elcipse-only block for final release.
 			rcs.eval("pvalues<-c(rep(0.001,5),runif(20))");
 			rcs.eval("data(iris)");
+			rcs.eval("data(InsectSprays)");
 			rcs.eval("amod <- aov(breaks ~ tension, data = warpbreaks)");			
 			rcs.eval("X <- matrix(rnorm(1000), ncol=10)");
 			rcs.eval("grouplabels <- rep(c(0,1),each=5)");
