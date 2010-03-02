@@ -21,7 +21,7 @@ that the data have to be at least ordinal numbers}
 
 \item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}}
 \author{FrankKonietschke}
-\arguments{\item{model}{A two-sided ’formula’ specifying a numeric response variable and
+\arguments{\item{model}{A two-sided formula specifying a numeric response variable and
 a factor with more than two levels.}
 \item{data}{A dataframe containing the variables specified the model}
 \item{hypotheses}{Character string defining the type of contrast. It should be one of "Tukey",

@@ -999,7 +999,7 @@ weightMatrix <- function(n,type = c("UserDefined","Tukey","AVE","Dunnett", "Sequ
 #' Probit as transformation function. There is no assumption on the underlying distribution function, only
 #' that the data have to be at least ordinal numbers
 #' 
-#' @param model A two-sided ’formula’ specifying a numeric response variable and
+#' @param model A two-sided formula specifying a numeric response variable and
 #' a factor with more than two levels.
 #' @param data A dataframe containing the variables specified the model
 #' @param hypotheses Character string defining the type of contrast. It should be one of "Tukey",
