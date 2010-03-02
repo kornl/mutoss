@@ -6,33 +6,6 @@
 ###############################################################################
 
 
-#' A general step-up-down procedure.
-#' 
-#' Suppose we have n pValues and they are already sorted.
-#' The procedure compares pValues[startIDX_SUD] with criticalValues[startIDX_SUD]
-#' and then proceeds in step-up or step-down manner,   
-#' depending on the result of this initial comparision.
-#' 
-#' If pValues[startIDX_SUD] <= criticalValues[startIDX_SUD], then the procedure
-#' rejects the hypotheses associated with pValues[1], ..., pValues[startIDX_SUD]  
-#' and carries on in a step-down manner from startIDX_SUD to n to reject additional hypotheses.
-#' 
-#' If pValues[startIDX_SUD] > criticalValues[startIDX_SUD], then the procedure
-#' retains hypotheses associated with pValues[startIDX_SUD], ..., pValues[n] and 
-#' carries on in a step-up manner with pValues[startIDX_SUD - 1], ..., pValues[1]. 
-#' 
-#' If startIDX_SUD equals n the algorithm behaves like a step-up procedure.
-#' 
-#' If startIDX_SUD equals 1 the algorithm behaves like a step-down procedure.
-#' @param pValues pValues to be used.
-#' @param criticalValues criticalValues for the step-up-down procedure
-#' @param startIDX_SUD the index (between 1 and length(pValues)) used for the first 
-#' 		comparison of pValues[startIDX_SUD] and criticalValues[startIDX_SUD]. Depending
-#' 		on the result of this comparison the algorithm decides to proceed in 
-#' 		step-up or step-down manner. 
-#' @return rejected logical vector indicating if hypotheses are rejected or retained.
-#' @author MuToss-Coding Team
-#' @export
 SUD <- function(pValues, criticalValues, startIDX_SUD) 
 {		
 	len <- length(criticalValues)
@@ -98,19 +71,6 @@ SUD <- function(pValues, criticalValues, startIDX_SUD)
 	return(rejected)
 }
 
-#' A general step-down procedure.
-#' 
-#' Suppose we have n pValues and they are already sorted.
-#' The procedure starts with comparing pValues[1] with criticalValues[1]. If 
-#' pValues[1] <= criticalValues[1], then the hypothsis associated with pValues[1] is rejected and the algorithm 
-#' carries on with second smallest pValue and criticalValue in the same way. The algorithm stops
-#' rejecting at the first index i for which pValues[i] > criticalValues[i]. 
-#' Thus pValues[j] is rejected if and only if pValues[i] <= criticalValues[i] for all i <= j.
-#' @param pValues pValues to be used.
-#' @param criticalValues criticalValues for the step-down procedure
-#' @return rejected logical vector indicating if hypotheses are rejected or retained.
-#' @author MarselScheer
-#' @export
 SD <- function(pValues, criticalValues) 
 {
 	SUD(criticalValues = criticalValues, 
@@ -118,20 +78,6 @@ SD <- function(pValues, criticalValues)
 			startIDX = 1)
 }
 
-#' A general step-up procedure.
-#'
-#' Suppose we have n pValues and they are already sorted. 
-#' The procedure starts with comparing pValues[n] with criticalValues[n]. If
-#' pValues[n] > criticalValues[n], then the hypothesis associated with pValues[n] 
-#' is retained and the algorithm carries on with the next pValue and criticalValue, here for example pValues[n-1]
-#' and criticalValues[n-1]. The algorithm stops retaining at the first index i for
-#' which pValues[i] <= criticalValues[i]. Thus pValues[j] is rejected if and only if
-#' their exists an index i with j <= i and pValues[i] <= criticalValues[i].
-#' @param pValues pValues to be used.
-#' @param criticalValues criticalValues for the step-up procedure
-#' @return rejected logical vector indicating if hypotheses are rejected or retained.
-#' @author MarselScheer
-#' @export
 SU <- function(pValues, criticalValues) 
 {
 	SUD(criticalValues = criticalValues, 

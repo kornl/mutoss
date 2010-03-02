@@ -4,68 +4,6 @@
 ###############################################################################
 
 
-#' Simultaneous confidence intervals for relative contrast effects
-#' The procedure controls the FWER in the strong sense. 
-#'
-#' With this function, it is possible to compute nonparametric simultaneous confidence
-#' intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
-#' adjusted p-values. The simultaneous confidence intervals can be computed using
-#' multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
-#' of the degree of freedom or using multivariate range preserving transformations with Logit or
-#' Probit as transformation function. There is no assumption on the underlying distribution function, only
-#' that the data have to be at least ordinal numbers
-#' 
-#' @param formula A two-sided 'formula' specifying a numeric response variable and
-#' a factor with more than two levels. If the factor contains less than 3 levels, an
-#' error message will be returned
-#' @param data data A dataframe containing the variables specified in formula
-#' @param type type Character string defining the type of contrast. It should be one of "Tukey",
-#' "Dunnett", "Sequen", "Williams", "Changepoint", "AVE", "McDermott", "Marcus"
-#' @param control control Character string defining the control group in Dunnett comparisons.
-#' By default it is the first group by lexicographical ordering
-#' @param conflevel The confidence level for the 1 - conflevel confidence intervals. By
-#' default it is 0.05
-#' @param alternative Character string defining the alternative hypothesis, one of
-#' "two.sided", "less" or "greater"
-#' @param rounds Number of rounds for the numeric values of the output. By default it is rounds=3
-#' @param correlation Correlation A logical whether the estimated correlation matrix and covariance
-#' matrix should be printed
-#' @param asy.method asy.method character string defining the asymptotic approximation method,
-#' one of "logit", for using the logit transformation function, "probit", for using
-#' the probit transformation function, "normal", for using the multivariate normal
-#' distribution or "mult.t" for using a multivariate t-distribution with a Satterthwaite
-#' Approximation
-#' @param plot.simci plot.simci A logical indicating whether you want a plot of the confidence
-#' intervals
-#' @param info info A logical whether you want a brief overview with informations about the
-#' output
-#' @param contrastMatrix arbitrary contrast matrix given by the user
-#' @return A list containing:  
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'  \item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.} 
-#' @author FrankKonietschke
-#' @export
-#' @examples 
-#' x = rnorm(50)
-#' grp = c(rep(1:5,10))
-#' dataframe <- data.frame(x,grp)
-#' # Williams Contrast
-#' nparcomp(x ~grp, data=dataframe, asy.method = "probit",
-#' type = "Williams", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
-#' 
-#' # Dunnett Contrast
-#' nparcomp(x ~grp, data=dataframe, asy.method = "probit",control=1,
-#' type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
-#' 
-#' # Dunnett dose 3 is baseline
-#' nparcomp(x ~grp, data=dataframe, asy.method = "probit",
-#' type = "Dunnett", control = "3",alternative = "two.sided",
-#' plot.simci = TRUE, info = TRUE)
 nparcomp <- function (formula, data, type = c("UserDefined", "Tukey", "Dunnett", "Sequen",
 				"Williams", "Changepoint", "AVE", "McDermott", "Marcus","UmbrellaWilliams"),
 		control = NULL, conflevel = 0.95, alternative = c("two.sided",
@@ -653,7 +591,6 @@ nparcomp <- function (formula, data, type = c("UserDefined", "Tukey", "Dunnett",
 	
 }
 
-#' @export
 weightMatrix <- function(n,type = c("UserDefined","Tukey","AVE","Dunnett", "Sequen",
 				"Changepoint", "Marcus",
 				"McDermott", "Williams", "UmbrellaWilliams"), base = 1, contrast.matrix=NULL) {
@@ -988,39 +925,6 @@ weightMatrix <- function(n,type = c("UserDefined","Tukey","AVE","Dunnett", "Sequ
 	result
 }
 
-#' Simultaneous confidence intervals for relative contrast effects
-#' The procedure controls the FWER in the strong sense. 
-#'
-#' With this function, it is possible to compute nonparametric simultaneous confidence
-#' intervals for relative contrast effects in the unbalanced one way layout. Moreover, it computes
-#' adjusted p-values. The simultaneous confidence intervals can be computed using
-#' multivariate normal distribution, multivariate t-distribution with a Satterthwaite Approximation
-#' of the degree of freedom or using multivariate range preserving transformations with Logit or
-#' Probit as transformation function. There is no assumption on the underlying distribution function, only
-#' that the data have to be at least ordinal numbers
-#' 
-#' @param model A two-sided formula specifying a numeric response variable and
-#' a factor with more than two levels.
-#' @param data A dataframe containing the variables specified the model
-#' @param hypotheses Character string defining the type of contrast. It should be one of "Tukey",
-#' "Dunnett", "Sequen", "Williams", "Changepoint", "AVE", "McDermott", "Marcus".
-#' @param alpha the significance level
-#' @param alternative Character string defining the alternative hypothesis, one of
-#' "two.sided", "less" or "greater"
-#' @param asy.method A character string defining the asymptotic approximation method,
-#' one of "logit", for using the logit transformation function, "probit", for using
-#' the probit transformation function, "normal", for using the multivariate normal
-#' @return A list containing:  
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'  \item{confIntervals}{A matrix containing the estimates and the lower and upper confidence bound}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-#' 
-#' @author FrankKonietschke
-#' @export
 nparcomp.wrapper <- function(model, data, hypotheses, alpha, alternative, asy.method) {
 	
 	control <- NULL
@@ -1059,7 +963,6 @@ nparcomp.wrapper <- function(model, data, hypotheses, alpha, alternative, asy.me
 					errorControl = new(Class='ErrorControl',type="FWER",alpha=alpha)))
 }
 
-#' @export
 mutoss.nparcomp <- function() { return(new(Class="MutossMethod",
 					label="Nonparametric relative contrast effects",
 					errorControl="FWER",

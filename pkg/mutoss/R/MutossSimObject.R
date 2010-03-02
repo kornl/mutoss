@@ -4,8 +4,6 @@
 ###############################################################################
 
 
-#' @export
-#' @nord
 setClass(
 		Class = "MutossSim",
 		representation    = representation(
@@ -18,16 +16,6 @@ setClass(
 
 
 
-#' Extracts the parameters from the MutossSim objects in listOfObjects and
-#' creates a data.frame from this. Every used parameter gets its own column.
-#' Every row corresponds to one MutossSim object. If a MutossSim object A does not
-#' contain a parameter P that another object B does then the row for object A
-#' will have "" in the column for the parameter P.
-#' @param listOfObjects A list with MutossSim objects
-#' @return A data.frame with rows for every MutossSim object and columns for
-#' 		the used parameter.
-#' @author MarselScheer
-#' @export
 gatherParameters <- function(listOfObjects)#, parNames = NULL) 	# argument parNames seems superfluous 
 {
 	#+++++++++++++++++++	Subfunctions	+++++++++++++++++++++++
@@ -77,62 +65,6 @@ gatherParameters <- function(listOfObjects)#, parNames = NULL) 	# argument parNa
 }
 
 
-#' This function facilitates gathering statistics from a list of MutossSim objects.
-#' 
-#' For every MutossSim object in listOfObjects all statistics in listOfStatisticFunctions are calculated. 
-#' If in addition listOfAvgFunctions is provided then the statistics of the objects that have the same
-#' parameter slot are passed to this functions. The resulting data.frame will then keep only 
-#' one row for every parameter constellation.
-#' @title Gathering statistics from MutossSim objects
-#' @param listOfObjects List of MutossSim objects
-#' @param listOfStatisticFunctions List of statistics that shall be calculated for every MutossSim object
-#' @param listOfAvgFunctions List of functions that will be used to summarize the calculated statistics of
-#' 		all MutossSim objects with the same parameter slot. If this is argument is missing no averaging
-#' 		will be done. Instead the resulting data.frame will keep one row
-#' 		for every MutossSim object in listOfObjects.
-#' @return \item{statisticDF}{A data.frame that can be of two different kinds. 
-#' 
-#' If listOfAvgFunctions is provided, then the resulting data.frame will have a row for every 
-#' parameter constellation that occurs in the MutossSim objects. There will be columns for every
-#' parameter used. Also length(listOfAvgFunctions) * length(listOfStatisticFunctions) additional
-#' columns will be created. Every statistic is calculated for every MutossSim object and then
-#' all values that belong to a specific parameter constellation are "averaged" by applying all 
-#' function from listOfAvgFunctions. For example suppose FDP is a function from listOfStatisticFunctions
-#' that calculates the realized false discovery proportion, that is number of true hypotheses that
-#' were rejected divided by the number of all rejected hypotheses. Also suppose mean and sd are 
-#' functions in listOfAvgFunctions, then the mean and the standard deviation of the 
-#' statistic FDP are calculated.  
-#' 
-#' If listOfAvgFunctions is not provided, then the resulting data.frame will have a row for every
-#' MutossSim object. Every parameter will have its own column. Additional columns for every function
-#' in listOfStatisticFunction will be created additionally.}
-#' @author MarselScheer
-#' @export
-#' @examples
-#' #' # this function generates pValues 
-#' myGen <- function(n, n0) list(pValues = c(runif(n-n0, 0, 0.01), runif(n0)), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
-#' 
-#' # need some MutossSim objects I can work with 
-#' sim <- simulation(replications = 10, list(funName="myGen", fun=myGen, n=200, n0=c(50,100)), 
-#'  	list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
-#' 			list(funName="holm", fun=holm, alpha=c(0.25, 0.5),silent=TRUE)))
-#' 
-#' # Make my own statistic function
-#' NumberOfType1Error <- function(MutossSimObject) sum(slot(MutossSimObject, "rejected") * slot(MutossSimObject, "groundTruth"))
-#' 
-#' # Get now for every MutossSim object in sim one row in with the statistic
-#' result.all <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error))
-#' 
-#' # Average over all MutossSim objects with common parameters 
-#' result1 <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(MEAN = mean))
-#' print(result1)  
-#' result2 <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(q05 = function(x) quantile(x, probs=0.05), MEAN = mean, q95 = function(x) quantile(x, probs=0.95)))
-#' print(result2)
-#' 
-#' # do some plots
-#' require(lattice)
-#' histogram(~NumOfType1Err | method*alpha, data = result.all$statisticDF)
-#' barchart(NumOfType1Err.MEAN ~ method | alpha, data = result2$statisticDF) 
 gatherStatistics <- function(listOfObjects, listOfStatisticFunctions, listOfAvgFunctions) 
 {
 	#+++++++++++++++++++++++++++	Subfunctions	++++++++++++++++++++++++++
@@ -277,55 +209,6 @@ gatherStatistics <- function(listOfObjects, listOfStatisticFunctions, listOfAvgF
 }
 
 # TODO: integrate keepSlots 
-#' This function generates data according to a specified function and parameters
-#' and then applies specified procedures to the generated data. The input and output
-#' is gathered in a MutossSim object. Also the slot "index" of any created MutossSim
-#' is set to a specific number, so that any two MutossSim objects that are based upon the same
-#' input have the same number in the index slot.
-#'  
-#' 
-#' @title Simulation studies
-#' @param replications The number of replications. This means how many simulation runs will be performed.  
-#' @param DataGen A list that contains the function and parameters for generating data 
-#' 		which will be analyzed be the procedures in listOfProcedures. 
-#' @param listOfProcedures A list of lists which contains the procedures and parameters
-#' 		to use for the simulation. 
-#' @return A list of MutossSim ojects. The list can be directly plugged into 
-#' 		the function gatherStatistics.
-#' @author MarselScheer
-#' @export
-#' @examples
-#' # this function generates pValues 
-#' myGen <- function(n, n0) list(pValues = c(runif(n-n0, 0, 0.01), runif(n0)), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
-#' 
-#' # Calling 10 times myGen(200, 50)
-#' # Apply then 
-#' # 1. bonferroni with alpha=0.25 to the 1000 lists from myGen
-#' # 2. bonferroni with alpha=0.5 to the 1000 lists from myGen
-#' # 3. holm with alpha=0.25 to the 1000 lists from myGen
-#' # 4. holm with alpha=0.5 to the 1000 lists from myGen
-#' # This yields 40 MutossSim objects
-#' # THEN
-#' # Calling 10 times myGen(200, 100)
-#' # Apply then 
-#' # 1. bonferroni with alpha=0.25 to the 1000 lists from myGen
-#' # 2. bonferroni with alpha=0.5 to the 1000 lists from myGen
-#' # 3. holm with alpha=0.25 to the 1000 lists from myGen
-#' # 4. holm with alpha=0.5 to the 1000 lists from myGen
-#' # This yields 40 MutossSim objects
-#' # Altogether the function simulation returns 80 MutossSim objects.
-#' sim <- simulation(replications = 10, list(funName="myGen", fun=myGen, n=200, n0=c(50,100)), 
-#'  	list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
-#' 			list(funName="holm", fun=holm, alpha=c(0.25, 0.5),silent=TRUE)))
-#' #
-#' # Just calculating some statistics and making some plots
-#' NumberOfType1Error <- function(MutossSimObject) sum(slot(MutossSimObject, "rejected") * slot(MutossSimObject, "groundTruth"))
-#' result.all <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error))
-#' result <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(median=median, mean=mean, sd=sd))
-#' print(result)
-#' require(lattice)
-#' histogram(~NumOfType1Err | method*alpha, data = result.all$statisticDF)
-#' barchart(NumOfType1Err.median + NumOfType1Err.mean ~ method | alpha, data = result$statisticDF)
 simulation <- function(replications, DataGen, listOfProcedures) 
 {	
 	# TODO: MS !! the same parameterNames for DataGen and listOfProcedures will cause problems

@@ -3,18 +3,10 @@
 #############
 
 
-#' Fisher-type (2x3) table as model for marginal hypotheses testing problems 
-#' @return A list containing the model description
-#' @author ThorstenDickhaus
-#' @export
 fisher23.model <- function() {
 	return(list(model=list(typ="Fisher 2-by-3")))
 }
 
-#' Fisher-type (2x3) table as model for marginal hypotheses testing problems 
-#' @return A list containing the model description
-#' @author ThorstenDickhaus
-#' @export
 mutoss.fisher23.model <- function() { return(new(Class="MutossMethod",
 					label="Fisher's exact test in (2x3) tables",
 					callFunction="fisher23.model",
@@ -31,12 +23,6 @@ mutoss.fisher23.model <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' Fisher-type (2x3) table association analysis for calculating all marginal p-values  
-#' @param data A tensor of dimension (2x3xm) where m is the number of endpoints (genes, etc.)
-#' @param model A model object indicating that this type of analysis shall be performed
-#' @return A list containing the m marginal p-values
-#' @author ThorstenDickhaus
-#' @export
 fisher23.marginal <- function(data, model) {
 	#m <- dim(data)[3]
 	#result <- vector(mode="numeric",length=m)
@@ -45,18 +31,6 @@ fisher23.marginal <- function(data, model) {
 }
 
 
-#' Fisher-type (2x3) table association analysis for calculating one (marginal) p-value
-#' @param obs The observed (2x3) table 
-#' @param epsilon A threshold for comparing real numbers to zero
-#' @return A list containing:
-#' 
-#'	\item{nonrand_p}{The non-randomized (conservative) p-value}
-#' 
-#'	\item{rand_p}{The randomized (non-conservative) p-value}
-#' 
-#'	\item{prob_table}{The conditional probability of the observed table (given the merginals)}
-#' @author ThorstenDickhaus
-#' @export
 fisher23_fast <- function(obs, epsilon){
 # obs = observations = a 2x3 table
 	
@@ -121,19 +95,11 @@ fisher23_fast <- function(obs, epsilon){
 #############
 
 
-#' Fisher (2x2) table as model for marginal hypotheses testing problems
-#' @return A list containing the model description 
-#' @author ThorstenDickhaus
-#' @export
 fisher22.model <- function() {
 	return(list(model=list(typ="Fisher 2-by-2")))
 }
 
 
-#' Fisher (2x2) table as model for marginal hypotheses testing problems 
-#' @return A list containing the model description
-#' @author ThorstenDickhaus
-#' @export
 mutoss.fisher22.model <- function() { return(new(Class="MutossMethod",
 					label="Fisher's exact test in (2x2) tables",
 					callFunction="fisher22.model",
@@ -150,12 +116,6 @@ mutoss.fisher22.model <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' Fisher (2x2) table association analysis for calculating all marginal p-values  
-#' @param data A tensor of dimension (2x2xm) where m is the number of endpoints (genes, etc.)
-#' @param model A model object indicating that this type of analysis shall be performed
-#' @return A list containing the m marginal p-values
-#' @author ThorstenDickhaus
-#' @export
 fisher22.marginal <- function(data, model) {
 	#m <- dim(data)[3]
 	#result <- vector(mode="numeric",length=m)
@@ -164,18 +124,6 @@ fisher22.marginal <- function(data, model) {
 }
 
 
-#' Fisher (2x2) table association analysis for calculating one (marginal) p-value
-#' @param obs The observed (2x2) table 
-#' @param epsilon A threshold for comparing real numbers to zero
-#' @return A list containing:
-#' 
-#'	\item{nonrand_p}{The non-randomized (conservative) p-value}
-#' 
-#'	\item{rand_p}{The randomized (non-conservative) p-value}
-#' 
-#'	\item{prob_table}{The conditional probability of the observed table (given the merginals)}
-#' @author ThorstenDickhaus
-#' @export
 fisher22_fast <- function(obs, epsilon){
 # obs = observations = a 2x2 table
 	

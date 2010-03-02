@@ -1,11 +1,4 @@
 
-#' Tries to load a package.
-#' If this package does not exist, it will ask the user whether the package should be installed and loaded.
-#' If the user negates, we will raise an error via stop.   
-#' @param package Package to load
-#' @return NULL
-#' @author MuToss-Coding Team
-#' @export
 requireLibrary <- function(package) {
 	if(!require(package, character.only=TRUE)) {
 		answer <- readline(paste("Package ",package," is required - should we install it?",sep=""))
@@ -18,8 +11,6 @@ requireLibrary <- function(package) {
 	}
 }
 
-#' @export
-#' @nord
 startRecording <- function() {
 	output <<- "output" # TODO These variablenames are stupid! But there was some bug with hidden ones or non-global ones?
 	errorMsg <<- "errorMsg"
@@ -29,8 +20,6 @@ startRecording <- function() {
 	sink(errorCon, type="message")
 }
 
-#' @export
-#' @nord
 stopRecording <- function() {
 	sink()
 	sink(type="message")
@@ -39,8 +28,6 @@ stopRecording <- function() {
 	return(list(output=output, errorMsg=errorMsg))
 }
 
-#' @export
-#' @nord
 myContrMat <- function(type,l,df,group) {
 	require(multcomp)
 	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))]

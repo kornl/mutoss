@@ -12,30 +12,6 @@ setClass("MutossMethod",
 		)
 )
 
-#' Bonferroni correction
-#' 
-#' The classical Bonferroni correction outputs adjusted p-values, ensuring strong FWER control under arbitrary
-#' dependence of the input p-values. It simply multiplies each input p-value by the total number of hypotheses
-#' (and ceils at value 1).
-#' 
-#' It is recommended to use Holm's step-down instead, which is valid under the exact same assumptions and more powerful.
-#' 
-#' @param pValues pValues to be used. No assumption is made on the dependence structure.
-#' @param alpha The level at which the FWER shall be controlled (optional).
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the new adjusted pValues}
-#' 
-#'	\item{rejected}{(if alpha is given) A logical vector indicating which hypotheses are rejected}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-#' @references Bonferroni, C. E. (1935) Il calcolo delle assicurazioni su gruppi di teste. 
-#' 'In Studi in Onore del Professore Salvatore Ortu Carboni. Rome: Italy, pp. 13-60.
-#' 
-#' Bonferroni, C. E. (1936) Teoria statistica delle classi e calcolo delle probabilita.
-#' Pubblicazioni del R Istituto Superiore di Scienze Economiche e Commerciali di Firenze 8, 3-62, 1936.
-#' @author KornRohm
-#' @export
 bonferroni <- function(pValues, alpha, silent=FALSE) {
 	adjPValues=sapply(pValues*length(pValues),function(x){min(x,1)})
 	if (missing(alpha)) {
@@ -52,7 +28,6 @@ bonferroni <- function(pValues, alpha, silent=FALSE) {
 }
 }
 
-#' @export 
 mutoss.bonferroni <- function() { return(new(Class="MutossMethod",
 		label="Bonferroni correction",
 		errorControl="FWER",
@@ -70,34 +45,6 @@ dependence of the input p-values. It simply multiplies each input p-value by the
 )) }
 
 
-#' The classical Sidak correction returns adjusted p-values, ensuring strong FWER control under
-#' the assumption of independence of the input p-values. It only uses the fact that the probability of no incorrect
-#' rejection is the product over true nulls of those marginal probabilities (using the assumed independence of p-values).
-#' 
-#' The procedure is more generally valid for positive orthant dependent test statistics.
-#' 
-#' It is recommended to use the step-down version of the Sidak correction instead (see SidakSD), 
-#' which is valid under the exact same assumptions but is more powerful.
-#' @title Sidak correction
-#' @param pValues pValues to be used. 
-#' @param alpha The level at which the FWER shall be controlled (optional).
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{(if alpha is given) A logical vector indicating which hypotheses are rejected}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-#' @references Sidak, Z. (1967). Rectangular confidence regions for the means of multivariate normal distributions.
-#' Journal of the American Statistical Association, 62:626-633.
-#' @author KornRohm
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
-#' result <- sidak(p)
-#' result <- sidak(p, alpha)
-#' result <- sidak(p, alpha, silent=TRUE)
 sidak <- function(pValues, alpha, silent=FALSE) {
 	adjPValues <- sapply(1-(1-pValues)^length(pValues), function(x){min(x,1)})
 	if (missing(alpha)) {
@@ -114,7 +61,6 @@ sidak <- function(pValues, alpha, silent=FALSE) {
 			}
 }
 
-#' @export 
 mutoss.sidak <- function() { return(new(Class="MutossMethod",
 					label="Sidak correction",
 					errorControl="FWER",

@@ -1,14 +1,10 @@
 #######################################################################
 #################################one sample test ######################
 
-#' @export
-#' @nord
 onesamp.model <- function() {
 	return(list(model=list(typ="onesamp")))
 }
 
-#' @export
-#' @nord
 mutoss.onesamp.model <- function() { return(new(Class="MutossMethod",
 					label="One-sample test",
 					callFunction="onesamp.model",
@@ -29,8 +25,6 @@ mutoss.onesamp.model <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
-#' @nord
 onesamp.marginal <- function(data, model, robust, alternative, psi0) {
 	result <- NULL
 	if (robust) {
@@ -41,15 +35,11 @@ onesamp.marginal <- function(data, model, robust, alternative, psi0) {
 	return(list(pValues=result))
 }
 
-#' @export
-#' @nord
 mutoss.onesamp.marginal.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "onesamp")
 }
 
 
-#' @export
-#' @nord
 mutoss.onesamp.marginal <- function() { return(new(Class="MutossMethod",
 					label="One-sample test",
 					callFunction="onesamp.marginal",
@@ -73,8 +63,6 @@ mutoss.onesamp.marginal <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' @export
-#' @nord
 onesamp.multtest <- function(data, model, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
 	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = NULL, Z = NULL, Z.incl = NULL, Z.test = NULL, 
@@ -91,14 +79,10 @@ onesamp.multtest <- function(data, model, alternative, robust, psi0, alpha, null
 	return(list(adjPValues=result@adjp, rejected=as.vector(result@reject)))
 }
 
-#' @export
-#' @nord
 mutoss.onesamp.multtest.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "onesamp")
 }
 
-#' @export
-#' @nord
 mutoss.onesamp.multtest <- function() { return(new(Class="MutossMethod",
 					label="Resampling-based one sample test",
 					errorControl="FWER",
@@ -148,15 +132,11 @@ mutoss.onesamp.multtest <- function() { return(new(Class="MutossMethod",
 ###########################################################################
 ###########################################################################
 
-#' @export
-#' @nord
 paired.model <- function(classlabel) {
 	classlabel <- as.vector(classlabel)
 	return(list(model=list(typ="pairedsamp", classlabel=classlabel)))
 }
 
-#' @nord
-#' @export
 mutoss.paired.model <- function() { return(new(Class="MutossMethod",
 					label="Paired sample test",
 					callFunction="paired.model",
@@ -186,8 +166,6 @@ mutoss.paired.model <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
-#' @nord
 paired.marginal <- function(data, model, robust, alternative, psi0) {
 	label <- as.numeric(as.factor(model$classlabel))
 	result <- NULL
@@ -199,8 +177,6 @@ paired.marginal <- function(data, model, robust, alternative, psi0) {
 	return(list(pValues=result))
 }
 
-#' @export
-#' @nord
 mutoss.paired.marginal <- function() { return(new(Class="MutossMethod",
 					label="Paired sample test",
 					callFunction="paired.marginal",
@@ -221,14 +197,10 @@ mutoss.paired.marginal <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
-#' @nord
 mutoss.paired.marginal.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "pairedsamp")
 }
 
-#' @export
-#' @nord
 paired.multtest <- function(data, model, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
 	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = model$classlabel, Z = NULL, Z.incl = NULL, Z.test = NULL, 
@@ -245,14 +217,10 @@ paired.multtest <- function(data, model, alternative, robust, psi0, alpha, nulld
 	return(list(adjPValues=result@adjp, rejected=as.vector(result@reject)))
 }
 
-#' @export
-#' @nord
 mutoss.paired.multtest.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "pairedsamp")
 }
 
-#' @export
-#' @nord
 mutoss.paired.multtest <- function() { return(new(Class="MutossMethod",
 					label="Resampling-based paired sample test",
 					errorControl="FWER",
@@ -302,16 +270,12 @@ mutoss.paired.multtest <- function() { return(new(Class="MutossMethod",
 #####################two sample test #############################################
 ###########################################################################
 
-#' @export
-#' @nord
 twosamp.model <- function(classlabel) {
 	classlabel <- as.vector(classlabel)
 	return(list(model=list(typ="twosamp", classlabel=classlabel)))
 }
 # TODO: correct "pairedsamp" above?
 
-#' @export
-#' @nord
 mutoss.twosamp.model <- function() { return(new(Class="MutossMethod",
 					label="Two sample test",
 					callFunction="twosamp.model",
@@ -334,8 +298,6 @@ mutoss.twosamp.model <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
-#' @nord
 twosamp.marginal <- function(data, model, robust, alternative, psi0, equalvar) {
 	label <- as.numeric(as.factor(model$classlabel))
 	result <- NULL
@@ -347,14 +309,10 @@ twosamp.marginal <- function(data, model, robust, alternative, psi0, equalvar) {
 	return(list(pValues=result))
 }
 
-#' @export
-#' @nord
 mutoss.twosamp.marginal.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "twosamp")
 }
 
-#' @export
-#' @nord
 mutoss.twosamp.marginal <- function() { return(new(Class="MutossMethod",
 					label="Two sample test",
 					callFunction="twosamp.marginal",
@@ -378,8 +336,6 @@ mutoss.twosamp.marginal <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' @export
-#' @nord
 twosamp.multtest <- function(data, model, alternative, robust, psi0, equalvar, alpha, nulldist, B=1000, method, seed=12345) {
 	require(multtest)
 	if (equalvar) {
@@ -411,14 +367,10 @@ twosamp.multtest <- function(data, model, alternative, robust, psi0, equalvar, a
 	return(list(adjPValues=result@adjp, rejected=as.vector(result@reject)))
 }
 
-#' @export
-#' @nord
 mutoss.twosamp.multtest.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "twosamp")
 }
 
-#' @export
-#' @nord
 mutoss.twosamp.multtest <- function() { return(new(Class="MutossMethod",
 					label="Resampling-based two sample test",
 					errorControl="FWER",
@@ -470,13 +422,11 @@ mutoss.twosamp.multtest <- function() { return(new(Class="MutossMethod",
 ##################### F test #############################################
 ###########################################################################
 
-#' @export
 ftest.model <- function(classlabel) {
 	classlabel <- as.vector(classlabel)
 	return(list(model=list(typ="ftest", classlabel=classlabel)))
 }
 
-#' @export
 mutoss.ftest.model <- function() { return(new(Class="MutossMethod",
 					label="F test",
 					callFunction="ftest.model",
@@ -499,7 +449,6 @@ mutoss.ftest.model <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
 ftest.marginal <- function(data, model, robust) {
 	label <- as.numeric(as.factor(model$classlabel))
 	result <- NULL
@@ -512,7 +461,6 @@ ftest.marginal <- function(data, model, robust) {
 	return(list(pValues=result))
 }
 
-#' @export
 mutoss.ftest.marginal <- function() { return(new(Class="MutossMethod",
 					label="F test",
 					callFunction="ftest.marginal",
@@ -531,14 +479,11 @@ mutoss.ftest.marginal <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-#' @export
-#' @nord
 mutoss.ftest.marginal.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "ftest")
 }
 
 
-#' @export
 ftest.multtest <- function(data, model, robust, alpha, nulldist, B=1000, method, seed=12345) {
 	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = model$classlabel, Z = NULL, Z.incl = NULL, Z.test = NULL, 
@@ -555,7 +500,6 @@ ftest.multtest <- function(data, model, robust, alpha, nulldist, B=1000, method,
 }
 
 
-#' @export
 mutoss.ftest.multtest <- function() { return(new(Class="MutossMethod",
 					label="Resampling-based F test",
 					errorControl="FWER",
@@ -600,8 +544,6 @@ mutoss.ftest.multtest <- function() { return(new(Class="MutossMethod",
 							)))
 	)}
 
-#' @export
-#' @nord
 mutoss.ftest.multtest.model <- function(model) {
 	return("typ" %in% names(model) && model$typ == "ftest")
 }

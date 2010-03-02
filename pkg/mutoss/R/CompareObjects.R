@@ -5,25 +5,12 @@
 #----------- Validating input of compare procedure------------#
 
 
-#' Test for compatible classes for comparison
-#' 
-#' Internal function of muToss package.
-#' Takes list of classes and tests if they are all muToss. 
-#' @param classes A list of class names. 
-#' @return True if all classes are muToss. False otherwise.
-#' @author MuToss-Coding Team.
 
 mu.test.class<- function(classes){
 	if (any(classes!='Mutoss')) stop('Input is not a "Motoss" class object')
 	##TODO: will this cause prolems for inherited class objects?
 }
 
-#' Tests that different procedures use the same error types.
-#' 
-#' Internal muToss function. 
-#' @param types Character vector of error types extracted from muToss objects. 
-#' @return Returns a notice if error types differ. 
-#' @author MuToss-Coding Team.
 mu.test.type<- function(types){
 	if( any(types != types[1]) ){
 		message(' Notice:You are comparing methods for different error types. \n These should not be compared!	\n Output will be generated nevertheless. \n')
@@ -31,36 +18,18 @@ mu.test.type<- function(types){
 }
 
 
-#' Tests that different procedures used the same error rates.
-#' 
-#' Internal muToss function. 
-#' @param rates Numeric vector error rates extracted fomr muToss objects.
-#' @return A notice if error rates differ.
-#' @author MuToss-Coding Team.
 mu.test.rates<-function(rates){
 	if( any(rates != rates[1]) ){
 		message(' Notice:You are comparing methods with different error rates. \n These should not be compared!	\n Output will be generated nevertheless. \n')
 	}
 }
 
-#' Tests if the same pvalues were used by different procedures.
-#' 
-#' Internal muToss function. 
-#' @param pvals Data frame of p-values used by each procedure. 
-#' @return Stops if different data was used by different procedures. 
-#' @author MuToss-Coding Team
 mu.test.same.data<- function(pvals){
 	pvals.different<- any( apply(pvals,1, function(x) any(x!=x[1])))
 	if(pvals.different) stop('Different data was used for suppied procedures.')		
 }
 
 
-#' Tests if all hypotheses have the same names.
-#' 
-#' Internal muToss function.
-#' @param hyp.names Character vector of hypotheses names.
-#' @return Gives a notice when hypotheses names in different procedures are found different. 
-#' @author MuToss-Coding Team
 mu.test.name<- function(hyp.names){
 	names.different<- any( apply(hyp.names,1, function(x) any(x!=x[1])))
 	if(names.different) message('Notice: Hypotheses have different names. Can they be compared?')		
@@ -69,55 +38,6 @@ mu.test.name<- function(hyp.names){
 
 #-------- Create comparison list for Mutoss objects--------------#
 
-#' Functions for comparing outputs of different procedures.
-#' 
-#' These functions are used to compare the results of different multiple comparisons procedures stored as Mutoss class objects.
-#' \code{compareMutoss} takes as input an arbitrary number of Mutoss objects and arranges them in a simple list objects (non S4).
-#' \code{mu.compare.adjuted}, \code{mu.compare.critical} and \code{mu.compare.summary} take the output of the \code{compareMutoss} and plots or summerize the results textually or graphically.
-#'
-#' @export
-#' @usage compareMutoss(...)
-#' 		mu.compare.adjusted(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))
-#' 		mu.compare.critical(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))
-#' 		mu.compare.summary(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))
-#' @param ... An arbitrary number of Motoss class objects. 
-#' @param comparison.list The output of the \code{compareMutoss} function.
-#' @param identify.check Logical parameter specifying if hypotheses should be identified on the output plots.
-#' @return \item{compareMutoss}{Returns a list with the following components:\cr
-#' 				\bold{types}: Character vector of error types corrsponding to each procedure.\cr
-#' 				\bold{rates}: Numeric vector of error rates used for each procedure.\cr
-#' 				\bold{pi.nulls}: Numeric vector of estimates of the proportion of true null hypothesis if avilable.\cr
-#' 				\bold{raw.pValues}: The raw p-values used for each procedure.\cr
-#' 				\bold{adjusted.pvals}: Data frame with columns holding procedure specific adjusted p values.\cr
-#' 				\bold{criticalValue}: Data frame with columns holding the critical values corresponding to each procedure and error rate.\cr
-#' 				\bold{rejections}: Data frame with columns holding logical vectors of rejected hypotheses (TRUE for rejected).\cr}
-#' \item{mu.compare.adjusted}{Creates a plot with the adjusted p-values for each procedure.}
-#' \item{mu.compare.critical}{Creates a plot with the critical values for each procedure and error rate.}
-#' \item{mu.compare.summary}{Creates a short textual summary for comparing results of different procedures.} 
-#' @author Jonathan Rosenblatt 
-#' @aliases compareMutoss mu.compare.adjusted mu.compare.critical mu.compare.summary
-#' @examples
-#' # TODO: EXAMPLE PROBLEMS
-#' \dontrun{
-#' \dontrun{Creating several Mutoss class objects}
-#' mu.test.obj.1 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=bonferroni, label="Bonferroni Correction", alpha=0.05, silent=T)#' 
-#' mu.test.obj.2 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=holm, label="Holm's step-down-procedure", alpha=0.05, silent=T)#' 
-#' mu.test.obj.3 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=aorc, label="Asymtotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
-#' \dontrun{Trying to coercing a non-Mutoss object}
-#' compareMutoss(1)
-#' \dontrun{ Coercing several objects into a list}
-#' compare.1<- compareMutoss(mu.test.obj.1, mu.test.obj.2)
-#' compare.2<- compareMutoss(mu.test.obj.1, mu.test.obj.2, mu.test.obj.3)
-#' \dontrun{Plotting the adjusted pvalues. Identification available.}
-#' mu.compare.adjusted(compare.1, T)
-#' mu.compare.adjusted(compare.2, T)
-#' \dontrun{Plotting the critical values. Identification available.}
-#' mu.compare.critical(compare.1, T)
-#' mu.compare.critical(compare.2, T)
-#' \dontrun{Showing a textual sumary}
-#' mu.compare.summary(compare.1)
-#' mu.compare.summary(compare.2)
-#' }
 
 compareMutoss<-function(...){
 	objects<-list(...)
@@ -198,11 +118,6 @@ compareMutoss<-function(...){
 
 #-------------- Comparison of adjusted p values -----------------#
 
-#' @param comparison.list 
-#' @param identify.check 
-#' @author JonathanRosenblatt
-#' @export
-#' @nord
 mu.compare.adjusted<- function(comparison.list, identify.check=F){
 	adjPValues<- comparison.list[['adjusted.pvals']]
 	hyp.num<- nrow(adjPValues)
@@ -250,11 +165,6 @@ mu.compare.adjusted<- function(comparison.list, identify.check=F){
 
 #----------- Comparison of critical vales---------- #
 
-#' @param comparison.list 
-#' @param identify.check 
-#' @author JonathanRosenblatt
-#' @export
-#' @nord
 mu.compare.critical<- function(comparison.list, identify.check=F){
 	method.type<-comparison.list[['types']] #extracting method type
 	
@@ -305,11 +215,6 @@ mu.compare.critical<- function(comparison.list, identify.check=F){
 #mu.compare.critical(compare.3, T)
 
 #----- Sumary of comparison-----------#
-#' @param comparison.list 
-#' @param specific 
-#' @author JonathanRosenblatt
-#' @export
-#' @nord
 mu.compare.summary<- function(comparison.list, specific=F){
 	method.type<-comparison.list[['types']] #extracting method type
 	error.rates<-comparison.list[['rates']] #extracting error rates

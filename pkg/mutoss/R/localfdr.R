@@ -3,28 +3,6 @@
 ###############################################################################
 
 
-#' The function \code{pval2qval} takes a vector of p-values and
-#' estimates for each case the tail area-based FDR, which can be regarded as a p-value corrected for multiplicity. 
-#' This is done by calling the \code{fdrtool} function.
-#' If a cutoff is supplied, a vector of rejected hypotheses will be returned as well.
-#' 
-#' @title Strimmer et al.'s fdrtool-based q-values
-#' @param pValues Numeric vector of p-values to be used.
-#' @param cutoff The positive FDR cutoff for rejection. Hypotheses with \code{qValues} smaller then \code{cutoff} will be rejected.
-#' @return A list containing:
-#' \item{qValues}{A numeric vector with one q-value for each hypothesis.}
-#' \item{rejected}{A logical vector indicating rejection/retention for each hypothesis when \code{cutoff} is supplied.}
-#' @author JonathanRosenblatt
-#' @references 
-#' Strimmer, K. (2008). fdrtool: a versatile R package for estimating local and tail
-#' area-based false discovery rates. Bioinformatics 24: 1461-1462. \cr
-#' Storey, J. D. (2003)  The Positive False Discovery Rate: A Bayesian Interpretation and the q-Value.
-#' The Annals of Statistics 31(6): 2013-2035
-#' @examples 
-#' pvals<- runif(1000)^2
-#' pval2qval(pvals)
-#' pval2qval(pValues=pvals, cutoff=0.1)
-#' @export 
 
 pval2qval<- function(pValues, cutoff){
 	require('fdrtool')
@@ -40,27 +18,6 @@ pval2qval<- function(pValues, cutoff){
 	
 }
 
-#' The function \code{pval2locfdr} takes a vector of p-values and
-#' estimates for each case the local fdr.
-#' 
-#' @title Strimmer et al.'s fdrtool-based local fdr
-#' @param pValues pValues to be used.
-#' @param cutoff The local fdr cutoff for rejection. Hypotheses with \code{local fdr} smaller then \code{cutoff} will be rejected.  
-#' @return A list containing:
-#' 
-#' \item{locfdr}{Numeric vector with local FDR values for each case}
-#' \item{rejected}{Logical vector indicating rejection/retention for each hypothesis when a \code{cutoff} is supplied.}
-#' @author JonathanRosenblatt
-#' @references 
-#' Strimmer, K. (2008). fdrtool: a versatile R package for estimating local and tail
-#' area-based false discovery rates. Bioinformatics 24: 1461-1462. \cr
-#' Efron B., Tibshirani R., Storey J. D. and Tusher, V. (2001). Empirical Bayes Analysis of a Microarray Experiment.
-#' Journal of the American Statistical Association 96(456):1151-1160.
-#' @examples 
-#' pvals<- runif(1000)^2
-#' pval2locfdr(pvals)
-#' pval2locfdr(pValues=pvals, cutoff=0.4)
-#' @export 
 
 
 pval2locfdr<- function(pValues, cutoff){

@@ -32,7 +32,7 @@ public class MethodHandler {
 	}
 	
 	protected MethodHandler() {
-		methodNames = Arrays.asList(MuTossControl.getInstance().getR().eval("apropos(\"^mutoss\\\\.\")").asRChar().getData());
+		methodNames = Arrays.asList(MuTossControl.getInstance().getR().eval("c(apropos(\"^mutoss\\\\.\"), ls( asNamespace( \"mutoss\" ), pattern=\"mutoss.*\", all = TRUE ))").asRChar().getData());
 		methods = new Vector<Method>();
 		for (String methodname : methodNames) {
 			if (MuTossControl.getR().eval("class("+methodname+"())==\"MutossMethod\"")==null || !MuTossControl.getR().eval("class("+methodname+"())==\"MutossMethod\"").asRLogical().getData()[0]) continue;

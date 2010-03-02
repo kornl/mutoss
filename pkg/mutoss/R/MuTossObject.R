@@ -1,5 +1,3 @@
-#' @export
-#' @nord
 setClass("ErrorControl",
 		representation  = representation(
 				type           = "character", # Type of error rate controlled for (FWER, FWER.weak, FDR, FDX, gFWER, perComparison (?))
@@ -12,8 +10,6 @@ setClass("ErrorControl",
 ##TODO: add slots for "model": formula, link, family
 ##TODO: write some header, it is the main object that comes out after four weeks of hard work!!
 
-#' @export
-#' @nord
 setClass("Mutoss",
 		representation    = representation(
 				data			= "ANY",            # Raw data used in model

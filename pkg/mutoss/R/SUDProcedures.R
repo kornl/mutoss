@@ -5,21 +5,6 @@
 
 
 #++++++++++++++++++++++++++++   OutputFkt    +++++++++++++++++++++
-#' Generates standard output for pValues, rejected and
-#' adjustedPValues.
-#' 
-#' It generates an output on the console with the number of
-#' hypotheses (number of pValues) and the number of rejected
-#' hypotheses (number of rejected pValues). Further a data.frame
-#' is constructed, one column containing the rejected pValues, 
-#' one the index number of the rejected pValues and if given 
-#' one column with the corresponding adjusted pValues.
-#' @title Internal MuTossProjekt-Function
-#' @param rejected logical Vector indicating which pValue is rejected. 
-#' @param pValues the used pValues.
-#' @param adjPValues the adjusted pValues. 
-#' @author MarselScheer
-#' @export
 printRejected = function(rejected, pValues = NULL, adjPValues = NULL) 
 {
 	cat("Number of hyp.:\t", length(rejected), "\n")
@@ -101,43 +86,6 @@ printRejected = function(rejected, pValues = NULL, adjPValues = NULL)
 
 
 # TODO: MS !! Discussion about big n !!
-#' Rom's step-up-procedure is applied to pValues. The procedure 
-#' controls the FWER in the strong sense if the pValues are
-#' stochastically independent.
-#'  
-#' This function calculates the critical values by the formula given
-#' in Finner, H. and Roters, M. (2002) based on the joint distribution
-#' of order statistics. After that a step-up test
-#' is performed to reject hypotheses associated with pValues.
-#'  
-#' Since the formula for the critical values is recursive,
-#' the calculation of adjusted pValues is far from obvious and is
-#' not implemented here. 
-#' 
-#' @title Rom's (1990) step-up-procedure.
-#' @param pValues pValues to be used. They are assumed to be stochastically independent. 
-#' @param alpha the level at which the FWER shall be controlled.
-#' @param silent if true any output on the console will be suppressed.  
-#' @return A list containing:
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected.}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test.}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' @author Marsel Scheer
-#' @references 	Rom, D. M. (1990). A sequentially rejective test 
-#' 		procedure based on a modified Bonferroni inequality. 
-#' 		Biometrika 77, 663-665.
-#' 
-#' 		Finner, H. and Roters, M. (2002). Multiple hypotheses testing and
-#' 		expected type I errors. Ann. Statist. 30, 220-238.
-#' @export
-#' @examples 
-#' r <- c(runif(50), runif(50, 0, 0.01))
-#' result <- rom(r, 0.05)
-#' result <- rom(r, 0.05, silent = TRUE)
 rom <- function(pValues, alpha, silent = FALSE) 
 {
 	# 
@@ -209,8 +157,6 @@ rom <- function(pValues, alpha, silent = FALSE)
 }
 
 
-#' @export 
-#' @nord
 mutoss.rom <- function() { return(new(Class="MutossMethod",
 					label="Rom's (1990) step-up",
 					errorControl="FWER",
@@ -238,38 +184,6 @@ mutoss.rom <- function() { return(new(Class="MutossMethod",
 
 #-------------------- Holm's Step-down--------------------#
 
-#' Holm's step-down-procedure is applied to pValues. It controls
-#' the FWER in the strong sense under arbitrary dependency.
-#' 
-#' Holm's procedure uses the same critical values as Hochberg's procedure, namely  c(i)=alpha/(m-i+1), 
-#' but is a step-down version while Hochberg's method is a step-up version of the Bonferroni test.
-#' Holm's method is based on the Bonferroni inequality and is valid regardless of the joint
-#' distribution of the test statistics, whereas Hochberg's method relies on the assumption that 
-#' Simes' inequality holds for the joint null distribution of the test statistics. If this assumption is met, Hochberg's
-#' step-up procedure is more powerful than Holm's step-down procedure.  
-#' @title Holm's (1979) step-down-procedure
-#' @param pValues pValues to be used. They can have arbitrary dependency structure. 
-#' @param alpha The level at which the FWER shall be controlled
-#' @param silent If true any output on the console will be suppressed.  
-#' @return A list containing: 
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' @author MarselScheer
-#' @references S. Holm (1979). A simple sequentially rejective multiple 
-#' 		test procedure. Scand. J. Statist. Vol. 6, 65-70. \eqn{n}
-#' 
-#' 		Huang, Y. and Hsu, J. (2007). Hochberg's step-up method: cutting corners off Holm's step-down method. Biometrika, 94(4):965-975.
-#' @export
-#' @examples 
-#' r <- c(runif(50), runif(50, 0, 0.01))
-#' result 	<- holm(r, 0.05)
-#' result 	<- holm(r, 0.05, silent = TRUE)
 holm <- function(pValues, alpha, silent = FALSE) 
 {
 	m <- length(pValues)
@@ -288,8 +202,6 @@ holm <- function(pValues, alpha, silent = FALSE)
 	)
 }
 
-#' @export 
-#' @nord
 mutoss.holm <- function() { return(new(Class="MutossMethod",
 					label="Holm's (1979) step-down",
 					errorControl="FWER",
@@ -316,28 +228,6 @@ mutoss.holm <- function() { return(new(Class="MutossMethod",
 # TODO: MS Probably jointCDF.unif should probably be moved to some math.R or so.
 # TODO: MS !! jointCDF.unif: There are numerical issues because the of accuracy of doublePrecison
 # TODO: MS !! How to communicate numerical issues to the user. 
-#' Calculates the joint cumulative distribution function of order statistics 
-#' of n iid. U(0,1)-distributed random variables at argument vec. 
-#' Because of numerical issues n should not be greater than 100. 
-#' 
-#' Following Shorack, Wellner (1986) or Finner, Roters (2002) by applying
-#' Bolshev's recursion the joint distribution is calculated. 
-#' @title Joint cumulative distribution function of order statistics of n iid. U(0,1)-distributed random variables
-#' @param vec a numeric vector. The length of the vector also
-#' 		determines the number of random variables considered. 
-#' @return The return value is the following probability 
-#' 		P(U_(1:n) <= vec[1], ..., U_(n:n) <= vec[n]), where
-#' 		U_1, ..., U_n are assumed to be iid. uniformly 
-#' 		distributed on [0,1]. The i-th ordered value is denoted by
-#' 		U_(i:n) and n equals length(vec)
-#' @references 
-#' 		Shorack, G. R. and Wellner, J. A. (1986). 
-#' 			Empirical Processes with Applications to Statistics.
-#' 			Wiley, New York.
-#' 
-#' 		Finner, H. and Roters, M. (2002). Multiple hypotheses testing and
-#' 		expected type I errors. Ann. Statist. 30, 220-238. 
-#' @author MarselScheer
 jointCDF.orderedUnif = function(vec) 
 {
 	# vec is not ordered. Thus the probability must be 0
@@ -384,34 +274,6 @@ jointCDF.orderedUnif = function(vec)
 }
 
 
-#' Calculates the beta to adjust the asymptotically optimal rejection curve
-#' used by the function aorc() for a finite sample size. Then  
-#' aorc(..., betaAdjustment = beta) controls the FDR also in the
-#' finite sample situation.
-#' 
-#' The asymptotically optimal rejection curve, denoted by f(t), does not 
-#' provide finite control of the FDR. calculateBetaAdjustment() calculates
-#' a factor, denoted by beta, such that (1 + beta/n) * f(t) provides
-#' finite control of the FDR.
-#' 
-#' The beta is calculated with the bisection approach. Assume there are beta1
-#' and beta2 such that the choosing beta1 controls the FDR and beta2 not, then the 
-#' optimal beta lies in [beta2, beta1]. If the choice (beta2 + beta1)/2 controls
-#' the FDR, the optimal FDR lies in [(beta2 + beta1)/2, beta1]
-#' and so on. 
-#' @title Calculating the beta adjustment factor for the asymptotically optimal rejection curve.    
-#' @param n Number of tests for which the adjusted beta should be calculated. 
-#' @param startIDX_SUD Starting index of the step-up-down procedure 
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param silent If true any output on the console will be suppressed.
-#' @param initialBeta  
-#' @param maxBinarySteps 
-#' @param tolerance 
-#' @return The adjustment factor that is needed to ensure control of
-#' 		the FDR with the adjusted asymptotically optimal rejection curve
-#' 		at the specified level and sample size.
-#' @author MarselScheer
-#' @export
 calculateBetaAdjustment = function(n, startIDX_SUD, alpha, silent = FALSE, initialBeta = 1, maxBinarySteps = 50, tolerance = 0.0001) 
 {
 	#+++++++++++++++++++++++++++   Subfunctions   +++++++++++++++++++++++++
@@ -616,49 +478,6 @@ calculateBetaAdjustment = function(n, startIDX_SUD, alpha, silent = FALSE, initi
 
 #------------------------ AORC---------------------#
 
-#' Performs a step-up-down test on pValues. The critical values are based 
-#' on the asymptotically optimal rejection curve. To have finite FDR control,
-#' an automatic adjustment of the critical values is done (see
-#' details for more).      
-#' 
-#' The graph of the function f(t) = t / (t * (1 - alpha) + alpha) is called the asymptotically
-#' optimal rejection curve. Denote by finv(t) the inverse of f(t). Using the 
-#' critical values finv(i/n) for i = 1, ..., n yields asymptotic FDR control.
-#' To ensure finite control it is possible to adjust f(t) by a factor. The
-#' function calculateBetaAdjustment() calculates a beta such that (1 + beta / n) * f(t)
-#' can be used to control the FDR for a given finite sample size. If the 
-#' parameter betaAdjustment is not provided, calculateBetaAdjustment() will be called automatically.
-#' @title Step-up-down test based on the asymptotically optimal rejection curve.
-#' @param pValues pValues to be used. They are assumed to be stochastically independent.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param startIDX_SUD The index at which critical value the 
-#' 		step-up-down test starts. Default is length(pValues) and thus the function
-#' 		aorc() by default behaves like an step-up test.  
-#' @param betaAdjustment A numeric value to adjust the asymptotically optimal
-#' 		rejection curve for the finite sample case. If betaAdjustment is not
-#' 		set an algorithm will calculate it, but this can be time-consuming.  
-#' @param silent If true any output on the console will be suppressed.
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error (FDR)
-#'     controlled by the function and the level \code{alpha}.}
-#'  
-#' @references Finner, H., Dickhaus, T. & Roters, M. (2009).
-#' 		On the false discovery rate and an asymptotically optimal rejection curve.
-#' 		The Annals of Statistics 37, 596-618.
-#' @author MarselScheer
-#' @export
-#' @examples 
-#' r <- c(runif(10), runif(10, 0, 0.01))
-#' result <- aorc(r, 0.05)
-#' result <- aorc(r, 0.05, startIDX_SUD = 1)  ## step-down
-#' result <- aorc(r, 0.05, startIDX_SUD = length(r))  ## step-up
 aorc <- function(pValues, alpha, startIDX_SUD = length(pValues), betaAdjustment, silent = FALSE) 
 {	
 	len <- length(pValues)
@@ -682,8 +501,6 @@ aorc <- function(pValues, alpha, startIDX_SUD = length(pValues), betaAdjustment,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
 
-#' @export 
-#' @nord
 mutoss.aorc <- function() { return(new(Class="MutossMethod",
 					label="Asymptotically optimal rejection curve (2009)",
 					errorControl="FDR",
@@ -714,39 +531,6 @@ mutoss.aorc <- function() { return(new(Class="MutossMethod",
 
 #----------------- Banjamini Liu----------------#
 
-#' Benjamini-Liu's step-down procedure is applied to pValues. 
-#' The procedure controls the FDR if the corresponding test statistics are stochastically independent.
-#' 
-#' The Benjamini-Liu (BL) step-down procedure neither dominates nor is dominated by the Benjamini-Hochberg (BH) step-up procedure.
-#' However, in Benjamini and Liu (1999) a large simulation study concerning the power of the two procedures reveals that the BL step-down procedure is more suitable when the number of hypotheses is small. 
-#' Moreover, if most hypotheses are far from the null then the BL step-down procedure is more powerful than the BH step-up method.
-#' The BL step-down method calculates critical values according to Benjamin and Liu (1999), 
-#' i.e., c_i = 1 - (1 - min(1, (m*alpha)/(m-i+1)))^(1/(m-i+1)) for i = 1,...,m, where m is the number of hypotheses tested. 
-#' Then, let k be the smallest i for which P_(i) > c_i and reject the associated hypotheses H_(1),...,H_(k-1).
-#' 
-#' @title Benjamini-Liu (1999) step-down procedure
-#' @param pValues Numeric vector of p-values 
-#' @param alpha The level at which the FDR is to be controlled.
-#' @param silent If true any output on the console will be suppressed.
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues.}
-#' 
-#'  \item{criticalValues}{A numeric vector containing critical values used in the step-up-down test.} 
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected.}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author Werft Wiebke
-#' @references Bejamini, Y. and Liu, W. (1999). A step-down multiple hypotheses testing procedure that controls the false discovery rate under independence. 
-#' 				Journal of Statistical Planning and Inference Vol. 82(1-2): 163-170. 
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
-#' result <- BL(p, alpha)
-#' result <- BL(p, alpha, silent=TRUE)
 BL <- function(pValues, alpha, silent=FALSE) {
 	m <- length(pValues)
 	criticalValues <- sapply(1:m, function(i) 1-(1-min(1, (m*alpha)/(m-i+1)))^(1/(m-i+1)))
@@ -767,8 +551,6 @@ BL <- function(pValues, alpha, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.BL <- function() { return(new(Class="MutossMethod",
 					label="Benjamini-Liu (1999) step-down",
 					errorControl="FDR",
@@ -792,47 +574,6 @@ mutoss.BL <- function() { return(new(Class="MutossMethod",
 
 #-------------------- BH Linear Step Up--------------------#
 
-#' Benjamini-Hochbergs Linear Step-Up Procedure. 
-#' The procedure controls the FDR when the test statistics are stochastically independent or satisfy positive regression dependency (PRDS) (see Benjamini and Yekutieli 2001 for details).
-#' The Benjamini-Hochberg (BH) step-up procedure considers ordered pValues P_(i). 
-#' It defines k as the largest i for which P_(i) <= i*alpha/m and then 
-#' rejects all associated hypotheses H_(i) for i=1,...,k. In their seminal paper, Benjamini and Hochberg (1995) show 
-#' that for 0 <= m_0 <= m independent pValues corresponding to true null hypotheses 
-#' and for any joint distribution of the m_1 = m-m_0 p-values corresponding to the 
-#' non null hypotheses, the FDR is controlled at level (m_0/m)*alpha.  Under the
-#' assumption of the PRDS property, (for details see Benjamini and Yekutieli 2001). 
-#' In Benjamini et al. (2006) the BH procedure is improved by adaptive procedures
-#' which use an estimate of m_0 and apply the BH method al level alpha'=alpha*m/m_0, to 
-#' fully exhaust the desired level alpha (see Adaptive Benjamini Hochberg and Two Stage Banjamini Yekutieli).        
-#' @title Benjamini-Hochberg (1995) linear step-up procedure
-#' @param pValues The used unadjusted pValues.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#' 	\item{criticalValues}{A numeric vector containing critical values used in the step-up test} 
-#'	
-#' 	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 	
-#' @author Werft Wiebke
-#' @references 	Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to mulitple testing.
-#'					 Journal of the Royal Statistical Society, Series B, 57:289-300.\eqn{n}
-#' 
-#' 				Benjamini, Y. and Yekutieli, D. (2001). The control of the false discovery rate in multiple testing under dependency.
-#' 				 Annals of Statistics, 29(4):1165-1188.\eqn{n}
-#' 
-#' 				Benjamini, Y., Krieger, A. and Yekutieli, D. (2006). Adaptive linear step-up procedures that control the false
-#' 							discovery rate. Biometrika, 93(3):491-507.
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
-#' result <- BH(p, alpha)
-#' result <- BH(p, alpha, silent=TRUE)
 BH <- function(pValues, alpha, silent=FALSE) {
 	m <- length(pValues)
 	criticalValues <- sapply(1:m, function(i) (i*alpha)/m)
@@ -849,8 +590,6 @@ BH <- function(pValues, alpha, silent=FALSE) {
 					rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.BH <- function() { return(new(Class="MutossMethod",
 					label="Benjamini-Hochberg (1995) step-up",
 					errorControl="FDR",
@@ -874,38 +613,6 @@ mutoss.BH <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' The Benjamini-Yekutieli step-up procedure is applied to pValues. 
-#' The procedure ensures FDR control for any dependency structure.
-#' 
-#' The critical values of the Benjamini-Yekutieli (BY) procedure are calculated by 
-#' replacing the alpha of the Benjamini-Hochberg procedure by alpha/sum(1/1:m)), i.e.,
-#' c(i)=i*alpha/(m*(sum(1/1:m))) for i=1,...,m. For large number m of hypotheses the critical values of the BY procedure and the 
-#' BH procedure differ by a factor log(m). Benjamini and Yekutieli (2001) showed that this step-up procedure controls
-#' the FDR at level alpha*m/m0 for any dependency structure among the test statistics.
-#' 
-#' @title Benjamini-Yekutieli (2001) step-up procedure
-#' @param pValues The used unadjusted pValues.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#' \item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#' \item{criticalValues}{A numeric vector containing critical values used in the step-up-down test} 
-#' 
-#' \item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author WerftWiebke
-#' @references 	Benjamini, Y. and Yekutieli, D. (2001). The control of the false discovery rate in multiple testing under dependency.
-#' 				 Annals of Statistics, 29(4):1165-1188. 
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
-#' result <- BY(p, alpha)
-#' result <- BY(p, alpha, silent=TRUE)
 BY <- function(pValues, alpha, silent=FALSE) {
 	m <- length(pValues)
 	a <- sum(1/(1:m))
@@ -921,8 +628,6 @@ BY <- function(pValues, alpha, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.BY <- function() { return(new(Class="MutossMethod",
 					label="Benjamini-Yekutieli (2001) step-up",
 					errorControl="FDR",
@@ -944,41 +649,6 @@ mutoss.BY <- function() { return(new(Class="MutossMethod",
 					parameters=list(pValues=list(type="numeric"), alpha=list(type="numeric"))
 			)) }
 
-#' The Hochberg step-up procedure is based on marginal p-values. It controls the FWER in the strong 
-#' sense under joint null distributions of the test statistics that satisfy Simes' inequality.
-#' 
-#' The Hochberg procedure is more powerful than Holm's (1979) procedure, but the test statistics need to be
-#' independent or have a distribution with multivariate total positivity of order two or a scale mixture
-#' thereof for its validity (Sarkar, 1998).
-#' Both procedures use the same set of critical values c(i)=alpha/(m-i+1). Whereas Holm's procedure is a step-down 
-#' version of the Bonferroni test, and Hochberg's is a step-up version of the Bonferroni test.
-#' Note that Holm's method is based on the Bonferroni inequality and is valid regardless of the joint
-#' distribution of the test statistics.
-#' @title Hochberg (1988) step-up procedure
-#' @param pValues The used raw pValues.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#'  
-#' @author WerftWiebke
-#' @references 	Hochberg, Y. (1988). A sharper Bonferroni procedure for multiple tests of significance. 
-#' 		Biometrika, 75:800-802.\eqn{n}
-#' 		
-#' 		Huang, Y. and Hsu, J. (2007). Hochberg's step-up method: cutting corners off Holm's step-down method. Biometrika, 94(4):965-975.
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9,max=1))
-#' result <- hochberg(p, alpha)
-#' result <- hochberg(p, alpha, silent=TRUE)
 hochberg <- function(pValues, alpha, silent=FALSE) {
 	m <- length(pValues)
 	criticalValues <- sapply(1:m, function(i) alpha/(m-i+1))
@@ -993,8 +663,6 @@ hochberg <- function(pValues, alpha, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FWER",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.hochberg <- function() { return(new(Class="MutossMethod",
 					label="Hochberg (1988) step-up",
 					errorControl="FWER",
@@ -1020,44 +688,6 @@ mutoss.hochberg <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-#' The adaptive Benjamini-Hochberg step-up procedure is applied to pValues.
-#' It controls the FDR at level alpha for independent or positive regression dependent test statistics.
-#' 
-#' In the adaptive Benjamini-Hochberg step-up procedure the number of true null hypotheses is estimated first as in Hochberg and
-#' Benjamini (1990), and this estimate is used in the procedure of Benjamini and
-#' Hochberg (1995) with alpha'=alpha*m/m0. 
-#' @title Benjamini-Hochberg (2000) adaptive linear step-up procedure
-#' @param pValues The used raw pValues.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#' \item{criticalValues}{A numeric vector containing critical values used in the step-up-down test} 
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#' \item{pi0}{An estimate of the proportion of true null hypotheses among all hypotheses (pi0=m0/m). }
-#' 
-#' \item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author WerftWiebke
-#' @references 	Benjamini, Y. and Hochberg, Y. (2000). On the Adaptive Control of the False Discovery Rate
-#' 							in Multiple Testing With Independent Statistics.
-#' 							Journal of Educational and Behavioral Statistics, 25(1): 60-83.\eqn{n}
-#' 
-#' 							Hochberg, Y. and Benjamini, Y. (1990). More powerful procedures for multiple significance testing. 
-#' 							Statistics in Medicine 9, 811-818.\eqn{n}
-#' 
-#' 							Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to mulitple testing.
-#'							 Journal of the Royal Statistical Society, Series B, 57:289-300.
-#' @export
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
-#' result <- adaptiveBH(p, alpha)
-#' result <- adaptiveBH(p, alpha, silent=TRUE)
 adaptiveBH <- function(pValues, alpha, silent=FALSE) {
 	m <- length(pValues)
 	pi0.ABH <- ABH_pi0_est(pValues)$pi0
@@ -1072,8 +702,6 @@ adaptiveBH <- function(pValues, alpha, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected, pi0=pi0.ABH,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.adaptiveBH <- function() { return(new(Class="MutossMethod",
 					label="Benjamini-Hochberg (2000) adaptive step-up",
 					errorControl="FDR",
@@ -1103,38 +731,6 @@ mutoss.adaptiveBH <- function() { return(new(Class="MutossMethod",
 
 #---------------------- Adaptive STS-----------------#
 
-#' Storey-Taylor-Siegmund's (2004) adaptive step-up procedure 
-#' 
-#' The adaptive STS procedure uses a conservative estimate of pi0 which is 
-#' plugged in a linear step-up procedure. The estimation of pi0 requires a 
-#' parameter (lambda) which is set to 0.5 by default.
-#' Note that the estimated pi0 is truncated at 1 as suggested by the author, 
-#' so the implemetation of the procedure is not entirely supported by the proof in the reference.
-#' @title Storey-Taylor-Siegmund (2004) adaptive step-up procedure
-#' @param pValues The used raw pValues.
-#' @param alpha The level at which the FDR shall be controlled.
-#' @param lambda The tuning parameter for the estimation procedure (defaults to 0.5)
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{A numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#'  
-#' @author Werft Wiebke
-#' @references Storey, J.D., Taylor, J.E. and Siegmund, D. (2004). Strong control, conservative point estimation and
-#' 							simultaneous conservative consistency of false discovery rates: a unified approach.
-#' 		Journal of the Royal Statistical Society, B 66(1):187-205.
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9,max=1))
-#' result <- adaptiveSTS(p, alpha, lambda=0.5)
-#' result <- adaptiveSTS(p, alpha, lambda=0.5, silent=TRUE)
-#' @export
 adaptiveSTS <- function(pValues, alpha, lambda=0.5, silent=FALSE) {
 	m <- length(pValues)
 	adjP <- p.adjust(pValues,"BH")
@@ -1150,8 +746,6 @@ adaptiveSTS <- function(pValues, alpha, lambda=0.5, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected, pi0=pi0,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.adaptiveSTS <- function() { return(new(Class="MutossMethod",
 					label="Storey-Taylor-Siegmund (2004) adaptive step-up",
 					errorControl="FDR",
@@ -1172,34 +766,6 @@ mutoss.adaptiveSTS <- function() { return(new(Class="MutossMethod",
 			)) }
 
 #---------------------------- Sidack Step Down--------------------------------#
-#' The Sidak-like (1987) step-down procedure is applied to pValues
-#' The Sidak-like step-down procedure is an improvement over the Holm's (1979) 
-#' step-down procedure. The improvement is analogous to Sidak's correction 
-#' over the original Bonferroni procedure. This Sidak-like step-down procedure 
-#' assumes positive orthant dependent test statistics.
-#' @title Sidak-like (1987) step-down procedure
-#' @param pValues The used raw pValues.
-#' @param alpha The level at which the FWER shall be controlled.
-#' @param silent If true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{adjPValues}{a numeric vector containing the adjusted pValues}
-#' 
-#'	\item{rejected}{a logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{a numeric vector containing critical values used in the step-up-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author WerftWiebke
-#' @references 	Hollander, B.S. and Covenhaver, M.D. (1987). An Improved Sequentially Rejective Bonferroni Test Procedure.
-#' 		Biometrics, 43(2):417-423, 1987.
-#' @examples 
-#' alpha <- 0.05
-#' p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9,max=1))
-#' result <- SidakSD(p, alpha)
-#' result <- SidakSD(p, alpha, silent=TRUE)
-#' @export
 SidakSD <- function(pValues, alpha, silent=FALSE) {
 	require(multtest)
 	m <- length(pValues)
@@ -1216,8 +782,6 @@ SidakSD <- function(pValues, alpha, silent=FALSE) {
 	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FWER",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.SidakSD <- function() { return(new(Class="MutossMethod",
 					label="Sidak-like (1987) step-down",
 					errorControl="FWER",
@@ -1235,36 +799,6 @@ mutoss.SidakSD <- function() { return(new(Class="MutossMethod",
 
 #----------------------------------Blanchard Roquain 2008 ----------------------#
 
-#' Blanchard-Roquain (2009) 1-stage adaptive step-up
-#' 
-#' This is a step-up procedure with critical values
-#' 
-#' C_i = alpha * min( i * ( 1 - lambda * alpha) / (m - i + 1) , lambda )
-#' 
-#' where alpha is the level at which FDR should be controlled and lambda an 
-#' arbitrary parameter belonging to (0, 1/alpha) with default value 1.
-#' This procedure controls FDR at the desired level when the p-values are independent.
-#' 
-#' 
-#' @title Blanchard-Roquain (2009) 1-stage adaptive step-up
-#' @param pValues the used p-values (assumed to be independent)
-#' @param alpha the level at which the FDR should be controlled. 
-#' @param lambda parameter of the procedure, should belong to
-#' (0, 1/alpha) (lambda=1 default)
-#' @param silent if true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#'  
-#' @author GillesBlanchard
-#' @references Blanchard, G. and Roquain, E. (2009) 
-#'   				Adaptive False Discovery Rate Control under Independence and Dependence
-#' 		            Journal of Machine Learning Research 10:2837-2871. 
-#' @export
 indepBR <- function(pValues, alpha, lambda=1, silent = FALSE) 
 {	
 	if ( lambda <= 0 || lambda >= 1/alpha) {
@@ -1285,8 +819,6 @@ indepBR <- function(pValues, alpha, lambda=1, silent = FALSE)
 	return(list(rejected = rejected, criticalValues = criticalValues,
 					errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 }
-#' @export
-#' @nord
 mutoss.indepBR <- function() { return(new(Class="MutossMethod",
 					label="Blanchard-Roquain adaptive step-up (2009)",
 					errorControl="FDR",
@@ -1309,35 +841,6 @@ mutoss.indepBR <- function() { return(new(Class="MutossMethod",
 
 
 #----------------------------Blanchard Roquain 2009---------------------#
-#' Blanchard-Roquain (2009) 2-stage adaptive step-up
-#' 
-#' This is an adaptive linear step-up procedure where the proportion of true
-#' nulls is estimated using the Blanchard-Roquain 1-stage procedure with parameter lambda,
-#' via the formula
-#' 
-#' estimated pi_0 = ( m - R(alpha,lambda)  + 1) / ( m*( 1 - lambda * alpha ) )
-#' 
-#' where R(alpha,lambda) is the number of hypotheses rejected by the BR 1-stage procedure,
-#' alpha is the level at which FDR should be controlled and lambda an 
-#' arbitrary parameter belonging to (0, 1/alpha) with default value 1.
-#' This procedure controls FDR at the desired level when the p-values are independent.
-#' 
-#' @param pValues the used p-values (assumed to be independent)
-#' @param alpha the level at which the FDR should be controlled. 
-#' @param lambda parameter of the procedure, should belong to
-#' (0, 1/alpha) (lambda=1 default)
-#' @param silent if true any output on the console will be suppressed. 
-#' @return A list containing:
-#' 
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#' 	\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author GillesBlanchard
-#' @references Blanchard, G. and Roquain, E. (2009) 
-#'   				Adaptive False Discovery Rate Control under Independence and Dependence
-#' 		            Journal of Machine Learning Research 10:2837-2871. 
-#' @export
 twostageBR <- function(pValues, alpha, lambda=1, silent = FALSE) 
 {	
 	if ( lambda <= 0 || lambda >= 1/alpha) {
@@ -1359,8 +862,6 @@ twostageBR <- function(pValues, alpha, lambda=1, silent = FALSE)
 	return(list(rejected=rejected, errorControl = new(Class='ErrorControl',type="FDR",alpha=alpha)))
 	
 }
-#' @export
-#' @nord
 mutoss.twostageBR <- function() { return(new(Class="MutossMethod",
 					label="Blanchard-Roquain 2-stage adaptive step-up (2009)",
 					errorControl="FDR",

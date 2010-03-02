@@ -1,8 +1,6 @@
 ############################################
 # mutoss.plotCI
 
-#' @export
-#' @nord
 mutoss.plotCI<-function(mat){
 	require(plotrix)
 	diff<-max(mat[,1])-min(mat[,1])

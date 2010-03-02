@@ -6,10 +6,6 @@
 
 #---------- Service Functions---------#
 
-#' 
-#' 
-#' 
-#' @nord
 reject<- function(sorted, criticals){
 	m<- length(sorted)
 	stopifnot( length(criticals) == m )
@@ -26,10 +22,6 @@ reject<- function(sorted, criticals){
 	return( list(cutoff=cutoff,cut.index=cut.index) )
 }
 
-#' 
-#' 
-#' 
-#' @nord
 bh.adjust<- function(sorted, m, m0, constant=1){
 	adjusted<- rep(NA,m)
 	temp.min<- sorted[m]
@@ -48,21 +40,6 @@ bh.adjust<- function(sorted, m, m0, constant=1){
 
 
 
-#' Linear Step Up Service Function
-#' 
-#' A Mutoss service function called by other procedures.
-#' @param sorted Numeric vector of sorted pvalues
-#' @param q Error rate to control for.
-#' @param m Number of hypothesis tested.
-#' @param adjust Logical value for p-value adjustmet (unusable).
-#' @param m0 Known or estimated number of true null hypotheses. 
-#' @param pi0 Known or estimated proportion of true null hypothesis. Is redundant when \code{m0} is specified.
-#' @param constant 
-#' @return  A list containing the following objects: 
-#' \item{Cutoff}{The largest p-value of rejected hypotheses.}
-#' \item{Pvals}{A data frame containing the original p-values, critical values, adjusted p-values and rejections.}
-#' @author JonathanRosenblatt
-#' @export
 linearStepUp<- function(sorted, q, m, adjust=FALSE, m0=m, pi0, constant=1){
 	if(missing(m0) & !missing(pi0)) {
 		m0=pi0*m
@@ -153,31 +130,6 @@ two.stage.adjust<- function(sorted, r=0, patience=4, m){
 	
 }# Close two.stage.adjust
 
-#' A p-value procedure which controls the FDR for independent test statistics.
-#' 
-#' In the Benjamini-Krieger-Yekutieli two-stage procedure the linear step-up procedure is used in
-#' stage one to estimate m0 which is re-plugged in a linear step-up. 
-#' This procedure is more powerful then non-adaptive procedures, while still controlling the FDR. 
-#' On the other hand, error control is not guaranteed under dependence in which case more conservative procedures should be used (e.g. BH). 
-#' 
-#' @param pValues A numeric vecor of p-values.
-#' @param alpha The FDR error rate to control.
-#' @return A list containing:
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test.} 
-#' 
-#'	\item{adjPValues}{A numeric vector containing adjusted p-values.}
-#' 
-#' \item{pi0}{An estimate of the proportion of true null hypotheses among all hypotheses (pi0=m0/m). }
-#' 
-#' \item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' 
-#' @author JonathanRosenblatt
-#' @export 
-#' @examples
-#' pvals<- runif(100)^2
-#' two.stage(pvals, 0.1)
 
 two.stage<- function(pValues, alpha){
 	ranks<- rank(pValues)
@@ -217,8 +169,6 @@ two.stage<- function(pValues, alpha){
 #pvals<- runif(100,0,0.1)
 #two.stage(pvals,0.1)
 
-#' @nord 
-#' @export
 mutoss.two.stage<- function() { return(new(Class="MutossMethod",
 					label="B.K.Y. (2006) Two-Stage Step-Up",
 					errorControl="FDR",
@@ -239,12 +189,6 @@ mutoss.two.stage<- function() { return(new(Class="MutossMethod",
 
 #---------------------Multistage Step-Down-------------------#
 
-#' A sevice function used by \code{multiple.down}
-#' 
-#' @param sorted 
-#' @param m 
-#' @author JonathanRosenblatt
-#' @export
 multiple.down.adjust<- function(sorted, m){
 	adjusted<- rep(NA,m)
 	temp.max<- sorted[1]
@@ -265,36 +209,6 @@ multiple.down.adjust<- function(sorted, m){
 
 
 
-#' A p-value procedure which controls the FDR for independent test statistics.
-#'  
-#' A non-linear step-down p-value procedure which control the FDR for independent test 
-#' statistics and enjoys more power then other non-adaptive procedure such as the linear step-up (BH).
-#' For the case of non-independent test statistics, non-adaptive procedures such as the 
-#' linear step-up (BH) or the all-purpose conservative Benjamini-Yekutieli (2001) are recommended.
-#' 
-#' @title Benjamini-Krieger-Yekutieli (2006) Multi-Stage Step-Down
-#' @param pValues A numeric vector of p-values
-#' @param alpha The FDR error rate to control
-#' @return A list containing:
-#'	\item{rejected}{A logical vector indicating which hypotheses are rejected}
-#' 
-#'	\item{criticalValues}{A numeric vector containing critical values used in the step-up-down test.} 
-#' 
-#'	\item{adjPValues}{A numeric vector containing adjusted p-values.}
-#' 
-#' \item{pi0}{An estimate of the proportion of true null hypotheses among all hypotheses (pi0=m0/m). }
-#' 
-#' \item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
-#' @author Jonathan Rosenblatt
-#' @export
-#' @examples 
-#' pvals<- runif(100)^2
-#' alpha<- 0.2
-#' result<- multiple.down(pvals, alpha)
-#' result 
-#' plot(result[['criticalValues']]~pvals)
-#' plot(result[['adjPValues']]~pvals)
-#' abline(v=alpha)
 
 multiple.down=function(pValues, alpha){
 	sorted<- sort(pValues)
@@ -331,9 +245,6 @@ multiple.down=function(pValues, alpha){
 	return(output.2)	
 }
 
-#' 
-#' @export
-#' @nord
 mutoss.multiple.down <- function() { return(new(Class="MutossMethod",
 					label="B.K.Y. (2006) Multi-Stage Step-down",
 					errorControl="FDR",
