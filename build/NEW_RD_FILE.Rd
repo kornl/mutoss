@@ -1,0 +1,11 @@
+\name{NAME}
+\alias{NAME}
+\title{TITLE}
+\usage{USAGE}
+\description{DESC}
+\details{DETAILS}
+\value{VALUE}
+\author{AUTHOR}
+\references{REF}
+\arguments{ARGUMENTS}
+\examples{EXAMPLES}
