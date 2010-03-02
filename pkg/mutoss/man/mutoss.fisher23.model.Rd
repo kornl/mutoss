@@ -2,25 +2,5 @@
 \alias{mutoss.fisher23.model}
 \title{Fisher-type (2x3) table as model for marginal hypotheses testing problems...}
 \description{Fisher-type (2x3) table as model for marginal hypotheses testing problems}
-\value{A list containing the model description\code{mutoss.fisher23.model}: A list containing the model description
-
-
-\code{mutoss.fisher23.model}: A list containing the model description
-
-
-\code{mutoss.fisher23.model}: A list containing the model description
-
-
-\code{mutoss.fisher23.model}: A list containing the model description
-
-
-}
+\value{A list containing the model description}
 \author{ThorstenDickhaus}
-\alias{mutoss.fisher23.model}
-
-\alias{mutoss.fisher23.model}
-
-\alias{mutoss.fisher23.model}
-
-\alias{mutoss.fisher23.model}
-

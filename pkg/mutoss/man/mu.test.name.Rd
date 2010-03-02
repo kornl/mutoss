@@ -1,47 +1,9 @@
 \name{mu.test.name}
 \alias{mu.test.name}
 \title{Tests if all hypotheses have the same names.}
-\usage{mu.test.name(hyp.names)mu.test.name(hyp.names)
-mu.test.name(hyp.names)
-mu.test.name(hyp.names)
-mu.test.name(hyp.names)
-}
+\usage{mu.test.name(hyp.names)}
 \description{Tests if all hypotheses have the same names.}
-\details{Internal muToss function.\code{mu.test.name}: Internal muToss function.
-
-
-\code{mu.test.name}: Internal muToss function.
-
-
-\code{mu.test.name}: Internal muToss function.
-
-
-\code{mu.test.name}: Internal muToss function.
-
-
-}
-\value{Gives a notice when hypotheses names in different procedures are found different.\code{mu.test.name}: Gives a notice when hypotheses names in different procedures are found different.
-
-
-\code{mu.test.name}: Gives a notice when hypotheses names in different procedures are found different.
-
-
-\code{mu.test.name}: Gives a notice when hypotheses names in different procedures are found different.
-
-
-\code{mu.test.name}: Gives a notice when hypotheses names in different procedures are found different.
-
-
-}
+\details{Internal muToss function.}
+\value{Gives a notice when hypotheses names in different procedures are found different.}
 \author{MuToss-Coding Team}
-\arguments{\item{hyp.names}{Character vector of hypotheses names.}
-
-}
-\alias{mu.test.name}
-
-\alias{mu.test.name}
-
-\alias{mu.test.name}
-
-\alias{mu.test.name}
-
+\arguments{\item{hyp.names}{Character vector of hypotheses names.}}

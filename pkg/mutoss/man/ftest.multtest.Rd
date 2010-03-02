@@ -2,16 +2,4 @@
 \alias{ftest.multtest}
 \title{ftest.multtest}
 \usage{ftest.multtest(data, model, robust, alpha, nulldist, B=1000, method,
-    seed=12345)ftest.multtest(data, model, robust, alpha, nulldist, B=1000, method, seed=12345)
-ftest.multtest(data, model, robust, alpha, nulldist, B=1000, method, seed=12345)
-ftest.multtest(data, model, robust, alpha, nulldist, B=1000, method, seed=12345)
-ftest.multtest(data, model, robust, alpha, nulldist, B=1000, method, seed=12345)
-}
-\alias{ftest.multtest}
-
-\alias{ftest.multtest}
-
-\alias{ftest.multtest}
-
-\alias{ftest.multtest}
-
+    seed=12345)}

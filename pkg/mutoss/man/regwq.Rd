@@ -1,11 +1,7 @@
 \name{regwq}
 \alias{regwq}
 \title{REGWQ - Ryan / Einot and Gabriel / Welsch  test procedure...}
-\usage{regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)
-regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)
-regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)
-regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)
-}
+\usage{regwq(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)}
 \description{REGWQ - Ryan / Einot and Gabriel / Welsch  test procedure
 This function computes REGWQ test for given
 data including p samples. It is based on a stepwise or 
@@ -35,61 +31,9 @@ conservative test decisions.}
 
 \item{confIntervals}{A matrix containing only the estimates}
 
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}\code{regwq}: A list containing:
-
-\item{adjPValues}{A numeric vector containing the adjusted pValues}
-
-\item{rejected}{A logical vector indicating which hypotheses are rejected}
-
-\item{statistics}{A numeric vector containing the test-statistics}
-
-\item{confIntervals}{A matrix containing only the estimates}
-
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-
-
-\code{regwq}: A list containing:
-
-\item{adjPValues}{A numeric vector containing the adjusted pValues}
-
-\item{rejected}{A logical vector indicating which hypotheses are rejected}
-
-\item{statistics}{A numeric vector containing the test-statistics}
-
-\item{confIntervals}{A matrix containing only the estimates}
-
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-
-
-\code{regwq}: A list containing:
-
-\item{adjPValues}{A numeric vector containing the adjusted pValues}
-
-\item{rejected}{A logical vector indicating which hypotheses are rejected}
-
-\item{statistics}{A numeric vector containing the test-statistics}
-
-\item{confIntervals}{A matrix containing only the estimates}
-
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-
-
-\code{regwq}: A list containing:
-
-\item{adjPValues}{A numeric vector containing the adjusted pValues}
-
-\item{rejected}{A logical vector indicating which hypotheses are rejected}
-
-\item{statistics}{A numeric vector containing the test-statistics}
-
-\item{confIntervals}{A matrix containing only the estimates}
-
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}
-
-
-}
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}}
 \author{Frank Konietschke}
-\references{Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.}
+\references{Hochberg, Y. & Tamhane, A. C. (1987). Multiple Comparison Procedures,  Wiley.}
 \arguments{\item{formula}{Formula defining the statistical model containing the response and the factors}
 \item{data}{dataset containing the response and the grouping factor}
 \item{alpha}{The level at which the error should be controlled. By default it is alpha=0.05.}
@@ -102,36 +46,4 @@ dataframe <- data.frame(x,grp)
 result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = TRUE)
 result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = FALSE)
 result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=Inf, silent = FALSE) # known variance
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=1000, silent = FALSE) # known variancex = rnorm(50)
-grp = c(rep(1:5,10))
-dataframe <- data.frame(x,grp)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = TRUE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = FALSE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=Inf, silent = FALSE) # known variance
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=1000, silent = FALSE) # known variancex = rnorm(50)
-grp = c(rep(1:5,10))
-dataframe <- data.frame(x,grp)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = TRUE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = FALSE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=Inf, silent = FALSE) # known variance
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=1000, silent = FALSE) # known variancex = rnorm(50)
-grp = c(rep(1:5,10))
-dataframe <- data.frame(x,grp)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = TRUE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = FALSE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=Inf, silent = FALSE) # known variance
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=1000, silent = FALSE) # known variancex = rnorm(50)
-grp = c(rep(1:5,10))
-dataframe <- data.frame(x,grp)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = TRUE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=NULL, df=NULL, silent = FALSE)
-result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=Inf, silent = FALSE) # known variance
 result <- regwq(x~grp, data=dataframe, alpha=0.05,MSE=1, df=1000, silent = FALSE) # known variance}
-\alias{regwq}
-
-\alias{regwq}
-
-\alias{regwq}
-
-\alias{regwq}
-
