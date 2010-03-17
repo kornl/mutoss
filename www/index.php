@@ -35,6 +35,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 <p>&#956;TOSS (multiple hypotheses testing in an open software system) aims at providing a unified, extensible interface covering a large spectrum of multiple hypothesis testing procedures in R.<br>
 It features a graphical user interface and a simulation tool.<br>
+Realized as a Harvest Programme of the PASCAL2 European Network of Excellence (European Union).<br>
 
 <table border=0  bgcolor=#FFFFFF align=center>
 <tr>
