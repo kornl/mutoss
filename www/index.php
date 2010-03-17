@@ -77,10 +77,10 @@ Prof. Dr. Klaus-Robert M&uuml;ller, Berlin Institute of Technology</td>
 
 <h3>Further Reading</h2>
 <ul>
-<LI>Wishlist for requesting methods and data types: see <a href="http://user.cs.tu-berlin.de/~dickhaus/mutoss-wishlist.html" target="_blank">here.</a><br>
+<LI>Official &#956;TOSS Website: <a href="http://www.mutoss.eu" target="_blank">www.mutoss.eu</a></LI>
+<LI>Wishlist for requesting methods and data types: see <a href="http://mutoss.eu/mutoss-wishlist.html" target="_blank">here.</a><br>
 <b>If you have further wishes, you are most welcome to address them to Thorsten Dickhaus via email.</b></LI>
 <LI>Website of the <a href="http://amiando.com/mutoss.html" target="_blank">&#956;TOSS Workshop</a></LI>
-<LI>Official &#956;TOSS Website (under construction): <a href="http://www.mutoss.eu" target="_blank">www.mutoss.eu</a></LI>
 </ul>
 </p> 
 
