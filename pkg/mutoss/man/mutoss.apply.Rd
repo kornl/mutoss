@@ -16,5 +16,5 @@
 \dontrun{ TODO: EXAMPLE PROBLEM
 newObjectHolm <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=holm, label="Holm's step-down-procedure", alpha=0.05, silent=T)
 
-newObjectAORC <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=aorc, label="Asymtotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
+newObjectAORC <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=aorc, label="Asymptotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
 }}
