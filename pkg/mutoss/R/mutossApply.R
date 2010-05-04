@@ -1,4 +1,4 @@
-mutoss.apply <- function(mutossObj, f, label = deparse(substitute(f)), ...) {
+mutoss.apply <- function(mutossObj, f, label = deparse(substitute(f)), recordHistory = TRUE, ...) {
   
   
 	params <- list()	
@@ -18,10 +18,11 @@ mutoss.apply <- function(mutossObj, f, label = deparse(substitute(f)), ...) {
 		}
 	}
 
-
+        if ( recordHistory ) {
+        
         mutossObj@commandHistory = c( mutossObj@commandHistory,
           paste(format( match.call( call = sys.call( sys.parent(1) ))), collapse='')) #write command into history
-
+      }
 
 	return(mutossObj)
 }
