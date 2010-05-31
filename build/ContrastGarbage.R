@@ -48,7 +48,7 @@ covar_independent_factor.calc <- function(data, ResponseName, CovarName, GroupNa
 		CI1 <- confint(glhtobj1, level=conf.level)
 		PVals1 <- data.frame(Estimate=PVs1$test$coefficients,sigma=PVs1$test$sigma,tstat=PVs1$test$tstat,adj.pvalue=PVs1$test$pvalue)
 		SCIs1 <- cbind(rbind(PVals1), rbind(CI1$confint[,c(2,3)]))
-		attr(SCIs1, which="caption") <-  paste("Simultaneous ", round(conf.level*100), "%-confidence intervals and adjusted p-values for differences for ",attr(CMAT, name="type") ,"-contrasts.", sep="")
+		attr(SCIs1, which="caption") <-  paste("Simultaneous ", round(conf.level*100), "%-confidence intervals and adjusted p-values for differences for ",attr(CMAT, which="type") ,"-contrasts.", sep="")
 	} else {
 		fit1 <- NULL
 		ANOVA1 <- NULL
@@ -81,7 +81,7 @@ covar_independent_factor.calc <- function(data, ResponseName, CovarName, GroupNa
 		PVals2 <- data.frame(Estimate=PVs2$test$coefficients,sigma=PVs2$test$sigma,tstat=PVs2$test$tstat,adj.pvalue=PVs2$test$pvalue)
 		SCIs2 <- cbind(rbind(PVals2), rbind(CI2$confint[,c(2,3)]))
 		rownames(SCIs2) <- paste(rep(rownames(CMAT), each=length(levels(subdat$Covarf))), " @ ", rep(levels(subdat$Covarf), length(rownames(CMAT))), sep="")
-		attr(SCIs2, which="caption") <-  paste("Simultaneous ", round(conf.level*100), "%-confidence intervals and adjusted p-values for differences for ",attr(CMAT, name="type") ,"-contrasts at each covariate level.", sep="")
+		attr(SCIs2, which="caption") <-  paste("Simultaneous ", round(conf.level*100), "%-confidence intervals and adjusted p-values for differences for ",attr(CMAT, which="type") ,"-contrasts at each covariate level.", sep="")
 	} else {
 		fit2 <- NULL
 		ANOVA2 <- NULL
