@@ -160,3 +160,4 @@ The file looks like this:
 
 ============================================
 
+http://pbil.univ-lyon1.fr/library/Biobase/html/exprSet-class.html
