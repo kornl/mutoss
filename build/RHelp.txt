@@ -1,0 +1,162 @@
+?sink   # And
+?savehistory
+?history
+
+============================================
+
+Hi,
+
+This is a dangerous game you are playing. I would play with the call stack, i.e sys.calls :
+
+setMethod("fun","character",
+  definition = function(y,x,...){
+       
+         stack <- sys.calls( )
+         stack.fun <- Filter( function(.) .[[1]] == as.name("fun"), stack )
+         nameOfY <- deparse( stack.fun[[1]][[2]] )
+         cat("name is '",nameOfY, "'\n" , sep = "" )
+ }
+)
+
+> titi <- "aze"
+> fun( titi )
+name is 'titi'
+> fun( letters[1:4] )
+name is 'letters[1:4]'
+
+Romain
+
+
+Le 25/05/10 14:54, cgenolin a écrit :
+
+    Hi all,
+
+    In a function, I need to get the name of a variable that has been used to
+    call the function.
+    For example, I want:
+
+    --- 8<  ------
+    toto<- 3
+    fun<- function(y){
+       nameOfY<-deparse(substitute(y))
+       cat("name is ",nameOfY)
+    }
+    fun(toto)
+
+    # [1] name is toto
+
+    --- 8<  ----
+
+    But deparse(substitute(y)) does not work all the time, especially when we
+    use generic function.
+
+    --- 8<  ----
+
+    setGeneric("fun",function(y,...){standardGeneric("fun")})
+
+    setMethod("fun","numeric",
+       definition = function(y,...){
+          nameOfY<-deparse(substitute(y))
+          cat("name is ",nameOfY)
+      }
+    )
+
+    toto<- 4
+    fun(toto)
+    # name is toto
+
+    setMethod("fun","character",
+       definition = function(y,x,...){
+          nameOfY<-deparse(substitute(y))
+          cat("name is ",nameOfY)
+      }
+    )
+
+    titi<- "aze"
+    fun(titi)
+    # name is y
+
+    --- 8<  ----
+
+    So is there a way to get the name of the variable "toto" or "titi" in a way
+    that work in all cases?
+
+    Christophe
+
+============================================
+
+I am a little bit surprised by the following output of
+'formals'. Is this the intended behavior?
+
+> f <- function(a=1,b=-1) { a+b }
+> class(formals(f)$a)
+[1] "numeric"
+> class(formals(f)$b)
+[1] "call"
+
+On Mon, 24 May 2010, Josef Leydold wrote:
+
+    Dear Brian and Uwe,
+
+    Thanks a lot for the clarification.
+    I made the naive assumption that numeric constants in R are similar to
+    those in C.
+
+    Two questions still remain:
+
+    (1) when I have a function
+
+      f<- function(a=1,b=-1) { a+b }
+
+      is it safe to use
+
+      val <- as.character(deparse(formals(f)$b))
+
+      to obtain a string that contains the default value for
+      argument "b". (Does is also work for other arguments with some
+      default of arbitrary class?)
+
+But the defualt value is not character, so this cannot in general be done.
+
+    (2) I have seen that packages like gWidget (in function ggenericwidget)
+      use a statement like
+
+      switch(class(formals(f)$b),
+           numeric = { .... },
+          character = { .... },
+          class = { .... }, ....
+
+      for automatically processing function arguments.
+      in the case of "b=-1" this procedure obviously fails.
+      (I found this behavior of 'formals' while playing around with
+      packages "gWidgets" and "fgui" from CRAN).
+
+      Is there a safe workaround for this problem?
+
+      That is, is there a safe function that returns class
+      "numeric" for an exresion like "-1" or "-Inf"?
+
+
+Why are you using class() when you seem to mean typeof()?
+
+But the short answer is you appear to be trying to circumvent the language, and who really cares what the default is? 
+If it is used, it is evaluated, and then you can simply do typeof(b).  And if it is not used, who cares what it is?
+
+============================================
+
+Look at txtStart and friends in the TeachingDemos package as an alternative to sink that includes commands as well as output.
+
+Know the quality of Greg Snows work it will probably be better than mine, but perhaps:
+
+> capfn <- function(inp) {
++          instring <- deparse(substitute(inp))
++          capture.output(instring, inp, file="all.Rout") }
+> capfn(1+3)
+
+The file looks like this:
+
+[1] "1 + 3"
+[1] 4
+
+============================================
+
