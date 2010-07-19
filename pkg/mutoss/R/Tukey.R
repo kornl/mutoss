@@ -43,7 +43,7 @@ mutoss.tukey<- function() { return(new(Class="MutossMethod",
 					errorControl="FWER",
 					callFunction="tukey.wrapper",
 					output=c("adjPValues", "rejected","confIntervals","errorControl"),
-					info="<h2>Tueky HSD test and simultaneous confidence intervals in parametric factorial designs</h2>
+					info="<h2>Tukey HSD test and simultaneous confidence intervals in parametric factorial designs</h2>
 							<p>'With this function, it is possible to compute all pairs comparisons for expectations and 
                               simultaneous confidence intervals in factorial linear models. Hereby, the all-pairs comparisons
                               can be performed for user given effects. The overall variance is estimated by the linear model
