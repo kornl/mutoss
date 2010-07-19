@@ -32,10 +32,10 @@ public class MethodHandler {
 	}
 	
 	protected MethodHandler() {
-		methodNames = Arrays.asList(MuTossControl.getInstance().getR().eval("c(apropos(\"^mutoss\\\\.\"), ls( asNamespace( \"mutoss\" ), pattern=\"mutoss.*\", all = TRUE ))").asRChar().getData());
+		methodNames = Arrays.asList(MuTossControl.getInstance().getR().eval("c(apropos(\"^mutoss\"), ls( asNamespace( \"mutoss\" ), pattern=\"mutoss.*\", all = TRUE ))").asRChar().getData());
 		methods = new Vector<Method>();
 		for (String methodname : methodNames) {
-			if (MuTossControl.getR().eval("class("+methodname+"())==\"MutossMethod\"")==null || !MuTossControl.getR().eval("class("+methodname+"())==\"MutossMethod\"").asRLogical().getData()[0]) continue;
+			if (MuTossControl.getR().eval("class(mutoss:::"+methodname+"())==\"MutossMethod\"")==null || !MuTossControl.getR().eval("class(mutoss:::"+methodname+"())==\"MutossMethod\"").asRLogical().getData()[0]) continue;
 			// TODO Test whether methodNames() gives really back an MuTossMethod object.
 			Method method = new Method(methodname);
 			methods.add(method);

@@ -23,7 +23,7 @@ public class Method {
 	
 	public Method(String method) {
 		name = method;
-		MuTossControl.getR().eval(".MuTossMethod <- "+name+"()");
+		MuTossControl.getR().eval(".MuTossMethod <- mutoss:::"+name+"()");
 		label = MuTossControl.getR().eval(".MuTossMethod@label").asRChar().getData()[0];
 		try {
 			errorControl = MuTossControl.getR().eval(".MuTossMethod@errorControl").asRChar().getData()[0];
