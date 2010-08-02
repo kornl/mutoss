@@ -5,7 +5,8 @@ Title: A graphical user interface for the MuToss Project
 Author: Kornelius Rohmeyer
 Maintainer: Kornelius Rohmeyer <kornl@gmx.de>
 Description: A graphical user interface for the MuToss Project
-Depends: R (>= 2.8.0), rJava (>= 0.8-0), JavaGD (>= 0.5-2), plotrix, mutoss (>= 0.1-0)
+Depends: R (>= 2.8.0), rJava (>= 0.8-0), JavaGD (>= 0.5-2), plotrix
+Suggests: mutoss (>= 0.1-0), multcomp
 SystemRequirements: Java (>= 5.0)
 License: GPL
 Packaged: Mon Apr 28 22:01:04 2008; kornel
