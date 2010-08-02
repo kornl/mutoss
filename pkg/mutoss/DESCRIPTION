@@ -17,9 +17,3 @@ Depends: R (>= 2.8.0), multcomp (>= 1.1-0), methods, plotrix
 Suggests: fdrtool, multtest (>= 2.2.0), mvtnorm, qvalue
 License: GPL
 LazyLoad: yes
-Collate: 'Augmentation.R' 'CompareObjects.R' 'fisher.R' 'gao.R'
-    'helperfunctions.R' 'Hommel.R' 'localfdr.R' 'moreSUDprocedures.R'
-    'multcomp.R' 'multtest.R' 'mutossApply.R' 'MuTossObject.R'
-    'mutoss.plotCI.R' 'MutossSimObject.R' 'nparcomp1.R' 'onLoad.R'
-    'pi0Est.R' 'Rank_Truncated.R' 'REGWQ.R' 'SNK.R' 'SUDProcedures.R'
-    'SUD.R' 'testFunctionsForTheGUI.R' 'Tukey.R' 'wrapperFunctions.R'
