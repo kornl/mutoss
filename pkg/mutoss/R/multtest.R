@@ -304,7 +304,7 @@ twosamp.marginal <- function(data, model, robust, alternative, psi0, equalvar) {
 	if (robust) {
 		result <- apply(data, 1, function(x) {wilcox.test(x=x[ ,label==1], y=x[label==2], alternative=alternative, mu=psi0)$p.value} )
 	} else {
-		result <- apply(data, 1, function(x) {t.test(x=x[ ,label==1], y=x[label==2], alternative=alternative, mu=psi0, equal.var=equalval)$p.value} )
+		result <- apply(data, 1, function(x) {t.test(x=x[ ,label==1], y=x[label==2], alternative=alternative, mu=psi0, equal.var=equalvar)$p.value} )
 	}
 	return(list(pValues=result))
 }
