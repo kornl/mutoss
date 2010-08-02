@@ -215,7 +215,7 @@ mu.compare.critical<- function(comparison.list, identify.check=F){
 #mu.compare.critical(compare.3, T)
 
 #----- Sumary of comparison-----------#
-mu.compare.summary<- function(comparison.list, specific=F){
+mu.compare.summary<- function(comparison.list){
 	method.type<-comparison.list[['types']] #extracting method type
 	error.rates<-comparison.list[['rates']] #extracting error rates
 	pi.nulls<-comparison.list[['pi.nulls']] #extracting pi0

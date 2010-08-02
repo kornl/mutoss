@@ -2,23 +2,23 @@
 \alias{bonferroni}
 \title{Bonferroni correction...}
 \usage{bonferroni(pValues, alpha, silent=FALSE)}
-\arguments{
-  \item{pValues}{
-	A numeric vector containing the unadjusted pValues.
-  }
-  \item{alpha}{
-	Overall type I error rate alpha.
-  }
-  \item{silent}{
-  	logical scalar. If \code{TRUE} no output is generated.  
-  }
-}
 \description{Bonferroni correction}
 \details{The classical Bonferroni correction outputs adjusted p-values, ensuring strong FWER control under arbitrary
 dependence of the input p-values. It simply multiplies each input p-value by the total number of hypotheses
 (and ceils at value 1).
 
 It is recommended to use Holm's step-down instead, which is valid under the exact same assumptions and more powerful.}
+\arguments{
+  \item{pValues}{
+	A numeric vector containing the unadjusted pValues. No assumption is made on the dependence structure.
+  }
+  \item{alpha}{
+	The overall type I error at which the FWER shall be controlled (optional).
+  }
+  \item{silent}{
+  	logical scalar. If \code{TRUE} no output is generated.  
+  }
+}
 \value{A list containing:
 
 \item{adjPValues}{A numeric vector containing the new adjusted pValues}
@@ -31,6 +31,6 @@ It is recommended to use Holm's step-down instead, which is valid under the exac
 
 Bonferroni, C. E. (1936) Teoria statistica delle classi e calcolo delle probabilita.
 Pubblicazioni del R Istituto Superiore di Scienze Economiche e Commerciali di Firenze 8, 3-62, 1936.}
-\author{KornRohm}
-\arguments{\item{pValues}{pValues to be used. No assumption is made on the dependence structure.}
-\item{alpha}{The level at which the FWER shall be controlled (optional).}}
+\author{MuToss-Coding Team}
+\arguments{\item{pValues}{pValues to be used. }
+\item{alpha}{}}

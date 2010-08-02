@@ -23,7 +23,9 @@ assumed that coef and vcov methods are available for model.}
 \item{alternative}{a character string specifying the alternative hypothesis, must be one of 'two.sided'
 (default), 'greater' or 'less'.}
 \item{rhs}{an optional numeric vector specifying the right hand side of the hypothesis.}
-\item{alpha}{the significance level}}
+\item{alpha}{the significance level}
+\item{factorC}{character string, specifing the factor variable of interest}
+}
 \examples{data(warpbreaks)
 # Tukey contrast on the levels of the factor 'Tension'
 

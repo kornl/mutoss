@@ -18,9 +18,12 @@ which is valid under the exact same assumptions but is more powerful.}
 \item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function.}}
 \references{Sidak, Z. (1967). Rectangular confidence regions for the means of multivariate normal distributions.
 Journal of the American Statistical Association, 62:626-633.}
-\author{KornRohm}
-\arguments{\item{pValues}{pValues to be used.}
-\item{alpha}{The level at which the FWER shall be controlled (optional).}}
+\author{MuToss-Coding Team}
+\arguments{
+  \item{pValues}{pValues to be used.}
+  \item{alpha}{The level at which the FWER shall be controlled (optional).}
+  \item{silent}{logical scalar. If \code{TRUE} no output is generated.}
+}
 \examples{alpha <- 0.05
 p <-c(runif(10, min=0, max=0.01), runif(10, min=0.9, max=1))
 result <- sidak(p)

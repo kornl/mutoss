@@ -1,9 +1,9 @@
 \name{compareMutoss}
 \title{Functions for comparing outputs of different procedures.}
 \usage{compareMutoss(...)
-mu.compare.adjusted(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))
-mu.compare.critical(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))
-mu.compare.summary(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))}
+mu.compare.adjusted(comparison.list, identify.check=F)
+mu.compare.critical(comparison.list, identify.check=F)
+mu.compare.summary(comparison.list)}
 \description{Functions for comparing outputs of different procedures.}
 \details{These functions are used to compare the results of different multiple comparisons procedures stored as Mutoss class objects.
 \code{compareMutoss} takes as input an arbitrary number of Mutoss objects and arranges them in a simple list objects (non S4).
@@ -26,7 +26,8 @@ mu.compare.summary(comparison.list= compareMutoss(mu.obj.1, mu.obj.2))}
 \alias{mu.compare.summary}
 \arguments{\item{...}{An arbitrary number of Motoss class objects.}
 \item{comparison.list}{The output of the \code{compareMutoss} function.}
-\item{identify.check}{Logical parameter specifying if hypotheses should be identified on the output plots.}}
+\item{identify.check}{Logical parameter specifying if hypotheses should be identified on the output plots.}
+}
 \examples{# TODO: EXAMPLE PROBLEMS
 \dontrun{
 \dontrun{Creating several Mutoss class objects}

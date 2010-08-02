@@ -4,4 +4,4 @@
 \usage{pValuesPlot(pValues)}
 \description{A function plotting p-values}
 \author{MarselScheer}
-\arguments{\item{pValues}{}}
+\arguments{\item{pValues}{A numeric containing the pValues to plot.}}
