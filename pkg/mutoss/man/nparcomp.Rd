@@ -50,8 +50,10 @@ intervals}
 \item{info}{info A logical whether you want a brief overview with informations about the
 output}
 \item{contrastMatrix}{arbitrary contrast matrix given by the user}}
-\examples{x = rnorm(50)
-grp = c(rep(1:5,10))
+\examples{
+\dontrun{# TODO Check this example and set a seed!
+grp <- rep(1:5,10)
+x <- rnorm(50, grp)
 dataframe <- data.frame(x,grp)
 # Williams Contrast
 nparcomp(x ~grp, data=dataframe, asy.method = "probit",
@@ -64,4 +66,6 @@ type = "Dunnett", alternative = "two.sided", plot.simci = TRUE, info = TRUE)
 # Dunnett dose 3 is baseline
 nparcomp(x ~grp, data=dataframe, asy.method = "probit",
 type = "Dunnett", control = "3",alternative = "two.sided",
-plot.simci = TRUE, info = TRUE)}
+plot.simci = TRUE, info = TRUE)
+}
+}

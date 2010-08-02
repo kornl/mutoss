@@ -2,6 +2,17 @@
 \alias{bonferroni}
 \title{Bonferroni correction...}
 \usage{bonferroni(pValues, alpha, silent=FALSE)}
+\arguments{
+  \item{pValues}{
+	A numeric vector containing the unadjusted pValues.
+  }
+  \item{alpha}{
+	Overall type I error rate alpha.
+  }
+  \item{silent}{
+  	logical scalar. If \code{TRUE} no output is generated.  
+  }
+}
 \description{Bonferroni correction}
 \details{The classical Bonferroni correction outputs adjusted p-values, ensuring strong FWER control under arbitrary
 dependence of the input p-values. It simply multiplies each input p-value by the total number of hypotheses
