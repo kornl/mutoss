@@ -14,4 +14,4 @@
 \item{adjust}{Logical value for p-value adjustmet (unusable).}
 \item{m0}{Known or estimated number of true null hypotheses.}
 \item{pi0}{Known or estimated proportion of true null hypothesis. Is redundant when \code{m0} is specified.}
-\item{constant}{}}
+\item{constant}{A Scaling constant for the denominator of the critical values.}}
