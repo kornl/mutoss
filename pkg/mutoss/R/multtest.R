@@ -25,7 +25,7 @@ mutoss.onesamp.model <- function() { return(new(Class="MutossMethod",
 					)
 			)) }
 
-onesamp.marginal <- function(data, model, robust, alternative, psi0) {
+onesamp.marginal <- function(data, robust, alternative, psi0) {
 	result <- NULL
 	if (robust) {
 		result <- apply(data, 1, function(x) {wilcox.test(x, alternative=alternative, mu=psi0)$p.value} )
@@ -55,7 +55,6 @@ mutoss.onesamp.marginal <- function() { return(new(Class="MutossMethod",
 							</ul>",
 					parameters=list(
 							data=list(type="ANY"),
-							model=list(type="ANY"),
 							robust=list(type="logical", label="Robust statistic"),
 							alternative=list(type="character", label="Alternative", choices=c("two.sided", "less", "greater")),
 							psi0=list(type="numeric", label="Hypothesized null value", default=0)
@@ -63,7 +62,7 @@ mutoss.onesamp.marginal <- function() { return(new(Class="MutossMethod",
 			)) }
 
 
-onesamp.multtest <- function(data, model, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
+onesamp.multtest <- function(data, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
 	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = NULL, Z = NULL, Z.incl = NULL, Z.test = NULL, 
 			na.rm = TRUE, test = "t.onesamp", robust = robust, 
