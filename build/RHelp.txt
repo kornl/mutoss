@@ -161,3 +161,38 @@ The file looks like this:
 ============================================
 
 http://pbil.univ-lyon1.fr/library/Biobase/html/exprSet-class.html
+
+============================================
+
+      [R] How to show all the functions and classes that are defined in a library?
+
+      >>library(some_library_name)
+
+      >>Suppose I load a library.
+
+      You mean "package" right ?
+
+      A library is a set of packages
+
+      >I'm wondering what command I should use to
+
+      >list all the functions, classes and variables defined in the library.
+
+      Check ?ls :
+
+      > ls( "package:some_package_name" )
+
+      > ls( "package:some_package_name", all = TRUE )
+
+      Sometimes you want to see even those that are not exported from the namespace:
+
+      > ls( asNamespace( "some_package_name" ) )
+
+      > ls( asNamespace( "some_package_name" ), all = TRUE )
+
+	Romain
+
+      So mutoss.* functions don't need to be exported any more.
+      
+============================================
+
