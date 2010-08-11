@@ -25,6 +25,6 @@ at the specified level and sample size.}
 \item{startIDX_SUD}{Starting index of the step-up-down procedure}
 \item{alpha}{The level at which the FDR shall be controlled.}
 \item{silent}{If true any output on the console will be suppressed.}
-\item{initialBeta}{}
-\item{maxBinarySteps}{}
-\item{tolerance}{}}
+\item{initialBeta}{Initial beta.}
+\item{maxBinarySteps}{Maximum number of steps that will be performed.}
+\item{tolerance}{The tolerance to search for an upper FDR bound element in [alpha - tolerance, alpha]}}
