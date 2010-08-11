@@ -1,7 +1,9 @@
 \name{snk}
 \alias{snk}
+\alias{snk.wrapper}
 \title{Student - Newman - Keuls rejective test procedure.}
-\usage{snk(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)}
+\usage{snk(formula, data, alpha, MSE=NULL, df=NULL, silent=FALSE)
+snk.wrapper(model, data, alpha, silent=FALSE)}
 \description{Student - Newman - Keuls rejective test procedure.
 The procedure controls the FWER in the WEAK sense.}
 \details{This function computes the Student-Newman-Keuls test for given
@@ -46,6 +48,7 @@ experimentwise error rate at \eqn{\alpha}.}
 \author{Frank Konietschke}
 \references{Keuls M (1952). "The use of the studentized range in connection with an analysis of variance". Euphytica 1: 112-122}
 \arguments{\item{formula}{Formula defining the statistical model containing the response and the factor levels.}
+\item{model}{Model with formula, containing the response and the factor levels}
 \item{data}{dataset containing the response and the grouping factor.}
 \item{alpha}{The level at which the error should be controlled. By default it is alpha=0.05.}
 \item{MSE}{Optional for a given variance of the data.}

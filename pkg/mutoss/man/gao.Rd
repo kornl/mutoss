@@ -1,7 +1,9 @@
 \name{gao}
 \alias{gao}
+\alias{gao.wrapper}
 \title{Xin Gao's non-parametric multiple test procedure is applied to Data.}
-\usage{gao(formula, data, alpha=0.05, control=NULL, silent=FALSE)}
+\usage{gao(formula, data, alpha=0.05, control=NULL, silent=FALSE)
+gao.wrapper(model, data, alpha, control)}
 \description{Xin Gao's non-parametric multiple test procedure is applied to Data. 
 The procedure controls the FWER in the strong sense. Here, only the Many-To-One comparisons are computed.}
 \details{This function computes Xin Gao's nonparametric multiple test procedures in an unbalanced one way layout. 
@@ -28,6 +30,7 @@ Journal of Statistical Planning and Inference 77, 2574-2591. \eqn{n}
 The FWER is controlled by using the Hochberg adjustment
 (Hochberg, Y. (1988). A sharper Bonferroni procedure for multiple tests of significance. Biometrika 75, 800-802.)}
 \arguments{\item{formula}{Formula defining the statistical model, containing the response and the factors}
+\item{model}{Model with formula, containing the response and the factors}
 \item{data}{Dataset containing the response and the grouping factor}
 \item{alpha}{The level at which the FWER shall be controlled. By default it is alpha=0.05.}
 \item{silent}{If true any output on the console will be suppressed.}
