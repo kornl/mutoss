@@ -3,24 +3,7 @@
 \title{Resampling-based one sample test}
 \usage{onesamp.multtest(data, alternative, robust, psi0, alpha,
     nulldist, B=1000, method, seed=12345)}
-\description{There are different choices of resampling methods available for estimating the joint test statistics null distribution:
-	\itemize{
-		\item{ boot.cs: non-parametric bootstrap with centering and scaling}
-		\item{ boot.ctr: centered-only bootstrap distribution}
-		\item{ boot.qt: quantile transformed bootstrap distribution. the default marginal t-distribution with n-1 degree of freedom is used.}
-		\item{ perm: permutation distribution (refering to the Westfall and Young procedures)}
-		\item{ ic: under GUI construction (available at (library(multtest))}
-	}
-	There are four adjustment methods to control the FWER:
-	\itemize{
-		\item{ sd.minP: step-down common-quantile procedure based on the minima of unadjusted p-values}
-		\item{ sd.maxT: step-down common-cut-off procedure based on the maxima of test statistics}
-		\item{ ss.minP: single-step common-quantile procedure}
-		\item{ ss.maxT: single-step common-cut-off procedure}
-	}
-	The default number of bootstrap iterations (or number of permutations if resampling method is \code{perm}) is 1000. This can be reduced to increase the speed of computations, at a cost to precision. However, it is recommended to use a large number of resampling iterations, e.g. 10,000.
-	The robust version uses the Wilcoxon-Mann-Whitney test, otherwise a t-test will be performed.						
-}
+\description{Pertforms a resampling-based one sample test}
 \references{
  Dudoit, S. and van der Laan, M.J. (2007). Mulitple Testing Procedures and Applications to Genomics.Springer Series in Statistics.
  Westfall, P.H. and Young, S.S. (1993). Resampling-Based Multiple Testing. Examples and Methods for p-value adjustment. Wiley Series in Probability and Mathematical Statistics.   
