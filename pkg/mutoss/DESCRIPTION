@@ -4,7 +4,7 @@ Title: GUI and wrappers for multiple testing procedures
 Version: 0.1-0
 Date: 2010-01-26
 Author: MuToss Coding Team (Berlin 2010)
-Maintainer: Thorsten Dickhaus <dickhaus@cs.tu-berlin.de>
+Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
 Description: The Mutoss package and accompanying mutossGUI package are
     designed to ease the application and comparison of multiple
     hypothesis testing procedures. The GUI is called with the mutossGUI
