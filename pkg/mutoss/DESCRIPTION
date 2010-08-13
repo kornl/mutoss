@@ -3,7 +3,9 @@ Type: Package
 Title: GUI and wrappers for multiple testing procedures
 Version: 0.1-0
 Date: 2010-01-26
-Author: MuToss Coding Team (Berlin 2010)
+Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
+    Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
+    Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
 Description: The Mutoss package and accompanying mutossGUI package are
     designed to ease the application and comparison of multiple
