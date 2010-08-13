@@ -9,12 +9,7 @@ Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
 Description: The Mutoss package and accompanying mutossGUI package are
     designed to ease the application and comparison of multiple
-    hypothesis testing procedures. The GUI is called with the mutossGUI
-    function. Once invoked, the analysis starts by inserting either
-    p-values or raw data and specifying the type of analysis and error
-    control type wanted. The results can be visualized in the GUI or
-    exported as R objects for further analysis- possibly with the
-    accompanying compareMutoss functions.
+    hypothesis testing procedures.
 Depends: R (>= 2.8.0), multcomp (>= 1.1-0), methods, plotrix
 Suggests: fdrtool, multtest (>= 2.2.0), mvtnorm, qvalue
 License: GPL
