@@ -62,7 +62,7 @@ public class MuTossGUI extends JFrame implements WindowListener {
 					false,
 					true,
 					new ApplicationLog());
-			ErrorHandler.init("kornel@kornels-welt.de", "http://www.algorithm-forge.com/report/lena.php", true, true, ErrorDialog.class);
+			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialog.class);
 		}
 		
 		Localizer.getInstance().addResourceBundle("org.mutoss.gui.widgets.ResourceBundle");
