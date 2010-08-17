@@ -1,8 +1,8 @@
 Package: mutoss
 Type: Package
 Title: GUI and wrappers for multiple testing procedures
-Version: 0.1-0
-Date: 2010-01-26
+Version: 0.1-1
+Date: 2010-08-17
 Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
     Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
     Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
