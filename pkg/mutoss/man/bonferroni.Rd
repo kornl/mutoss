@@ -32,5 +32,3 @@ It is recommended to use Holm's step-down instead, which is valid under the exac
 Bonferroni, C. E. (1936) Teoria statistica delle classi e calcolo delle probabilita.
 Pubblicazioni del R Istituto Superiore di Scienze Economiche e Commerciali di Firenze 8, 3-62, 1936.}
 \author{MuToss-Coding Team}
-\arguments{\item{pValues}{pValues to be used. }
-\item{alpha}{}}
