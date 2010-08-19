@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
+import org.af.jhlir.call.RObj;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mutoss.gui.MuTossGUI;
@@ -35,9 +36,9 @@ public class MethodHandler {
 		methodNames = Arrays.asList(MuTossControl.getInstance().getR().eval("c(apropos(\"^mutoss\"), ls( asNamespace( \"mutoss\" ), pattern=\"mutoss.*\", all = TRUE ))").asRChar().getData());
 		methods = new Vector<Method>();
 		for (String methodname : methodNames) {
-			if (MuTossControl.getR().eval("class(try(class(mutoss:::"+methodname+"())==\"MutossMethod\",silent=TRUE))==\"try-error\")").asRLogical().getData()[0]) continue;
-			result = MuTossControl.getR().eval("class(mutoss:::"+methodname+"())==\"MutossMethod\"");
-			if (result==null || !MuTossControl.getR().eval("class(mutoss:::"+methodname+"())==\"MutossMethod\"").asRLogical().getData()[0]) continue;
+			if (MuTossControl.getR().eval("class(try(class(mutoss:::"+methodname+"())==\"MutossMethod\",silent=TRUE))==\"try-error\"").asRLogical().getData()[0]) continue;
+			RObj result = MuTossControl.getR().eval("class(mutoss:::"+methodname+"())==\"MutossMethod\"");
+			if (result==null || !result.asRLogical().getData()[0]) continue;
 			// TODO Test whether methodNames() gives really back an MuTossMethod object.
 			Method method = new Method(methodname);
 			methods.add(method);
