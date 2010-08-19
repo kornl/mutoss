@@ -4,7 +4,7 @@
 \usepackage{Sweave}
 \begin{document}
 
-% \VignetteIndexEntry{mutossDeveloper}
+% \VignetteIndexEntry{MuToss Developer Guide - A Tutorial for Developing new Functions for MuToss}
 
 \title{MuToss Developer Guide - A Tutorial for Developing new Functions for MuToss.}
 \author{Kornelius Rohmeyer}
@@ -14,6 +14,8 @@
 \tableofcontents
 
 \section{Introduction}
+
+
 
 \section{Writing a function for the MuToss-GUI}
 
