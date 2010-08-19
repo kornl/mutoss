@@ -38,7 +38,7 @@ public class ContrastMatrixTest {
 		rcs.eval("require(JavaGD)");					
 		rcs.eval("pvalues<-c(rep(0.0001,5),runif(995))");
 		rcs.eval("data(iris)");
-		rcs.eval("myContrMat <- function(type,l,df,group) {	require(multcomp);	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))];	x <- contrMat(n=n,type=type)}");
+		rcs.eval("mutossGUI:::myContrMat <- function(type,l,df,group) {	require(multcomp);	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))];	x <- contrMat(n=n,type=type)}");
 		JFrame frame = new JFrame();		
 		
 		List<RLegalName> list = new Vector<RLegalName>();

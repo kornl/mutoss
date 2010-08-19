@@ -223,9 +223,9 @@ public class MethodDialog extends JDialog implements ActionListener {
 					}
 				}
 			}
-			MuTossControl.getR().eval("startRecording()");			
+			MuTossControl.getR().eval("mutossGUI:::startRecording()");			
 			RList output = MuTossControl.getR().call(method.getFunction(), rargs.toArray()).asRList();
-			MuTossControl.getR().eval("stopRecording()");
+			MuTossControl.getR().eval("mutossGUI:::stopRecording()");
 			OutputPanel.getOutputPanel().getOutputPane().appendHeadline(method.getLabel());
 			String[] rOutput = MuTossControl.getR().eval("output").asRChar().getData();
 			String outputString = "<p align=\"left\"><pre>";

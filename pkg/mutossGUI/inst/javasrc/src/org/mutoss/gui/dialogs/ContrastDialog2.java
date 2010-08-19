@@ -127,7 +127,7 @@ public class ContrastDialog2 extends StatMethodDialog implements ActionListener 
 	 * @param list 
 	 */
 	 public RMatrixDouble getContrastMatrix(String groupvarname, String type, List<String> list) {
-		return new RMatrixDoubleREngine(MuTossControl.getR(), (REXPDouble) MuTossControl.getR().call("myContrMat", type, list, df, groupvarname).getWrapped());
+		return new RMatrixDoubleREngine(MuTossControl.getR(), (REXPDouble) MuTossControl.getR().call("mutossGUI:::myContrMat", type, list, df, groupvarname).getWrapped());
 	} 
 	
 	/**

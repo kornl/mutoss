@@ -82,7 +82,7 @@ public class MuTossControl implements ActionListener {
 					rcs.eval(".setenv <- if (exists(\"Sys.setenv\")) Sys.setenv else Sys.putenv");
 					rcs.eval(".setenv(\"JAVAGD_CLASS_NAME\"=\"org/mutoss/gui/JavaGD\")");
 					rcs.eval("require(JavaGD)");					
-					rcs.eval("myContrMat <- function(type,l,df,group) {	require(multcomp);	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))];	x <- contrMat(n=n,type=type)}");
+					rcs.eval("mutossGUI:::myContrMat <- function(type,l,df,group) {	require(multcomp);	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))];	x <- contrMat(n=n,type=type)}");
 				}
 			} catch (REngineException e) {
 				ErrorHandler.getInstance().makeErrDialog("Error creating RCallServicesREngine!", e);

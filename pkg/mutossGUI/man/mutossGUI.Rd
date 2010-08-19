@@ -12,7 +12,7 @@
   Details are given in the package vignette.
 }
 \value{
-  I do not know.
+	None (invisible \code{NULL}).
 }
 \author{MuToss Coding Team}
 \examples{
