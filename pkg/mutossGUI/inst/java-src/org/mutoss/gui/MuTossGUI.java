@@ -68,13 +68,13 @@ public class MuTossGUI extends JFrame implements WindowListener {
 		if (!LoggingSystem.alreadyInitiated()) {
 			LoggingSystem.init(
 					loggingProperties,
-					false,
 					true,
+					false,
 					new ApplicationLog());
 			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialog.class);
 		}
 		
-		System.setOut(new PrintStream(new LoggingOutputStream(logger), true));
+		//System.setOut(new PrintStream(new LoggingOutputStream(logger), true));
 		
 		Localizer.getInstance().addResourceBundle("org.mutoss.gui.widgets.ResourceBundle");
 		
@@ -162,27 +162,4 @@ public class MuTossGUI extends JFrame implements WindowListener {
 		gui = null;		
 	}
 
-} 
-
-class LoggingOutputStream extends ByteArrayOutputStream { 
-	 
-    private String lineSeparator;    
-    Log logger;
- 
-    public LoggingOutputStream(Log logger) { 
-        super(); 
-        this.logger = logger; 
-        lineSeparator = System.getProperty("line.separator"); 
-    } 
- 
-    public void flush() throws IOException { 
-        String record; 
-        synchronized(this) { 
-            super.flush(); 
-            record = this.toString(); 
-            super.reset(); 
-            if (record.length() == 0 || record.equals(lineSeparator)) return; 
-            logger.info(record); 
-        } 
-    } 
-} 
+}

@@ -2,8 +2,10 @@ package org.mutoss;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
 
 import org.af.commons.errorhandling.ErrorHandler;
 import org.af.jhlir.backends.rengine.RCallServicesREngine;
@@ -82,20 +84,20 @@ public class MuTossControl implements ActionListener {
 					rcs.eval("require(survival)");
 					rcs.eval(".setenv <- if (exists(\"Sys.setenv\")) Sys.setenv else Sys.putenv");
 					rcs.eval(".setenv(\"JAVAGD_CLASS_NAME\"=\"org/mutoss/gui/JavaGD\")");
-					rcs.eval("require(JavaGD)");					
+					rcs.eval("require(JavaGD)");		
+					rcs.eval("pvalues<-c(rep(0.001,5),runif(20))");
+					rcs.eval("data(iris)");
+					rcs.eval("data(InsectSprays)");
+					rcs.eval("amod <- aov(breaks ~ tension, data = warpbreaks)");			
+					rcs.eval("X <- matrix(rnorm(1000), ncol=10)");
+					rcs.eval("grouplabels <- rep(c(0,1),each=5)");
 					//rcs.eval("mutossGUI:::myContrMat <- function(type,l,df,group) {	require(multcomp);	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))];	x <- contrMat(n=n,type=type)}");
 				}
 			} catch (REngineException e) {
 				ErrorHandler.getInstance().makeErrDialog("Error creating RCallServicesREngine!", e);
 			}
-			// TODO Move these lines up into the Elcipse-only block for final release.
-			rcs.eval("pvalues<-c(rep(0.001,5),runif(20))");
-			rcs.eval("data(iris)");
-			rcs.eval("data(InsectSprays)");
-			rcs.eval("amod <- aov(breaks ~ tension, data = warpbreaks)");			
-			rcs.eval("X <- matrix(rnorm(1000), ncol=10)");
-			rcs.eval("grouplabels <- rep(c(0,1),each=5)");
 			OutputPanel.getOutputPanel().getOutputPane().appendParagraph("R Connection established");
+	
 		}		
 		return rcs;
 	}
