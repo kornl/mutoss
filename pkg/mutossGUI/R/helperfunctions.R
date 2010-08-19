@@ -1,19 +1,20 @@
+mutossGUI.vars <- list()
 
 startRecording <- function() {
-	output <<- "output" # TODO These variablenames are stupid! But there was some bug with hidden ones or non-global ones?
-	errorMsg <<- "errorMsg"
-	outputCon <<- textConnection(output, open="w")
-	errorCon <<- textConnection(errorMsg, open="w")
-	sink(outputCon)
-	sink(errorCon, type="message")
+	mutossGUI.vars$output <<- "output" # TODO These variablenames are stupid! But there was some bug with hidden ones or non-global ones?
+	mutossGUI.vars$errorMsg <<- "errorMsg"
+	mutossGUI.vars$outputCon <<- textConnection(output, open="w")
+	mutossGUI.vars$errorCon <<- textConnection(errorMsg, open="w")
+	sink(mutossGUI.vars$outputCon)
+	sink(mutossGUI.vars$errorCon, type="message")
 }
 
 stopRecording <- function() {
 	sink()
 	sink(type="message")
-	close(outputCon)
-	close(errorCon)
-	return(list(output=output, errorMsg=errorMsg))
+	close(mutossGUI.vars$outputCon)
+	close(mutossGUI.vars$errorCon)
+	return(list(output=mutossGUI.vars$output, errorMsg=mutossGUI.vars$errorMsg))
 }
 
 myContrMat <- function(type,l,df,group) {

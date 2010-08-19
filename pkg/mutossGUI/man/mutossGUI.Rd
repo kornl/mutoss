@@ -16,6 +16,6 @@
 }
 \author{MuToss Coding Team}
 \examples{
-  mutossGUI()
+  \dontrun{mutossGUI()}
 }
 \keyword{manip}
