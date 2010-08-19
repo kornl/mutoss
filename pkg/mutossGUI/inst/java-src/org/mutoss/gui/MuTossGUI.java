@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +22,8 @@ import org.af.commons.errorhandling.ErrorDialog;
 import org.af.commons.errorhandling.ErrorHandler;
 import org.af.commons.logging.ApplicationLog;
 import org.af.commons.logging.LoggingSystem;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mutoss.MuTossControl;
 
 public class MuTossGUI extends JFrame implements WindowListener {
@@ -26,6 +31,7 @@ public class MuTossGUI extends JFrame implements WindowListener {
 	protected static MuTossGUI gui = null;
 	protected MuTossMainPanel mpanel;
 	protected MuTossTabbedPane tabbedPane;
+	private static final Log logger = LogFactory.getLog(MuTossGUI.class);
 	
 	public MuTossTabbedPane getTabbedPane() {
 		return tabbedPane;
@@ -56,14 +62,19 @@ public class MuTossGUI extends JFrame implements WindowListener {
 		super("MuToss GUI");
 		setIconImage((new ImageIcon(getClass().getResource("/org/mutoss/images/mutoss.png"))).getImage());
 		
+		String loggingProperties = "/commons-logging.properties";
+		if (System.getProperty("eclipse") != null) { loggingProperties = "/commons-logging-verbose.properties"; }
+		
 		if (!LoggingSystem.alreadyInitiated()) {
 			LoggingSystem.init(
-					"/commons-logging.properties",
+					loggingProperties,
 					false,
 					true,
 					new ApplicationLog());
 			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialog.class);
 		}
+		
+		System.setOut(new PrintStream(new LoggingOutputStream(logger), true));
 		
 		Localizer.getInstance().addResourceBundle("org.mutoss.gui.widgets.ResourceBundle");
 		
@@ -151,4 +162,27 @@ public class MuTossGUI extends JFrame implements WindowListener {
 		gui = null;		
 	}
 
+} 
+
+class LoggingOutputStream extends ByteArrayOutputStream { 
+	 
+    private String lineSeparator;    
+    Log logger;
+ 
+    public LoggingOutputStream(Log logger) { 
+        super(); 
+        this.logger = logger; 
+        lineSeparator = System.getProperty("line.separator"); 
+    } 
+ 
+    public void flush() throws IOException { 
+        String record; 
+        synchronized(this) { 
+            super.flush(); 
+            record = this.toString(); 
+            super.reset(); 
+            if (record.length() == 0 || record.equals(lineSeparator)) return; 
+            logger.info(record); 
+        } 
+    } 
 } 
