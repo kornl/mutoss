@@ -1,8 +1,10 @@
 Package: mutossGUI
-Version: 0.1-2
+Version: 0.1-3
 Date: 2010-08-16
 Title: A graphical user interface for the MuToss Project
-Author: Kornelius Rohmeyer
+Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
+    Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
+    Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
 Description: A graphical user interface for the MuToss Project
 Depends: R (>= 2.8.0), rJava (>= 0.8-0), JavaGD (>= 0.5-2), plotrix, mutoss (>= 0.1-0), multcomp
