@@ -1,0 +1,164 @@
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{calc}
+\usepackage{babel}
+
+\begin{document}
+
+\title{$\mu Toss$ Quick Start Guide}
+
+
+\author{$\mu Toss$ Team}
+
+\maketitle
+
+\section{Introduction}
+
+The $\mu Toss$ packages allow the user to discover, apply and compare
+multiple testing procedure and multiple interval estimation procedures.
+
+The $\mu Toss$ packages include a corpus of functions implementing
+and integrating these procedures and a GUI. These are found in the
+mutoss and mutossGUI packages respectively.
+
+
+\section{$\mu Toss$ Rationale}
+
+The rationale behind the $\mu Toss$ packages is two-fold.
+
+It is aimed at allowing statisticians to discover, apply and compare
+standard and custom multiplicity controlling procedures. This is achieved
+by the mutoss package.
+
+It is also aimed at the researcher wishing to Analise new data or
+reproduce published results. This is accomplished by the mutossGUI
+package.
+
+%
+\framebox{\begin{minipage}[t]{1\columnwidth}%
+At the time of release, the package has only undergone basic testing.
+This being the case, we recommend new data to be analyzed with standard
+software alongside $\mu Toss$. This is planned to change in future
+releases.%
+\end{minipage}}
+
+
+\section{System Requirements}
+
+
+\subsection{mutoss Package}
+
+The package will run on any machine running R with recommended version
+2.8 and above.
+
+
+\subsection{mutossGUI package}
+
+On top of the mutoss package requirements, Java Run time Environment
+ver 5 and above is needed.
+
+
+\section{GUI Work flow}
+
+Download and install the \textit{mutossGUI} package. The GUI should
+start automatically. Others wise load it with
+
+\texttt{>mutossGUI()}
+
+
+\subsection{Testing of Hypotheses}
+
+If you have already a vector of p-values start at step (5). 
+\begin{enumerate}
+\item Load the raw data (assumed to be a \textit{data.frame} object) using
+the \textbf{Data} button.
+\item Specify the model type and explanatory variables using the \textbf{Model}
+button.\\
+For linear contrasts choose \textbf{Single endpoint in k groups}.\\
+For applying the same model to many response variables choose \textbf{Multiple
+(linear) regression.}
+\item Define model by choosing response and expalnatory variables.
+\item Define the hypotheses of interest by specifying the contrasts using
+the \textbf{Hypotheses} button.
+\item Insert p-values using the \textbf{p-Value} button or calculate them
+following the previous steps.
+\item Choose the error type to control using the \textbf{Error Rate} button.
+\item Use the \textbf{Adjusted p-Values} to calculate the procedure specific
+adjusted p-values (you will be propted for additional options when
+necesary) or choose \textbf{Rejeted} to apply the procedure and reject
+hypotheses.
+\item Visualize results by choosing the \textbf{Info} option in the \textbf{Adjusted
+p-Values} or \textbf{Rejected} buttons.
+\item Save the output as an R object using the \textbf{File->Export MuToss
+Object to R} option.
+\end{enumerate}
+Further analysis is now possible using the compareMutoss functions
+or other R functionality.
+
+
+\subsection{Interval Estimations}
+
+Steps 1-4 are identical to the hypothesis testing work flow.
+\begin{enumerate}
+\item Load the raw data (assumed to be a \textit{data.frame} object) using
+the \textbf{Data} button.
+\item Specify the model type and explanatory variables using the \textbf{Model}
+button.\\
+For linear contrasts choose \textbf{Single endpoint in k groups}.\\
+For applying the same model to many response variables choose \textbf{Multiple
+(linear) regression.}
+\item Define model by choosing response and expalnatory variables.
+\item Define the contrasts of interest by specifying the contrasts using
+the \textbf{Hypotheses} button.
+\item Choose the error type to control using the \textbf{Error Rate} button.
+\item Use the \textbf{Confidence Intervals }to compute confidence intervals
+on parameters of interest. 
+\item Visualize results by choosing the \textbf{Info} option in the \textbf{Confidence
+Intervals} button.
+\item Save the output as an R object using the \textbf{File->Export MuToss
+Object to R} option.
+\end{enumerate}
+Further analysis is now possible using R functionality.
+
+
+\section{Command Line Work Flow}
+
+Download and install the \textit{mutoss} package to access the different
+procedures in the package (note mutossGUI is not needed for this purpose).
+A list can presented using\\
+\texttt{>help(package='mutoss')}
+
+To work with these elementary functions, just use them as any other
+R function. Seee inline help for further details.
+
+To use these functions to read and write into Mutoss S4 class objects
+use the \textit{mutoss.apply( )} function. See the inline help of
+the function for further details.
+
+
+\section{Glossary}
+\begin{description}
+\item [{Hypotheses-Testing-Procedures}] The corpus of procedures for testing
+multiple statistical hypotheses.
+\item [{Interval-Estimating-Procedures}] The corpus of procedures for constructing
+interval estimates for multiple parameters.
+\item [{p-Value-Procedures}] The corpus of (multiple) hypotheses testing
+procedures which rely on the marginal p-values of each hypothesis
+(and do not require the original data and model). This procedures
+might possibly require additional information such as logical relations
+between procedures, a qualitative description of the probabilistic
+relation between test statistics etc.
+\item [{Data-Procedures}] The corpus of (multiple) testing procedures which
+require the original response variables, the explanatory variables
+(model) and the parameters of interest (contrasts). \\
+These procedures can be seen as p-value-procedures with a specific
+relation between test-statistics which is derived from the model and
+the contrasts.
+\item [{Error-Type}] The type of error a procedure aims to control. This
+can be a hypothesis testing error rate (FWER. FDR,...) or an interval
+estimation error rate (simultanous coverage, false coverage rate,...).
+\item [{Error-Rate}] The allowed rate of the \textit{Error Type}. 
+\end{description}
+
+\end{document}
