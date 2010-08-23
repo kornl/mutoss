@@ -1,11 +1,8 @@
-mutossGUI <- function(){
+mutossGUI <- function(debugOutput=FALSE){
 	#gui <- .jnew("mutoss.gui.MuTossGUI")
-	.jcall("org/mutoss/gui/MuTossGUI", method="startGUI")
+	.jcall("org/mutoss/gui/MuTossGUI", returnSig = "V", method="startGUI", debugOutput)
 }
 
-
-myContrMat <- function(type,l,df,group) {
-	require(multcomp)
-	n <- table(df[,group])[as.numeric(factor(l,levels=levels(df[,group])))]
-	x <- contrMat(n=n,type=type) 
+reportBug <- function(){
+	.jcall("org/mutoss/gui/MuTossGUI", method="reportBug")
 }
