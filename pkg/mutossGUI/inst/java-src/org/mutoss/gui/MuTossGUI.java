@@ -25,6 +25,7 @@ import org.af.commons.logging.LoggingSystem;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mutoss.MuTossControl;
+import af.statguitoolkit.errorhandling.ErrorDialogSGTK;
 
 public class MuTossGUI extends JFrame implements WindowListener {
 
@@ -69,7 +70,7 @@ public class MuTossGUI extends JFrame implements WindowListener {
 					true,
 					false,
 					new ApplicationLog());
-			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialog.class);
+			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialogSGTK.class);
 		}
 	}
 

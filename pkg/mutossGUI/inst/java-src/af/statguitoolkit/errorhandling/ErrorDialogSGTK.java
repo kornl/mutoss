@@ -45,10 +45,10 @@ public class ErrorDialogSGTK extends ErrorDialog {
         FormLayout layout = new FormLayout(cols, rows);
         CellConstraints cc = new CellConstraints();
         p.setLayout(layout);
-        p.add(new JLabel(
-                Localizer.getInstance().getString("SGTK_ERRORHANDLING_INFORMDIALOG_ATTACHDATA")
+        /*p.add(new JLabel(
+                "attach Data=")
         ),                               cc.xy(1, 1));
-        /* p.add(chbAttachDf,               cc.xy(3, 1)); */
+         p.add(chbAttachDf,               cc.xy(3, 1)); */
         return p;
     }
 
@@ -74,11 +74,11 @@ public class ErrorDialogSGTK extends ErrorDialog {
 	}
 
 	private String getROptions() {		
-		return collapseStringArray(MuTossControl.getR().eval("options()").asRChar().getData());
+		return collapseStringArray(MuTossControl.getR().eval("paste(capture.output(options()), collapse=\"\\n\")").asRChar().getData());
 	}
 
 	private String getRSessionInfo() {
-		return collapseStringArray(MuTossControl.getR().eval("sessionInfo()").asRChar().getData());
+		return collapseStringArray(MuTossControl.getR().eval("paste(capture.output(sessionInfo()), collapse=\"\\n\")").asRChar().getData());
 	}
 
 	/**
