@@ -1,3 +1,4 @@
 import("rJava")
 import("mutoss")
 export("mutossGUI")
+export("reportBug")
