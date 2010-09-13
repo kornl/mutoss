@@ -197,8 +197,9 @@ public class MuTossObject {
 	}
 
 	public void setErrorControl(RObj eC, String label) {
-		MuTossControl.getR().put(".MuTossTmpeC", eC);
-		MuTossControl.getR().eval(objName+"@errorControl <- .MuTossTmpeC");
+		//TODO
+		//MuTossControl.getR().put(".MuTossTmpeC", eC);
+		//MuTossControl.getR().eval(objName+"@errorControl <- .MuTossTmpeC");
 		String type = MuTossControl.getR().eval(objName+"@errorControl@type").asRChar().getData()[0];	
 		mpanel.mlErrorRate.setText(type+" ()");
 	}
