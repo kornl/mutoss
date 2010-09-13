@@ -12,29 +12,29 @@
 \title{$\mu$TOSS Quick Start Guide}
 
 
- \author{{Gilles Blanchard} \url{gilles.blanchard@wias-berlin.de}\\
- Weierstrass Institute for Applied Analysis and Stochastics Berlin
+ \author{\scriptsize {Gilles Blanchard}, % \url{gilles.blanchard@wias-berlin.de}
+ \scriptsize Weierstrass Institute for Applied Analysis and Stochastics Berlin
  \and
- {Thorsten Dickhaus} \url{dickhaus@math.hu-berlin.de}\\
- Humboldt-University Berlin
+ \scriptsize {Thorsten Dickhaus}, % \url{dickhaus@math.hu-berlin.de}
+ \scriptsize Humboldt-University Berlin
  \and
- {Niklas Hack} \url{niklas.hack@meduniwien.ac.at}\\
- Medical University of Vienna
+ \scriptsize {Niklas Hack}, % \url{niklas.hack@meduniwien.ac.at}
+ \scriptsize Medical University of Vienna
  \and
- {Frank Konietschke} \url{Frank.Konietschke@medizin.uni-goettingen.de}\\
- Georg-August-University G\"ottingen
+ \scriptsize {Frank Konietschke}, % \url{Frank.Konietschke@medizin.uni-goettingen.de}
+ \scriptsize Georg-August-University G\"ottingen
  \and
- {Kornelius Rohmeyer} \url{rohmeyer@biostat.uni-hannover.de}\\
- Leibniz University Hannover
+ \scriptsize {Kornelius Rohmeyer}, % \url{rohmeyer@biostat.uni-hannover.de}
+ \scriptsize Leibniz University Hannover
  \and
- {Jonathan Rosenblatt} \url{john.ros@gmail.com}\\
- Tel Aviv University
+ \scriptsize {Jonathan Rosenblatt}, % \url{john.ros@gmail.com}
+ \scriptsize Tel Aviv University
  \and
- {Marsel Scheer} \url{mscheer@ddz.uni-duesseldorf.de}\\
- German Diabetes Center
+ \scriptsize {Marsel Scheer}, % \url{mscheer@ddz.uni-duesseldorf.de}
+ \scriptsize German Diabetes Center
  \and
- {Wiebke Werft} \url{w.werft@Dkfz-Heidelberg.de}\\
- German Cancer Research Center
+ \scriptsize {Wiebke Werft}, % \url{w.werft@Dkfz-Heidelberg.de}
+ \scriptsize German Cancer Research Center
  }
 
 \maketitle
