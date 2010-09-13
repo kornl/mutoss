@@ -196,3 +196,87 @@ http://pbil.univ-lyon1.fr/library/Biobase/html/exprSet-class.html
       
 ============================================
 
+From: https://stat.ethz.ch/pipermail/r-devel/2009-March/052872.html
+
+Hi Whit --
+
+Whit writes:
+
+> for the moment, I'm using:
+>
+> .onAttach <- function(libname, pkgname) {
+>     .bbg.db.conn <<- dbConnect(dbDriver("PostgreSQL"), user="blah","blah")
+> }
+>
+> .onUnload <- function(libpath) {
+>     dbDisconnect(.bbg.db.conn)
+> }
+>
+>
+> which results in a hidden global variable in the global environment.
+>
+> I would prefer to make the assignment only in the package namespace.
+> I've looked at assignInNamespace, but I can't seem to make it work.
+>
+> Is there a preferred method for doing this?
+
+I don't konw about preferred, but one method is
+
+pkgVars <- local({
+    x <- NULL
+    list(getX=function() x, setX=function(value) x <<- value)
+})
+
+with use
+
+> pkgVars$getX()
+NULL
+> pkgVars$setX(123)
+> pkgVars$getX()
+[1] 123
+
+This introduces a different programming paradigm (a list of functions)
+that might not be familiar for end-users and is not readily amenable
+to documentation. A probably better way is
+
+pkgVars <- new.env(parent=emptyenv())
+getX <- function() get("x", pkgVars, inherits=FALSE)
+setX <- function(value) assign("x", value, envir=pkgVars)
+
+> getX()
+Error in get("x", pkgVars, inherits = FALSE) : object 'x' not found
+> setX(123)
+> getX()
+[1] 123
+
+A tidier response to the first getX() could be arranged with something
+like
+
+pkgVars <- local({
+    env <- new.env(parent=emptyenv())
+    env[["x"]] <- NULL
+    env
+})
+
+pkgVars, getX, and setX can be exported from the name space or not.
+
+FWIW, usually one wants .onLoad rather than .onAttach, so that a
+package import-ing your package (not just depend-ing, or when used
+directly in an interactive session) will execute the setup code.
+
+Hope that helps and is not too misleading.
+
+Martin
+
+> When I try adding an assignment directly in the source file, I get the
+> "cannot change value of locked binding" error.
+>
+> What am I missing?
+>
+> Thanks,
+> Whit
+>
+> ______________________________________________
+> R-devel at r-project.org mailing list
+> https://stat.ethz.ch/mailman/listinfo/r-devel
+

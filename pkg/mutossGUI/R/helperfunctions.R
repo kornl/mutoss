@@ -1,17 +1,26 @@
 mutossGUI.vars <- list()
 
+mutossGUIVars <- local({
+			outputCon <- NULL
+			errorCon <- NULL
+			list(getOutput=function() outputCon, setOutput=function(value) outputCon <<- value,
+					getError=function() errorCon, setError=function(value) errorCon <<- value)
+		})
+
 startRecording <- function() {
-	mutossGUI.vars$outputCon <- textConnection(".mutossGUIoutput", open="w")
-	mutossGUI.vars$errorCon <- textConnection(".mutossGUIerrorMsg", open="w")
-	sink(mutossGUI.vars$outputCon)
-	sink(mutossGUI.vars$errorCon, type="message")
+	mutossGUIVars$setOutput(textConnection(".mutossGUIoutput", open="w"))
+	mutossGUIVars$setError(mutossGUI.vars$errorCon <- textConnection(".mutossGUIerrorMsg", open="w"))
+	sink(mutossGUIVars$getOutput())
+	sink(mutossGUIVars$getError(), type="message")
 }
 
 stopRecording <- function() {
 	sink()
 	sink(type="message")
-	try(close(mutossGUI.vars$outputCon), silent = TRUE)
-	try(close(mutossGUI.vars$errorCon), silent = TRUE)
+	#withCallingHandlers( {			
+	close(mutossGUIVars$getOutput())
+	close(mutossGUIVars$getError())
+	#}, error = function(e) recover())
 	return(list(output=mutossGUI.vars$output, errorMsg=mutossGUI.vars$errorMsg))
 }
 
@@ -28,9 +37,11 @@ myContrMat <- function(type,l,df,group) {
 }
 
 getOutput <- function() {
+	#return(textConnectionValue(mutossGUI.vars$outputCon))
 	return(.mutossGUIoutput)
 }
 
 getErrorMsg <- function() {
+	#return(textConnectionValue(mutossGUI.vars$errorCon))
 	return(.mutossGUIerrorMsg)
 }
