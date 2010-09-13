@@ -3,31 +3,64 @@
 \usepackage[latin9]{inputenc}
 \usepackage{calc}
 \usepackage{babel}
-
+\usepackage{hyperref}
+\usepackage{url}
 \begin{document}
 
 % \VignetteIndexEntry{MuToss Quick Start Guide}
 
-\title{$\mu Toss$ Quick Start Guide}
+\title{$\mu$TOSS Quick Start Guide}
 
 
-\author{$\mu Toss$ Team}
+ \author{{Gilles Blanchard} \url{gilles.blanchard@wias-berlin.de}\\
+ Weierstrass Institute for Applied Analysis and Stochastics Berlin
+ \and
+ {Thorsten Dickhaus} \url{dickhaus@math.hu-berlin.de}\\
+ Humboldt-University Berlin
+ \and
+ {Niklas Hack} \url{niklas.hack@meduniwien.ac.at}\\
+ Medical University of Vienna
+ \and
+ {Frank Konietschke} \url{Frank.Konietschke@medizin.uni-goettingen.de}\\
+ Georg-August-University G\"ottingen
+ \and
+ {Kornelius Rohmeyer} \url{rohmeyer@biostat.uni-hannover.de}\\
+ Leibniz University Hannover
+ \and
+ {Jonathan Rosenblatt} \url{john.ros@gmail.com}\\
+ Tel Aviv University
+ \and
+ {Marsel Scheer} \url{mscheer@ddz.uni-duesseldorf.de}\\
+ German Diabetes Center
+ \and
+ {Wiebke Werft} \url{w.werft@Dkfz-Heidelberg.de}\\
+ German Cancer Research Center
+ }
 
 \maketitle
 
-\section{Introduction}
+\begin{abstract}
+$\mu$TOSS is an \verb=R= package providing an open source, easy-to-extend platform for
+multiple hypothesis testing (MHT), one of the most active research fields in statistics over the last 10-15 years. Its first motivation is to establish a
+common platform and standardization for MHT procedures at large. The
+$\mu$TOSS software has been designed and written in the framework of a ``Harvest Programme'' call of the PASCAL2 European research network. Basically,
+it consists of the two R packages \verb=mutoss= and \verb=mutossGUI=. For researchers, it features a convenient unification of interfaces for MHT procedures (including standardized functions to access existing specific MHT \verb=R= packages such as \verb=multtest= and \verb=multcomp=, as well as recent MHT procedures that are not available elsewhere)  and
+helper functions facilitating the setup of benchmark simulations for comparison of competing methods. For end users, a graphical user interface and an online user's guide for finding appropriate methods for a given specification of the multiple testing problem is included. Ongoing maintenance and subsequent extensions will aim at establishing $\mu$TOSS as a state of the art in statistical computing for MHT.
+\end{abstract}
 
-The $\mu Toss$ packages allow the user to discover, apply and compare
+\section{Introduction}	
+
+The $\mu$TOSS packages allow the user to discover, apply and compare
 multiple testing procedure and multiple interval estimation procedures.
 
-The $\mu Toss$ packages include a corpus of functions implementing
+The $\mu$TOSS packages include a corpus of functions implementing
 and integrating these procedures and a GUI. These are found in the
 mutoss and mutossGUI packages respectively.
 
 
-\section{$\mu Toss$ Rationale}
+\section{$\mu$TOSS Rationale}
 
-The rationale behind the $\mu Toss$ packages is two-fold.
+The rationale behind the $\mu$TOSS packages is two-fold.
 
 It is aimed at allowing statisticians to discover, apply and compare
 standard and custom multiplicity controlling procedures. This is achieved
@@ -41,7 +74,7 @@ package.
 \framebox{\begin{minipage}[t]{1\columnwidth}%
 At the time of release, the package has only undergone basic testing.
 This being the case, we recommend new data to be analyzed with standard
-software alongside $\mu Toss$. This is planned to change in future
+software alongside $\mu$TOSS. This is planned to change in future
 releases.%
 \end{minipage}}
 
