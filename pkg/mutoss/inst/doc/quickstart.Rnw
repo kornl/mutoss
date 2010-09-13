@@ -6,6 +6,8 @@
 
 \begin{document}
 
+% \VignetteIndexEntry{MuToss Quick Start Guide}
+
 \title{$\mu Toss$ Quick Start Guide}
 
 
