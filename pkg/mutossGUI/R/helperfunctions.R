@@ -45,3 +45,7 @@ getErrorMsg <- function() {
 	#return(textConnectionValue(mutossGUI.vars$errorCon))
 	return(.mutossGUIerrorMsg)
 }
+
+showRejected <- function() {
+	
+}
