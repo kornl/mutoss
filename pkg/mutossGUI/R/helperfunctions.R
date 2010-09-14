@@ -1,5 +1,3 @@
-mutossGUI.vars <- list()
-
 mutossGUIVars <- local({
 			outputCon <- NULL
 			errorCon <- NULL
@@ -9,7 +7,7 @@ mutossGUIVars <- local({
 
 startRecording <- function() {
 	mutossGUIVars$setOutput(textConnection(".mutossGUIoutput", open="w"))
-	mutossGUIVars$setError(mutossGUI.vars$errorCon <- textConnection(".mutossGUIerrorMsg", open="w"))
+	mutossGUIVars$setError(textConnection(".mutossGUIerrorMsg", open="w"))
 	sink(mutossGUIVars$getOutput())
 	sink(mutossGUIVars$getError(), type="message")
 }
