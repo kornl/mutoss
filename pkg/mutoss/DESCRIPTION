@@ -1,7 +1,7 @@
 Package: mutoss
 Type: Package
 Title: Unified multiple testing procedures
-Version: 0.1-2
+Version: 0.1-3
 Date: 2010-08-17
 Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
     Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
