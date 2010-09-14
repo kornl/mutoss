@@ -46,6 +46,7 @@ getErrorMsg <- function() {
 	return(.mutossGUIerrorMsg)
 }
 
-showRejected <- function() {
-	
+showRejected <- function(obj) {
+	obj <- get(obj)
+	print(which(obj@rejected))
 }
