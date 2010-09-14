@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.af.commons.Localizer;
 import org.af.commons.errorhandling.ErrorDialog;
 import org.af.commons.logging.ApplicationLog;
 import org.af.commons.logging.LoggingSystem;

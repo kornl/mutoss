@@ -5,19 +5,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.af.jhlir.call.RLegalName;
 import org.af.jhlir.call.RNamedArgument;
 import org.af.jhlir.call.RObj;
 import org.mutoss.MuTossControl;
 import org.mutoss.gui.MuTossGUI;
 import org.mutoss.gui.loaddata.RObjectChooser;
-import org.mutoss.gui.widgets.VarSelectBox;
 
 public class RObjectWidget extends JPanel implements ParameterWidget, ActionListener {
 

@@ -2,13 +2,12 @@ package org.mutoss;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.BadLocationException;
 
 import org.af.commons.errorhandling.ErrorHandler;
 import org.af.jhlir.backends.rengine.RCallServicesREngine;
+import org.af.jhlir.call.RList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mutoss.gui.DebugTextConsole;
@@ -30,8 +29,8 @@ public class MuTossControl implements ActionListener {
 	public static final String DATA_INFO = "show data info";
 	public static final String LOAD_R_P_VALUES = "load r p-values";
 	public static final String PVALUE_INFO = "info p-values";
-	public static final String ADJ_PVALUE_INFO = "ajusted p-values";
-	public static final String RELECTED_INFO = "ajusted p-values";
+	public static final String ADJ_PVALUE_INFO = "info ajusted p-values";
+	public static final String RELECTED_INFO = "info rejected";
 	public static final String LOAD_R_MODEL = "load r model";
 	public static final String SPECIFY_MODEL = "specify model";	
 	public static final String MODEL_INFO = "show model info";
@@ -182,9 +181,14 @@ public class MuTossControl implements ActionListener {
 				e.getActionCommand().equals(MODEL_GILL2)) {
 			JOptionPane.showMessageDialog(MuTossGUI.getGUI(), "Not yet implemented!", "Not yet implemented!", JOptionPane.INFORMATION_MESSAGE);
 			//MethodHandler.getMethodHandler().apply("mutoss.ftest.model");
+		} else if (e.getActionCommand().equals(RELECTED_INFO)) {
+			getGUI().getTabbedPane().setSelectedIndex(0);
+			MuTossControl.startRecording();		
+			MuTossControl.getR().call("mutossGUI:::showRejected", getObj().getObjName());
+			MuTossControl.stopRecording("Rejected");						
 		} else { // We want to apply a function:
 			MethodHandler.getMethodHandler().apply(e.getActionCommand());
-		}
+		} 
 		mp.enableAllButtons();
 	}
 	
@@ -203,5 +207,29 @@ public class MuTossControl implements ActionListener {
     	control = null;
     	//System.exit(0);
 	}
+    
+    public static void startRecording() {
+    	MuTossControl.getR().eval("mutossGUI:::startRecording()");
+    }
+    
+    
+    public static void stopRecording(String header) {
+    	MuTossControl.getR().eval("mutossGUI:::stopRecording()");
+		OutputPanel.getOutputPanel().getOutputPane().appendHeadline(header);
+		String[] rOutput = MuTossControl.getR().eval("mutossGUI:::getOutput()").asRChar().getData();
+		String outputString = "<p align=\"left\"><pre>";
+		for (String ro : rOutput) {
+			outputString += ro + "\n";
+		}
+		outputString += "</pre></p>";
+		OutputPanel.addOutput(outputString);	
+		String[] rError = MuTossControl.getR().eval("mutossGUI:::getErrorMsg()").asRChar().getData();
+		String errorString = "<p align=\"left\"><font color=#FF0000>";
+		for (String ro : rError) {
+			errorString += ro + "\n";
+		}
+		errorString += "</font></p>";
+		OutputPanel.addOutput(errorString);		
+    }
 	
 }
