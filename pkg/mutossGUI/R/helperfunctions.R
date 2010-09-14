@@ -19,7 +19,7 @@ stopRecording <- function() {
 	close(mutossGUIVars$getOutput())
 	close(mutossGUIVars$getError())
 	#}, error = function(e) recover())
-	return(list(output=mutossGUI.vars$output, errorMsg=mutossGUI.vars$errorMsg))
+	return(list(output=getOutput(), errorMsg=getErrorMsg()))
 }
 
 myContrMat <- function(type,l,df,group) {
