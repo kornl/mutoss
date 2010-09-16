@@ -16,6 +16,8 @@
 }
 \author{Kornelius Rohmeyer \email{rohmeyer@small-projects.de}}
 \examples{
-  \dontrun{reportBug()}
+  \dontrun{
+  reportBug()
+  }
 }
 \keyword{manip}
