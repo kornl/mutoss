@@ -17,6 +17,8 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.mutoss.MuTossControl;
 
+import af.statguitoolkit.config.Configuration;
+
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
@@ -114,7 +116,11 @@ public class ErrorDialogSGTK extends ErrorDialog {
         return collapseStringArray(ss, "\n");
     }
 
-    
+    protected Hashtable<String, String> getInfoTable() {
+    	Hashtable<String, String> table = super.getInfoTable();
+    	table.put("Subject", "MuTossGUI bug report");
+    	return table;
+    }
     
 }
 
