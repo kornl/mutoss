@@ -118,7 +118,7 @@ public class ErrorDialogSGTK extends ErrorDialog {
 
     protected Hashtable<String, String> getInfoTable() {
     	Hashtable<String, String> table = super.getInfoTable();
-    	table.put("Subject", "MuTossGUI bug report");
+    	table.put("Subject", "MuTossGUI bug report from "+System.getProperty("user.name", "<unknown user name>")+" on "+System.getProperty("os.name", "<unknown OS>"));
     	return table;
     }
     
