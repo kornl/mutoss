@@ -34,7 +34,7 @@ mutoss.storey_pi0_est <- function() { return(new(Class="MutossMethod",
 
 
 ABH_pi0_est <- function(pValues)
-{	
+{
 	m <- length(pValues)
 	index <- order(pValues)
 	spval <- pValues[index]
@@ -42,15 +42,12 @@ ABH_pi0_est <- function(pValues)
 	for (k in 1:m) {
 		m0.m[k] <- (m + 1 - k)/(1 - spval[k])
 	}
-	# TODO: diff seems to be wrong, this should be checked
 	idx <- which(diff(m0.m, na.rm = TRUE) > 0)
 	if (length(idx) == 0)
-		grab <- 1
-	else
-		grab <- min(idx, na.rm = TRUE)
-
-	pi0.ABH <- (ceiling(min(m0.m[grab], m)) / m)
-	return(list(pi0 =pi0.ABH))
+		grab <- 2
+	else grab <- min(idx, na.rm = TRUE)+1
+	pi0.ABH <- (ceiling(min(m0.m[grab], m))/m)
+	return(list(pi0 = pi0.ABH))
 }
 
 
