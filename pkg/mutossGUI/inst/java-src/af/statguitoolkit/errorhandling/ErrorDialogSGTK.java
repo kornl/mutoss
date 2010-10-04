@@ -17,8 +17,6 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.mutoss.MuTossControl;
 
-import af.statguitoolkit.config.Configuration;
-
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
