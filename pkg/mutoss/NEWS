@@ -1,3 +1,7 @@
+Version 0.1-5
+=============
+- jointCDF.orderedUnif which was only a helper function is now exported
+
 Version 0.1-4
 =============
 - Bug fix in ABH_pi0_est
