@@ -17,7 +17,7 @@ import org.af.jhlir.call.RVectorFactor;
 
 
 //TODO selection of rows/cols and copy paste
-public class DataTable extends JXTable2 {
+public class DataTable extends JTable {
     public static final Color NUM_COLOR = Color.BLUE;
     public static final Color INT_COLOR = new Color(0, 155, 0);
     public static final Color FACTOR_COLOR = Color.RED;
@@ -37,7 +37,7 @@ public class DataTable extends JXTable2 {
         getColumnModel().setColumnSelectionAllowed(false);
         setRowSelectionAllowed(false);
         setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        setColumnControlVisible(true);
+       // setColumnControlVisible(true);
 
         getTableHeader().setComponentPopupMenu(new HeaderPopup(this));
         setComponentPopupMenu(new DataTablePopup(this));
