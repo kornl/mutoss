@@ -20,7 +20,7 @@
 		}		
 	}
 	
-	classes <- system.file("java", package = "JavaGUI", lib.loc = NULL)
+	classes <- system.file("java", package = "CommonJavaJars", lib.loc = NULL)
 	if (nchar(classes)) {
 		.jaddClassPath(classes)
 		jars <- grep(".*\\.jar", list.files(classes, full.names = TRUE), TRUE, value = TRUE)
