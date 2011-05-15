@@ -17,7 +17,6 @@
 	<classpathentry kind="lib" path="/gMCP/pkg/JavaGUI/inst/java/poi-3.6-20091214.jar"/>
 	<classpathentry kind="lib" path="/gMCP/pkg/JavaGUI/inst/java/swing-worker-1.1.jar"/>
 	<classpathentry kind="lib" path="/gMCP/pkg/JavaGUI/inst/java/swingx-2008_05_18.jar"/>
-	<classpathentry kind="lib" path="/gMCP/pkg/JavaGUI/inst/java/wizard.jar"/>
 	<classpathentry kind="lib" path="build/javaGD.jar"/>
 	<classpathentry kind="lib" path="build/JRI.jar"/>
 	<classpathentry kind="lib" path="build/JRIEngine.jar"/>
