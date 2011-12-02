@@ -1,3 +1,8 @@
+Version 0.1-6
+=============
+- simulation Tool: Objects returned by simulation() use less memory and
+  generated data can be discarded.
+
 Version 0.1-5
 =============
 - jointCDF.orderedUnif which was only a helper function is now exported
