@@ -6,7 +6,8 @@
 }
 \details{
   This function executes the method \code{startGUI()} of the Java class \code{MuTossGUI}
-  defined in the JAR file \file{inst/java/mutossgui.jar} inside the R package.  
+  defined in the JAR file \file{inst/java/mutossgui.jar} inside the R package. 
+  Further details are given in the package vignette.
 }
 \usage{
   mutossGUI(debugOutput=FALSE)
@@ -17,9 +18,6 @@
 	If set to \code{TRUE} the output is also printed to the R Console.
 	Note that the behavior can only be influenced the first time the GUI is called in an R session. After that this parameter is ignored.
   }
-}
-\details{
-  Details are given in the package vignette.
 }
 \value{
   None (invisible \code{NULL}).
