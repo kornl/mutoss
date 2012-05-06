@@ -36,12 +36,12 @@ myContrMat <- function(type,l,df,group) {
 
 getOutput <- function() {
 	#return(textConnectionValue(mutossGUI.vars$outputCon))
-	return(.mutossGUIoutput)
+	return(get(".mutossGUIoutput"))
 }
 
 getErrorMsg <- function() {
 	#return(textConnectionValue(mutossGUI.vars$errorCon))
-	return(.mutossGUIerrorMsg)
+	return(get(".mutossGUIerrorMsg"))
 }
 
 showRejected <- function(obj) {
