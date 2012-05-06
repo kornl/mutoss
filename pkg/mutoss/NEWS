@@ -1,3 +1,8 @@
+Version 0.1-7
+=============
+- corrections in the Hommel documentation
+- package multtest is a dependency
+
 Version 0.1-6
 =============
 - simulation Tool: Objects returned by simulation() use less memory and

@@ -75,14 +75,14 @@ SD <- function(pValues, criticalValues)
 {
 	SUD(criticalValues = criticalValues, 
 			pValues = pValues,
-			startIDX = 1)
+			startIDX_SUD = 1)
 }
 
 SU <- function(pValues, criticalValues) 
 {
 	SUD(criticalValues = criticalValues, 
 			pValues = pValues,
-			startIDX = length(criticalValues))
+			startIDX_SUD = length(criticalValues))
 }
 
 
