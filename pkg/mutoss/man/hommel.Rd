@@ -7,9 +7,7 @@
 the FWER in the strong sense when the hypothesis tests are independent
 or when they are non-negatively associated.
 
-The method base upon the closure principle to assure the FWER alpha and 
-the critical Values of this procedure are given by alpha/n,
-alpha/(n-1), ..., alpha/2, alpha/1.}
+The method is based upon the closure principle and the Simes test.}
 \value{A list containing:
 
 \item{adjPValues}{A numeric vector containing the adjusted pValues}
@@ -18,13 +16,18 @@ alpha/(n-1), ..., alpha/2, alpha/1.}
 
 \item{criticalValues}{A numeric vector containing critical values used in the step-up-down test.}
 
-\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}}
+\item{errorControl}{A Mutoss S4 class of type \code{errorControl}, containing the type of error controlled by the function and the level \code{alpha}.}
+}
 \author{HackNiklas}
-\references{G. Hommel (1988). A stagewise rejective multiple test procedure based on a modified Bonferroni test.
-Biometrika 75, pp. 383-386}
-\arguments{\item{pValues}{pValues to be used. They need a independent structure.}
+\references{
+G. Hommel (1988). A stagewise rejective multiple test procedure based on a modified Bonferroni test. Biometrika 75, pp. 383-386}
+\arguments{
+\item{pValues}{pValues to be used. They need a independent structure.}
 \item{alpha}{The level at which the FWER should be controlled}
-\item{silent}{Logical. If true, any output on the console will be suppressed.}}
-\examples{pval <- c(runif(50), runif(50, 0, 0.01))
+\item{silent}{Logical. If true, any output on the console will be suppressed.}
+}
+\examples{
+pval <- c(runif(50), runif(50, 0, 0.01))
 result 	<- hommel(pval, 0.05)
-result 	<- hommel(pval, 0.05, silent = TRUE)}
+result 	<- hommel(pval, 0.05, silent = TRUE)
+}

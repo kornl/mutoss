@@ -1,6 +1,5 @@
 hommel <- function(pValues, alpha,silent=FALSE) {
 	m <- length(pValues)
-	criticalValues <- sapply(1:m, function(i) (i*alpha)/m)
 	adjPValues <- p.adjust(pValues, "hommel")
 	rejected <- adjPValues<=alpha
 	if (! silent)
@@ -8,7 +7,7 @@ hommel <- function(pValues, alpha,silent=FALSE) {
 		cat("\n\n\t\tHommel's (1988) step-up Procedure\n\n")
 		printRejected(rejected, pValues, NULL)
 	}
-	return(list(adjPValues=adjPValues, criticalValues=criticalValues, rejected=rejected,
+	return(list(adjPValues=adjPValues, rejected=rejected,
 					errorControl = new(Class='ErrorControl',type="FWER",alpha=alpha)))
 }
 mutoss.hommel <- function() { return(new(Class="MutossMethod",
