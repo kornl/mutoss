@@ -23,8 +23,7 @@
 	jars <- c("afcommons", "commons-collections", "commons-lang", 
 			"commons-logging", "commons-validator", "forms", 
 			"iText", "jhlir.jar", "jxlayer", 
-			"log4j", "mysql-connector-java", 
-			"swing-worker", "poi")
+			"log4j", "swing-worker", "poi")
 	
 	loadJars(jars)
 	
