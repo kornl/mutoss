@@ -19,7 +19,7 @@
 	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/jxlayer.jar"/>
 	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/mysql-connector-java-5.1.16-bin.jar"/>
-	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/poi-3.6-20091214.jar"/>
 	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/swing-worker-1.1.jar"/>
+	<classpathentry kind="lib" path="/gMCP/pkg/CommonJavaJars/inst/java/poi-3.8-20120326.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
