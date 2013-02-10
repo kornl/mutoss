@@ -13,3 +13,4 @@ Depends: R (>= 2.10.0), multcomp (>= 1.1-0), methods, plotrix, lattice, multtest
 Suggests: fdrtool, mvtnorm, qvalue, RUnit
 License: GPL
 LazyLoad: yes
+URL: http://mutoss.r-forge.r-project.org/
