@@ -11,8 +11,9 @@
 		}		
 	}
 	
+	rJavaVersion <- utils::sessionInfo()$otherPkgs$rJava$Version
 	# If we have a rJava version > 0.9-3 load JRIEngine.jar and REngine.jar
-    if (!is.null(sessionInfo()$otherPkgs$rJava$Version) && sessionInfo()$otherPkgs$rJava$Version > "0.9-3") {
+    if (!is.null(rJavaVersion) && rJavaVersion > "0.9-3") {
 		classes <- system.file("JRI", package = "CommonJavaJars", lib.loc = NULL)
 		if (nzchar(classes)) {
 			.jaddClassPath(classes)
