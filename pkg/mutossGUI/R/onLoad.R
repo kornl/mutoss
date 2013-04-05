@@ -42,5 +42,8 @@
 	
 	## we supply our own JavaGD class
 	Sys.setenv("JAVAGD_CLASS_NAME"="org/mutoss/gui/JavaGD")
+} 
+
+.onAttach <- function(libname, pkgname) {
 	packageStartupMessage("\nFor starting the MuToss-GUI enter:\nmutossGUI()\n")
-}  
+}
