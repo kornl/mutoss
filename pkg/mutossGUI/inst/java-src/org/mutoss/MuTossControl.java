@@ -63,7 +63,11 @@ public class MuTossControl implements ActionListener {
 	public static DebugTextConsole console = null;
 
 	public static RCallServicesREngine getR() {
-		if (rcs == null) {			
+		if (rcs == null) {	
+			if (!Rengine.versionCheck()) {
+	            System.err.println("Error: API version of the Rengine class and the native binary differ.");
+	            System.exit(1);
+	        }
 			Rengine rengine = Rengine.getMainEngine();
 			if (rengine == null) {
 				// Call java with VM arguments: -Declipse="true"
