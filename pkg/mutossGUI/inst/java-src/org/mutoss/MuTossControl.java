@@ -117,7 +117,6 @@ public class MuTossControl implements ActionListener {
 		return control;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		MuTossMainPanel mp = MuTossGUI.getGUI().getMpanel();
 		logger.info("Got ActionCommand: "+e.getActionCommand());

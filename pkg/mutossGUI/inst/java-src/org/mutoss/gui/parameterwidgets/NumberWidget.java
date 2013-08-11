@@ -13,7 +13,6 @@ public class NumberWidget extends RealTextField implements ParameterWidget {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public Object getParameter() {
 		double val;
 		try {

@@ -193,7 +193,6 @@ public class MethodDialog extends JDialog implements ActionListener {
 		return selected;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(HorizontalButtonPane.OK_CMD)) {
 			RList argsList = MuTossControl.getR().eval("as.list(formals("+method.getFunction()+"))").asRList();

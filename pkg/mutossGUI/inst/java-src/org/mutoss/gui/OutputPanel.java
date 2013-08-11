@@ -41,12 +41,10 @@ public class OutputPanel extends JPanel implements RMainLoopCallbacks {
 		taOutput.setAlignmentX(LEFT_ALIGNMENT);
 	}
 
-	@Override
 	public void rBusy(Rengine arg0, int which) {
 		taOutput.appendParagraph("rBusy("+which+")");		
 	}
 
-	@Override
 	public String rChooseFile(Rengine re, int newFile) {
 		FileDialog fd = new FileDialog(MuTossGUI.getGUI(), (newFile==0)?"Select a file":"Select a new file", (newFile==0)?FileDialog.LOAD:FileDialog.SAVE);
 		fd.show();
@@ -56,13 +54,10 @@ public class OutputPanel extends JPanel implements RMainLoopCallbacks {
 		return res;
 	}
 
-	@Override
 	public void rFlushConsole(Rengine arg0) {}
 
-	@Override
 	public void rLoadHistory(Rengine arg0, String arg1) {}
 
-	@Override
 	public String rReadConsole(Rengine re, String prompt, int addToHistory) {
 		System.out.print(prompt);
 		try {
@@ -75,15 +70,12 @@ public class OutputPanel extends JPanel implements RMainLoopCallbacks {
 		return null;
 	}
 
-	@Override
 	public void rSaveHistory(Rengine arg0, String arg1) {}
 
-	@Override
 	public void rShowMessage(Rengine re, String message) {
 		taOutput.appendParagraph("rShowMessage \""+message+"\"");
 	}
 
-	@Override
 	public void rWriteConsole(Rengine re, String text, int oType) {
 		taOutput.appendParagraph(text);
 	}

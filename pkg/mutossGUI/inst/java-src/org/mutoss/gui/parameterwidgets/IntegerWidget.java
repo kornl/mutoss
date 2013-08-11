@@ -13,7 +13,6 @@ public class IntegerWidget extends IntegerTextField implements ParameterWidget {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public Object getParameter() {
 		double val;
 		try {

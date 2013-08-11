@@ -116,7 +116,6 @@ public class MuTossMainPanel extends JPanel implements MouseListener, ActionList
 	}
 
 
-	@Override
 	public void actionPerformed(ActionEvent event) {		
 		
 	}
@@ -125,8 +124,6 @@ public class MuTossMainPanel extends JPanel implements MouseListener, ActionList
 		return MuTossControl.getObj();		
 	}
 	
-
-	@Override
 	public void mouseClicked(MouseEvent event) {
 		JPopupMenu popupmenu = new JPopupMenu();
 		JMenuItem item;		

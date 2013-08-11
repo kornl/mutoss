@@ -14,7 +14,6 @@ public class BooleanWidget extends JCheckBox implements ParameterWidget {
 		this.name = name;
 	}
 
-	@Override
 	public Object getParameter() {		
 		return new RNamedArgument(this.name, MuTossControl.getR().createRObject(new boolean[] {this.isSelected()}));
 	}

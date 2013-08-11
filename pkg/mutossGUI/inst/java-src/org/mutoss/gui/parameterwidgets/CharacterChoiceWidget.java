@@ -14,7 +14,6 @@ public class CharacterChoiceWidget extends JComboBox implements ParameterWidget 
 		this.name = name;
 	}
 	
-	@Override
 	public Object getParameter() {	
 		return new RNamedArgument(name, MuTossControl.getR().createRObject(this.getSelectedItem().toString()));
 	}

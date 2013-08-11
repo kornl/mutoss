@@ -44,12 +44,10 @@ public class RObjectWidget extends JPanel implements ParameterWidget, ActionList
 		choose.addActionListener(this);
 	}
 	
-	@Override
 	public RNamedArgument getParameter() {	
 		return new RNamedArgument(name, MuTossControl.getR().eval(tf.getText()));
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		RObjectChooser roc = new RObjectChooser(MuTossGUI.getGUI());
 		if (roc.getSelected() != null) {
