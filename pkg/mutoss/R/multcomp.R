@@ -11,8 +11,6 @@
 
 multcomp.wrapper <- function(model, hypotheses, alternative, rhs=0, alpha, factorC ) {
 	
-	require("multcomp")	
-	
 	type<-""
 	
 	if (any(factorC== c("Tukey", "Dunnett", "Sequen",

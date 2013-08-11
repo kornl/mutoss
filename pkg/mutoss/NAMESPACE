@@ -1,3 +1,7 @@
+importFrom(multcomp, contrMat, glht, mcp)
+importFrom(multtest, MTP, mt.rawp2adjp, fwer2fdr, fwer2tppfp, fwer2gfwer)
+importFrom(plotrix, plotCI)
+importFrom(mvtnorm, pmvt, qmvnorm, qmvt, pmvnorm)
 export(augmentation)
 export(compareMutoss)
 export(mu.compare.adjusted)

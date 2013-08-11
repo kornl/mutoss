@@ -2,7 +2,6 @@
 # mutoss.plotCI
 
 mutoss.plotCI<-function(mat){
-	require(plotrix)
 	diff<-max(mat[,1])-min(mat[,1])
 	if(any(is.na(mat[,2])))	mat[,2]<-min(mat[,1])-diff*2
 	if(any(is.na(mat[,3])))	mat[,3]<-max(mat[,1])+diff*2

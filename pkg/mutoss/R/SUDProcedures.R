@@ -767,7 +767,6 @@ mutoss.adaptiveSTS <- function() { return(new(Class="MutossMethod",
 
 #---------------------------- Sidack Step Down--------------------------------#
 SidakSD <- function(pValues, alpha, silent=FALSE) {
-	require(multtest)
 	m <- length(pValues)
 	criticalValues <- sapply(1:m, function(i) 1-(1-alpha)^(1/(m-i+1)))
 	#rejected <- SD(pValues, criticalValues)

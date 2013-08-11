@@ -5,7 +5,6 @@
 ### one sample model with multtest ###
 
 onesamp.multtest <- function(data, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
-	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = NULL, Z = NULL, Z.incl = NULL, Z.test = NULL, 
 			na.rm = TRUE, test = "t.onesamp", robust = robust, 
 			standardize = TRUE, alternative = alternative, psi0 = psi0, 
@@ -74,7 +73,6 @@ mutoss.onesamp.multtest <- function() { return(new(Class="MutossMethod",
 
 
 paired.multtest <- function(data, model, alternative, robust, psi0, alpha, nulldist, B=1000, method, seed=12345) {
-	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = model$classlabel, Z = NULL, Z.incl = NULL, Z.test = NULL, 
 			na.rm = TRUE, test = "t.pair", robust = robust, 
 			standardize = TRUE, alternative = alternative, psi0 = psi0, 
@@ -143,7 +141,6 @@ mutoss.paired.multtest <- function() { return(new(Class="MutossMethod",
 ### two sample model with multtest ####			
 			
 twosamp.multtest <- function(data, model, alternative, robust, psi0, equalvar, alpha, nulldist, B=1000, method, seed=12345) {
-	require(multtest)
 	if (equalvar) {
 		result <- MTP(X=data, W = NULL, Y = model$classlabel, Z = NULL, Z.incl = NULL, Z.test = NULL, 
 				na.rm = TRUE, test = "t.twosamp.equalvar", robust = robust, 
@@ -230,7 +227,6 @@ mutoss.twosamp.multtest <- function() { return(new(Class="MutossMethod",
 
 
 ftest.multtest <- function(data, model, robust, alpha, nulldist, B=1000, method, seed=12345) {
-	require(multtest)
 	result <- MTP(X=data, W = NULL, Y = model$classlabel, Z = NULL, Z.incl = NULL, Z.test = NULL, 
 			na.rm = TRUE, test = "f", robust = robust, 
 			standardize = TRUE, typeone = "fwer", 

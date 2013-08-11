@@ -11,8 +11,6 @@ nparcomp <- function (formula, data, type = c("UserDefined", "Tukey", "Dunnett",
 		asy.method = c("logit", "probit", "normal", "mult.t"), plot.simci = FALSE,
 		info = TRUE, contrastMatrix = NULL)
 {
-	mvtnorm <- require(mvtnorm, quietly = TRUE)
-	multcomp <- require(multcomp, quietly = TRUE)
 	corr.mat <- function(m, nc) {
 		rho <- matrix(c(0), ncol = nc, nrow = nc)
 		for (i in 1:nc) {
@@ -594,7 +592,6 @@ nparcomp <- function (formula, data, type = c("UserDefined", "Tukey", "Dunnett",
 weightMatrix <- function(n,type = c("UserDefined","Tukey","AVE","Dunnett", "Sequen",
 				"Changepoint", "Marcus",
 				"McDermott", "Williams", "UmbrellaWilliams"), base = 1, contrast.matrix=NULL) {
-	multcomp <- require(multcomp, quietly = TRUE)
 	a  <- length (n)
 	
 	n.col <- a*(a-1)/2

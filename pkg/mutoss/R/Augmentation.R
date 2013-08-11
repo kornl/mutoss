@@ -1,6 +1,5 @@
 
 augmentation <- function(adjPValues, newErrorControl, newK, newQ, silent=FALSE) {
-	require(multtest)
 	if (newErrorControl == "gFWER") {	
 		out = fwer2gfwer(adjPValues, k = newK)
 		if(!silent) cat('\n\n\t\tGeneralized Family-Wise Error Rate\n\n')

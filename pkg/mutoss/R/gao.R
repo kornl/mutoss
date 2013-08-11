@@ -7,9 +7,6 @@
 
 gao<-function(formula, data, alpha = 0.05, control = NULL , silent = FALSE){
 	
-requireLibrary("multcomp")
-	
-	
 	dat <- model.frame(formula, data)
 	if (ncol(dat) != 2) {
 		stop("Specify one response and only one class variable in the formula !")
