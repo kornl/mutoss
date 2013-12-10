@@ -37,7 +37,10 @@ aorc() by default behaves like an step-up test.}
 rejection curve for the finite sample case. If betaAdjustment is not
 set an algorithm will calculate it, but this can be time-consuming.}
 \item{silent}{If true any output on the console will be suppressed.}}
-\examples{r <- c(runif(10), runif(10, 0, 0.01))
+\examples{  
+\dontrun{ # Takes more than 6 seconds therefor CRAN should not check it:
+r <- c(runif(10), runif(10, 0, 0.01))
 result <- aorc(r, 0.05)
 result <- aorc(r, 0.05, startIDX_SUD = 1)  ## step-down
 result <- aorc(r, 0.05, startIDX_SUD = length(r))  ## step-up}
+}
