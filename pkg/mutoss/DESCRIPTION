@@ -10,8 +10,8 @@ Description: The Mutoss package and accompanying mutossGUI package are
     designed to ease the application and comparison of multiple
     hypothesis testing procedures.
 Depends: R (>= 2.10.0), mvtnorm
-Suggests: fdrtool, qvalue, RUnit
-Imports: plotrix, lattice, multtest (>= 2.2.0), multcomp (>= 1.1-0), methods 
+Suggests: fdrtool, qvalue, RUnit, lattice
+Imports: plotrix, multtest (>= 2.2.0), multcomp (>= 1.1-0), methods 
 License: GPL
 LazyLoad: yes
 URL: http://mutoss.r-forge.r-project.org/
