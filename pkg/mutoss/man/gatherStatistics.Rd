@@ -32,11 +32,15 @@ all elements in simObject$results with the same parameter constellation. If this
 will be done. Instead the resulting data.frame will keep one row
 for every object in simObject$results.}}
 \examples{#' # this function generates pValues 
-myGen <- function(n, n0) list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), runif(n0))), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+myGen <- function(n, n0) {
+  list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), runif(n0))), 
+       groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+}
 
 # need some simulation()-Object I can work with 
 sim <- simulation(replications = 10, list(funName="myGen", fun=myGen, n=200, n0=c(50,100)), 
-list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
+list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), 
+  alpha=c(0.25, 0.5)),
 list(funName="holm", fun=holm, alpha=c(0.25, 0.5),silent=TRUE)))
 
 # Make my own statistic function
@@ -48,7 +52,9 @@ result.all <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error))
 # Average over all sim$results-Objects with common parameters 
 result1 <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(MEAN = mean))
 print(result1)  
-result2 <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(q05 = function(x) quantile(x, probs=0.05), MEAN = mean, q95 = function(x) quantile(x, probs=0.95)))
+result2 <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), 
+             list(q05 = function(x) quantile(x, probs=0.05), 
+             MEAN = mean, q95 = function(x) quantile(x, probs=0.95)))
 print(result2)
 
 # create some plots

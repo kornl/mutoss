@@ -21,10 +21,14 @@ $funName (character) $fun (function)}
 for the simulation.}
 \item{discardProcInput}{A list of lists which contains the procedures with their  parameters}}
 \examples{# this function generates pValues 
-myGen <- function(n, n0) list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), runif(n0))), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+myGen <- function(n, n0) {
+  list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), runif(n0))), 
+  groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+}
 
 sim <- simulation(replications = 10, list(funName="myGen", fun=myGen, n=200, n0=c(50,100)), 
-list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
+list(list(funName="BH", 
+  fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
 list(funName="holm", fun=holm, alpha=c(0.25, 0.5),silent=TRUE)))
 
 # the following happend:
@@ -50,7 +54,8 @@ all(BH(sim$data[[2]]$procInput$pValues, 0.5, silent=TRUE)$adjPValues == sim$resu
 # Just calculating some statistics and making some plots
 NumberOfType1Error <- function(data, result) sum(data$groundTruth * result$rejected)
 result.all <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error))
-result <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), list(median=median, mean=mean, sd=sd))
+result <- gatherStatistics(sim, list(NumOfType1Err = NumberOfType1Error), 
+  list(median=median, mean=mean, sd=sd))
 print(result)
 require(lattice)
 histogram(~NumOfType1Err | method*alpha, data = result.all$statisticDF)

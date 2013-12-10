@@ -15,9 +15,12 @@
 \item{recordHistory}{if true, the calling command is concatenated verbatim
   to the commandHistory slot}
 \item{...}{additional parameters that are passed to the function}}
-\examples{newObjectBonf <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=bonferroni, label="Bonferroni Correction", alpha=0.05)
+\examples{newObjectBonf <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), 
+  f=bonferroni, label="Bonferroni Correction", alpha=0.05)
 \dontrun{ TODO: EXAMPLE PROBLEM
-newObjectHolm <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=holm, label="Holm's step-down-procedure", alpha=0.05, silent=T)
+newObjectHolm <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), 
+  f=holm, label="Holm's step-down-procedure", alpha=0.05, silent=T)
 
-newObjectAORC <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=aorc, label="Asymptotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
+newObjectAORC <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), 
+  f=aorc, label="Asymptotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
 }}

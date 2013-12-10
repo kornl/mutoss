@@ -29,20 +29,28 @@ assumed that coef and vcov methods are available for model.}
 \examples{data(warpbreaks)
 # Tukey contrast on the levels of the factor 'Tension'
 
-multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), hypotheses = "Tukey", alternative="two.sided", factorC="tension",alpha=0.05)
+multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), 
+  hypotheses = "Tukey", alternative="two.sided", factorC="tension",alpha=0.05)
 
 # Williams contrast on 'Tension'
-multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), hypotheses= "Williams", alternative="two.sided",alpha=0.05,factorC="tension")
+multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), 
+  hypotheses= "Williams", alternative="two.sided",alpha=0.05,factorC="tension")
 
 # Userdefined contrast matrix
 K <-matrix(c(-1,0,1,-1,1,0, -1,0.5,0.5),ncol=3,nrow=3,byrow=TRUE)
-multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), hypotheses=K, alternative="two.sided",alpha=0.05,factorC="tension")
+multcomp.wrapper(aov(breaks ~ tension, data = warpbreaks), 
+  hypotheses=K, alternative="two.sided",alpha=0.05,factorC="tension")
 
 # Two-way anova
-multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), hypotheses="Tukey", alternative="two.sided",alpha=0.05,factorC="wool")
-multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), hypotheses="Tukey", alternative="two.sided",alpha=0.05,factorC="tension")
-multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), hypotheses=K, alternative="two.sided",alpha=0.05, factorC="tension")
+multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), 
+  hypotheses="Tukey", alternative="two.sided",alpha=0.05,factorC="wool")
+multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), 
+  hypotheses="Tukey", alternative="two.sided",alpha=0.05,factorC="tension")
+multcomp.wrapper(aov(breaks ~ tension*wool, data = warpbreaks), 
+  hypotheses=K, alternative="two.sided",alpha=0.05, factorC="tension")
 data(iris)
-multcomp.wrapper(model=lm(Sepal.Length ~ Species, data=iris),hypotheses="Tukey","two.sided",alpha=0.05, factorC="Species")
+multcomp.wrapper(model=lm(Sepal.Length ~ Species, data=iris), 
+  hypotheses="Tukey","two.sided",alpha=0.05, factorC="Species")
 K <-matrix(c(-1,0,1,-1,1,0, -1,0.5,0.5),ncol=3,nrow=3,byrow=TRUE)
-multcomp.wrapper(model=lm(Sepal.Length ~ Species, data=iris),hypotheses=K,"two.sided",alpha=0.05, factorC="Species")}
+multcomp.wrapper(model=lm(Sepal.Length ~ Species, data=iris),
+  hypotheses=K,"two.sided",alpha=0.05, factorC="Species")}

@@ -13,11 +13,15 @@ the used parameter.}
 \author{MarselScheer}
 \arguments{\item{simObject}{An object returned by simulation()}}
 \examples{#' # this function generates pValues 
-myGen <- function(n, n0) list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), runif(n0))), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+myGen <- function(n, n0) {
+  list(procInput=list(pValues = c(runif(n-n0, 0, 0.01), 
+       runif(n0))), groundTruth = c(rep(FALSE, times=n-n0), rep(TRUE, times=n0)))
+}
 
 # need some simulation()-Object I can work with 
 sim <- simulation(replications = 3, list(funName="myGen", fun=myGen, n=200, n0=c(50,100)), 
-list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), alpha=c(0.25, 0.5)),
+list(list(funName="BH", fun=function(pValues, alpha) BH(pValues, alpha, silent=TRUE), 
+  alpha=c(0.25, 0.5)),
 list(funName="holm", fun=holm, alpha=c(0.25, 0.5),silent=TRUE)))
 
 gatherParameters(sim)}

@@ -31,9 +31,25 @@ mu.compare.summary(comparison.list)}
 \examples{# TODO: EXAMPLE PROBLEMS
 \dontrun{
 \dontrun{Creating several Mutoss class objects}
-mu.test.obj.1 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=bonferroni, label="Bonferroni Correction", alpha=0.05, silent=T)#' 
-mu.test.obj.2 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=holm, label="Holm's step-down-procedure", alpha=0.05, silent=T)#' 
-mu.test.obj.3 <- mutoss.apply(new(Class="Mutoss", pValues=runif(10)), f=aorc, label="Asymtotically optimal rejection curve", alpha=0.05, startIDX_SUD = 1, silent=T)
+mu.test.obj.1 <- mutoss.apply(new(Class="Mutoss", 
+                                  pValues=runif(10)), 
+                                  f=bonferroni, 
+                                  label="Bonferroni Correction", 
+                                  alpha=0.05, 
+                                  silent=T)
+mu.test.obj.2 <- mutoss.apply(new(Class="Mutoss", 
+                                  pValues=runif(10)), 
+                                  f=holm, 
+                                  label="Holm's step-down-procedure", 
+                                  alpha=0.05,
+                                  silent=T)
+mu.test.obj.3 <- mutoss.apply(new(Class="Mutoss", 
+                                  pValues=runif(10)), 
+                                  f=aorc, 
+                                  label="Asymtotically optimal rejection curve", 
+                                  alpha=0.05, 
+                                  startIDX_SUD = 1, 
+                                  silent=T)
 \dontrun{Trying to coercing a non-Mutoss object}
 compareMutoss(1)
 \dontrun{ Coercing several objects into a list}
