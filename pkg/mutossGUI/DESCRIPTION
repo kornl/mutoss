@@ -7,7 +7,7 @@ Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
 Description: A graphical user interface for the MuToss Project
 Depends: R (>= 2.8.0), mutoss (>= 0.1-6), multcomp, plotrix, xlsxjars (>= 0.6.1)
-Imports: rJava (>= 0.8-0), JavaGD (>= 0.5-2), CommonJavaJars (>= 1.0.3), JGR
+Imports: rJava (>= 0.8-0), JavaGD (>= 0.5-2), CommonJavaJars (>= 1.0.5), JGR
 SystemRequirements: Java (>= 5.0)
 License: GPL
 URL: http://mutoss.r-forge.r-project.org/
