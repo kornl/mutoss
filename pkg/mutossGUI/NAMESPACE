@@ -1,5 +1,10 @@
-import("rJava")
+import(rJava)
+import(JGR)
 importFrom(CommonJavaJars, loadJars)
-import("mutoss")
+import(mutoss)
+importFrom(multcomp, contrMat)
+importFrom(plotrix, plotCI)
+importFrom(JavaGD, JavaGD)
+
 export("mutossGUI")
 export("reportBug")
