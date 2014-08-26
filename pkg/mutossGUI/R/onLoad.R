@@ -20,22 +20,14 @@
 			.jaddClassPath(jars)
 		}		
 	}
-  
-	# Adding poi jar files to Classpath:
-	classes <- system.file("java", package = "xlsxjars", lib.loc = NULL)
-	if (nzchar(classes)) {	  
-	  jars <- grep(".*\\.jar", list.files(classes, full.names = TRUE), TRUE, value = TRUE)
-	  if (length(jars)) { 
-	    .jaddClassPath(jars)
-	  }		
-	}
 	
 	jars <- c("afcommons", "commons-collections", "commons-lang", 
-			"commons-logging", "commons-validator", "jgoodies-common", "forms", 
-			"iText", "jhlir.jar", "jxlayer", 
-			"log4j", "swing-worker")
+			"commons-logging", "commons-validator", "forms", 
+			"iText", "jhlir.jar", "jxlayer", "log4j", "swing-worker")
 	
 	loadJars(jars)
+  # As soon as we require CommonJavaJars >= 1.0-5 we can drop this following line:
+  try(loadJars("jgoodies-common"), silent=TRUE)
 	
 	## we supply our own JavaGD class
 	Sys.setenv("JAVAGD_CLASS_NAME"="org/mutoss/gui/JavaGD")
