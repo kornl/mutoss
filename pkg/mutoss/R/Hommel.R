@@ -64,7 +64,7 @@ mutoss.oracleBH <- function() { return(new(Class="MutossMethod",
 
 Qvalue <- function(pValues,lambda=seq(0,.90,.05),pi0.method="smoother", fdr.level=NULL,robust=FALSE, smooth.df=3,smooth.log.pi0=FALSE, silent=FALSE) {
 	requireLibrary("qvalue")
-	out<-qvalue(pValues,lambda,pi0.method, fdr.level,robust, gui=FALSE,smooth.df,smooth.log.pi0)
+	out<-qvalue(pValues, lambda, pi0.method, fdr.level, robust, smooth.df, smooth.log.pi0)
 	qValues<-out$qvalues
 	pi0<-out$pi0
 	if (! silent)

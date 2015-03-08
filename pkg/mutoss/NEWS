@@ -1,3 +1,13 @@
+Version 0.1-9
+=============
+- compatibility to qvalue 1.43.0
+
+Version 0.1-8
+=============
+- moving many packages from DEPENDS to IMPORTS
+- fixed layout in examples
+- fixed various warnings
+
 Version 0.1-7
 =============
 - corrections in the Hommel documentation
