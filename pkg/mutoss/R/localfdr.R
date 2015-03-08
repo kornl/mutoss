@@ -6,6 +6,7 @@
 
 pval2qval<- function(pValues, cutoff){
 	requireLibrary('fdrtool')
+	fdrtool <- get("fdrtool", envir=asNamespace("fdrtool"))
 	qvals<-fdrtool(
 			pValues,
 			statistic= 'pvalue', 
@@ -22,6 +23,7 @@ pval2qval<- function(pValues, cutoff){
 
 pval2locfdr<- function(pValues, cutoff){
 	requireLibrary('fdrtool')
+	fdrtool <- get("fdrtool", envir=asNamespace("fdrtool"))
 	locfdr<-fdrtool(
 			pValues,
 			statistic= 'pvalue', 
