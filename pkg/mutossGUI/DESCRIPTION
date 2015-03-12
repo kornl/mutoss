@@ -1,11 +1,11 @@
 Package: mutossGUI
-Version: 0.1-9
-Title: A graphical user interface for the MuToss Project
+Version: 0.1-10
+Title: A Graphical User Interface For The MuToss Project
 Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
     Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
     Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
-Description: A graphical user interface for the MuToss Project
+Description: The mutossGUI package provides a graphical user interface for the MuToss Project.
 Depends: R (>= 2.8.0), mutoss (>= 0.1-6), multcomp, plotrix
 Imports: rJava (>= 0.8-0), JavaGD (>= 0.5-2), CommonJavaJars (>= 1.0.4), JGR
 SystemRequirements: Java (>= 5.0)
