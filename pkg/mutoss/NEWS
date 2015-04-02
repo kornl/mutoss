@@ -1,3 +1,7 @@
+Version 0.1-10
+=============
+- compatibility with qvalue 1.99.0
+
 Version 0.1-9
 =============
 - compatibility to qvalue 1.43.0
