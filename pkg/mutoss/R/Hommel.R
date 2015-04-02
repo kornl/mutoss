@@ -62,10 +62,10 @@ mutoss.oracleBH <- function() { return(new(Class="MutossMethod",
 					parameters=list(pValues=list(type="numeric"), alpha=list(type="numeric"), pi0=list(type="numeric"))
 			)) }
 
-Qvalue <- function(pValues,lambda=seq(0,.90,.05),pi0.method="smoother", fdr.level=NULL,robust=FALSE, smooth.df=3,smooth.log.pi0=FALSE, silent=FALSE) {
+Qvalue <- function(pValues, lambda=seq(0,.90,.05), pi0.method="smoother", fdr.level=NULL, robust=FALSE, smooth.df=3, smooth.log.pi0=FALSE, silent=FALSE) {
 	requireLibrary("qvalue")
   qvalue <- get("qvalue", envir=asNamespace("qvalue"))
-	out<-qvalue(pValues, lambda, pi0.method, fdr.level, robust, smooth.df, smooth.log.pi0)
+  out <- qvalue(pValues, lambda=lambda, pi0.method=pi0.method, fdr.level=fdr.level, robust=robust, smooth.df=smooth.df, smooth.log.pi0=smooth.log.pi0)
 	qValues<-out$qvalues
 	pi0<-out$pi0
 	if (! silent)
@@ -74,7 +74,7 @@ Qvalue <- function(pValues,lambda=seq(0,.90,.05),pi0.method="smoother", fdr.leve
 		cat("Number of hyp.:\t", length(pValues), "\n")
 		cat("Estimate of the prop. of null hypotheses:\t", pi0, "\n")
 	}
-	return(list(qValues=qValues,pi0=pi0,errorControl = new(Class='ErrorControl',type="pFDR")))
+	return(list(qValues=qValues, pi0=pi0, errorControl = new(Class='ErrorControl', type="pFDR")))
 }
 mutoss.Qvalue <- function() { return(new(Class="MutossMethod",
 					label="Storey's (2001) q-value Procedure",
