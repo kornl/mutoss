@@ -1,3 +1,5 @@
+import(stats)
+import(graphics)
 import(rJava)
 import(JGR)
 importFrom(CommonJavaJars, loadJars)
