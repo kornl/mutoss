@@ -1,5 +1,6 @@
 .onLoad <- function(libname, pkgname) {
-	.jinit(parameters="-Xrs")
+  .jinit(parameters=c("-Xrs", "-Xss1m",
+                      paste0("-Djava.io.tmpdir=", tempdir())))
 	.jpackage(pkgname)
 	.jpackage("JGR")
 	
