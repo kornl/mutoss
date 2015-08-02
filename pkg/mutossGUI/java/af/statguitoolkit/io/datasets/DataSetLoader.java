@@ -59,11 +59,12 @@ public class DataSetLoader {
         String name = "tempcsv_" + nr + ".csv";
         File csv = new File(getProjectDataSetsPath(), name);
         logger.info("Output CSV: " + csv.getAbsolutePath());
-        XLSToolkit.convertXls2Csv(file, sheet, csv, ";");
-        logger.info("Loading CSV");
-        RDataFrame dfR = loadCSV(csv, header, ";", dec, missing);
-      //TODO CleanUpOnShutDown.getInstance().registerTempFile(csv);
-        return dfR;
+        throw new RuntimeException("XLS no longer supported."); //TODO Sort out Apache POI dependencies.
+        //XLSToolkit.convertXls2Csv(file, sheet, csv, ";");
+        //logger.info("Loading CSV");
+        //RDataFrame dfR = loadCSV(csv, header, ";", dec, missing);
+        //TODO CleanUpOnShutDown.getInstance().registerTempFile(csv);
+        //return dfR;
     }
 
 
