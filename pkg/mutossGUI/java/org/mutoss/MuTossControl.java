@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import org.af.commons.errorhandling.ErrorHandler;
 import org.af.jhlir.backends.rengine.RCallServicesREngine;
-import org.af.jhlir.call.RList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mutoss.gui.DebugTextConsole;

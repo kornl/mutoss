@@ -33,7 +33,6 @@ import org.apache.commons.logging.LogFactory;
 import org.mutoss.Method;
 import org.mutoss.MuTossControl;
 import org.mutoss.Parameter;
-import org.mutoss.gui.OutputPanel;
 import org.mutoss.gui.parameterwidgets.BooleanWidget;
 import org.mutoss.gui.parameterwidgets.CharacterChoiceWidget;
 import org.mutoss.gui.parameterwidgets.IntegerWidget;
