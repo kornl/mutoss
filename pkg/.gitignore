@@ -2,3 +2,4 @@ mutoss_*.tar.gz
 mutossGUI_*.tar.gz
 mutoss.Rcheck
 mutossGUI.Rcheck
+classes
