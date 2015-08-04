@@ -30,6 +30,13 @@
   # As soon as we require CommonJavaJars >= 1.0-5 we can drop this following line:
   try(loadJars("jgoodies-common"), silent=TRUE)
 	
+	if (!"JRI.jar" %in% lapply(strsplit(.jclassPath(), "/"), tail, 1)) {
+	  warning(paste(c("JRI.jar seems to be missing from the classpath.",
+	                  "The graphical user interface will most likely not be available.",
+	                  "Compile R with shared library enabled (--enable-R-shlib option)",
+	                  "and reinstall rJava to use JRI functionality."), sep="\n"))
+	}
+	
 	## we supply our own JavaGD class
 	Sys.setenv("JAVAGD_CLASS_NAME"="org/mutoss/gui/JavaGD")
 } 
