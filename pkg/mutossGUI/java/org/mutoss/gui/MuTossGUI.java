@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import org.af.commons.Localizer;
+import org.af.commons.errorhandling.DefaultExceptionHandler;
 import org.af.commons.errorhandling.ErrorHandler;
 import org.af.commons.logging.ApplicationLog;
 import org.af.commons.logging.LoggingSystem;
@@ -67,6 +68,9 @@ public class MuTossGUI extends JFrame implements WindowListener {
 					new ApplicationLog());
 			ErrorHandler.init("rohmeyer@small-projects.de", "http://www.algorithm-forge.com/report/bugreport.php", true, true, ErrorDialogChooseLevelMutoss.class);
 		}
+		// Java 7 does not respect system property "sun.awt.exception.handler".
+		// Eventually this fix should be included in afcommons.
+		Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler());
 	}
 
 	public static MuTossGUI getGUI(boolean debugOutput) {
