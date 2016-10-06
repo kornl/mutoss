@@ -1,7 +1,7 @@
 # mutoss GITHUB README
 Mutoss (multiple hypotheses testing in an open software system) aims at providing a unified, extensible interface covering a large spectrum of multiple hypotheses testing procedures in R. Features a GUI and a simulation tool. Funded by PASCAL2.
 
-![GUI screenshot](https://raw.github.com/kornl/gMCP/master/build/GUI.png)
+![GUI screenshot](https://raw.github.com/kornl/mutoss/master/build/GUI.png)
 
 The development version of this package can be directly installed with the R package devtools from Hadley Wickham et al. using:
 
