@@ -6,9 +6,9 @@ Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
     Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
     Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
 Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
-Description: The Mutoss package and accompanying mutossGUI package are
-    designed to ease the application and comparison of multiple
-    hypothesis testing procedures.
+Description: Designed to ease the application and comparison of multiple
+    hypothesis testing procedures for FWER, gFWER, FDR and FDX. Methods are 
+    standardized and usable by the accompanying 'mutossGUI'.
 Depends: R (>= 2.10.0), mvtnorm
 Suggests: fdrtool, qvalue, testthat, lattice
 Imports: plotrix, multtest (>= 2.2.0), multcomp (>= 1.1-0), methods 
