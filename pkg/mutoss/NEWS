@@ -1,10 +1,14 @@
+Version 0.1-12
+==============
+
+
 Version 0.1-11
-=============
+==============
 - fixed CRAN notes and warnings
 - switched from RUnit to testthat
 
 Version 0.1-10
-=============
+==============
 - compatibility with qvalue 1.99.0
 
 Version 0.1-9
