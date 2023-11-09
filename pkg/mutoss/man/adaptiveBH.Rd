@@ -6,7 +6,9 @@
 It controls the FDR at level alpha for independent or positive regression dependent test statistics.}
 \details{In the adaptive Benjamini-Hochberg step-up procedure the number of true null hypotheses is estimated first as in Hochberg and
 Benjamini (1990), and this estimate is used in the procedure of Benjamini and
-Hochberg (1995) with alpha'=alpha*m/m0.}
+Hochberg (1995) with alpha'=alpha*m/m0.
+Please note that this method is not equivalent to multcomp's ABH. They revised the formular of the original paper.
+}
 \value{A list containing:
 
 \item{adjPValues}{A numeric vector containing the adjusted pValues}

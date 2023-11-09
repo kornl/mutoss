@@ -1,7 +1,7 @@
 Package: mutoss
 Type: Package
 Title: Unified Multiple Testing Procedures
-Version: 0.1-12
+Version: 0.1-13
 Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
     Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
     Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
@@ -11,8 +11,9 @@ Description: Designed to ease the application and comparison of multiple
     standardized and usable by the accompanying 'mutossGUI'.
 Depends: R (>= 2.10.0), mvtnorm
 Suggests: fdrtool, qvalue, testthat, lattice
-Imports: plotrix, multtest (>= 2.2.0), multcomp (>= 1.1-0), methods 
+Imports: plotrix, multtest (>= 2.2.0), multcomp (>= 1.1-0), methods
 License: GPL
 LazyLoad: yes
+LazyData: true
 URL: https://github.com/kornl/mutoss/
 BugReports: https://github.com/kornl/mutoss/issues/

@@ -1,3 +1,8 @@
+Version 0.1-13
+==============
+- ranktruncated warns for large numbers of p-values. (Thanks to Phillip Bredahl Mogensen for notification!)
+- noted that adaptiveBH is not equivalent to multcomp's ABH. (Thanks to David Swanepoel for notification!)
+
 Version 0.1-12
 ==============
 - changed description according to CRAN policy

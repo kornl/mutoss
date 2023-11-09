@@ -8,6 +8,10 @@ ranktruncated <- function(pValues, K, silent = FALSE){
 	
 	L <- length(pValues)
 	
+	if (L>1000) {
+	  warning("Method implementation is numerical instable for large numbers of p-values. Please do not rely on results.")
+	}
+	
 	if (K > L){
 		warn1 <- paste("K must be smaller than L")
 		stop(warn1)

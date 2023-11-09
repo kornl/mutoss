@@ -10,7 +10,9 @@ pvalue from the exact distribution. This has certain advantages for genomewide
 association scans: K can be chosen on the basis of a hypothesised 
 disease model, and is independent of sample size. Furthermore, 
 the alternative hypothesis corresponds more closely to the 
-experimental situation where all loci have fixed effects.}
+experimental situation where all loci have fixed effects.
+
+Please note that this method is implemented with factorials and binomial coefficients and the computation becomes numerical instable for large number of p-values.}
 \value{Used.pValue: List information about the used pValues; RTP: Test statistic and pValue}
 \author{Frank Konietschke}
 \references{Dubridge, F., Koeleman, B.P.C. (2003). Rank truncated product of P-values, with application to genomewide association scans. Genet Epidemiol. 2003 Dec;25(4):360-6}
