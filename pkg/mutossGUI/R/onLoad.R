@@ -24,7 +24,7 @@
 	
 	jars <- c("afcommons", "commons-collections", "commons-lang", 
 			"commons-logging", "commons-validator", "forms", 
-			"iText", "jhlir.jar", "jxlayer", "log4j", "swing-worker")
+			"iText", "jhlir.jar", "jxlayer", "log4j-1.2-api", "log4j-api", "log4j-core", "swing-worker")
 	
 	loadJars(jars)
   # As soon as we require CommonJavaJars >= 1.0-5 we can drop this following line:
