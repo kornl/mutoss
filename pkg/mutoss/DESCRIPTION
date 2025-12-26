@@ -1,11 +1,38 @@
 Package: mutoss
 Type: Package
 Title: Unified Multiple Testing Procedures
-Version: 0.1-13
-Author: MuToss Coding Team (Berlin 2010), Gilles Blanchard, Thorsten Dickhaus,
-    Niklas Hack, Frank Konietschke, Kornelius Rohmeyer, 
-    Jonathan Rosenblatt, Marsel Scheer, Wiebke Werft
-Maintainer: Kornelius Rohmeyer <rohmeyer@small-projects.de>
+Version: 0.1-14
+Authors@R: c(
+    person(given = c("MuToss", "Coding"),
+           family = "Team",
+           role = "aut",
+           comment = "Berlin 2010"),
+    person(given = "Gilles",
+           family = "Blanchard",
+           role = "aut"),
+    person(given = "Thorsten",
+           family = "Dickhaus",
+           role = "aut"),
+    person(given = "Niklas",
+           family = "Hack",
+           role = "aut"),
+    person(given = "Frank",
+           family = "Konietschke",
+           role = "aut"),
+    person(given = "Kornelius",
+           family = "Rohmeyer",
+           role = c("aut", "cre"),
+           email = "rohmeyer@small-projects.de"),
+    person(given = "Jonathan",
+           family = "Rosenblatt",
+           role = "aut"),
+    person(given = "Marsel",
+           family = "Scheer",
+           role = "aut"),
+    person(given = "Wiebke",
+           family = "Werft",
+           role = "aut")
+    )
 Description: Designed to ease the application and comparison of multiple
     hypothesis testing procedures for FWER, gFWER, FDR and FDX. Methods are 
     standardized and usable by the accompanying 'mutossGUI'.

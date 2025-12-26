@@ -33,6 +33,9 @@
 		<fileset dir="${content.root}/../../../build">
 			        	<include name="*.jar"/>	        		        	
 		</fileset>
+		<fileset dir="/usr/local/lib/R/site-library/xlsxjars/java/">
+					<include name="*.jar"/>	        		        	
+		</fileset>
 	</path> 
 	
 	<path id="complete.classpath">

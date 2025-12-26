@@ -15,6 +15,9 @@ Efron B., Tibshirani R., Storey J. D. and Tusher, V. (2001). Empirical Bayes Ana
 Journal of the American Statistical Association 96(456):1151-1160.}
 \arguments{\item{pValues}{pValues to be used.}
 \item{cutoff}{The local fdr cutoff for rejection. Hypotheses with \code{local fdr} smaller then \code{cutoff} will be rejected.}}
-\examples{pvals<- runif(1000)^2
-pval2locfdr(pvals)
-pval2locfdr(pValues=pvals, cutoff=0.4)}
+\examples{
+if (requireNamespace("fdrtool", quietly = TRUE)) {
+  pvals<- runif(1000)^2
+  pval2locfdr(pvals)
+  pval2locfdr(pValues=pvals, cutoff=0.4)
+}}

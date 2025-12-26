@@ -16,6 +16,9 @@ Storey, J. D. (2003)  The Positive False Discovery Rate: A Bayesian Interpretati
 The Annals of Statistics 31(6): 2013-2035}
 \arguments{\item{pValues}{Numeric vector of p-values to be used.}
 \item{cutoff}{The positive FDR cutoff for rejection. Hypotheses with \code{qValues} smaller then \code{cutoff} will be rejected.}}
-\examples{pvals<- runif(1000)^2
-pval2qval(pvals)
-pval2qval(pValues=pvals, cutoff=0.1)}
+\examples{
+if (requireNamespace("fdrtool", quietly = TRUE)) {
+  pvals<- runif(1000)^2
+  pval2qval(pvals)
+  pval2qval(pValues=pvals, cutoff=0.1)
+}}

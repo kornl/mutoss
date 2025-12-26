@@ -1,3 +1,7 @@
+Version 0.1-14
+==============
+- fixed CRAN notes and warnings
+
 Version 0.1-13
 ==============
 - ranktruncated warns for large numbers of p-values. (Thanks to Phillip Bredahl Mogensen for notification!)

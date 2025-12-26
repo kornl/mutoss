@@ -30,6 +30,9 @@ The Annals of Statistics, Vol. 31, No. 6, 2013-2035.}
 \item{smooth.log.pi0}{Logical, if TRUE and pi0.method = 'smoother', pi0 will be estimated by applying a smoother 
 to a scatterplot of log(pi_0) estimates against the tuning parameter lambda.}
 \item{silent}{logical scalar. If \code{TRUE} no output is generated.}}
-\examples{pval <- c(runif(50), runif(50, 0, 0.01))
-result <- Qvalue(pval)
-result <- Qvalue(pval, lambda=0.5)}
+\examples{
+if (requireNamespace("qvalue", quietly = TRUE)) {
+  pval <- c(runif(50), runif(50, 0, 0.01))
+  result <- Qvalue(pval)
+  result <- Qvalue(pval, lambda=0.5)
+}}
